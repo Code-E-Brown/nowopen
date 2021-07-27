@@ -1,0 +1,17 @@
+.navContainer {
+    background-color: rgb(255, 255, 255);
+    height: 106px;
+    width: auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color:rgb(238, 238, 239);
+    color: rgb(51, 51, 51);
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 24px;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+}
