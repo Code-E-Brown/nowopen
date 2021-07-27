@@ -10,8 +10,115 @@
     color: rgb(51, 51, 51);
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 24px;
+    /* padding-top: 24px; */
     pointer-events: auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    /* box-shadow: 0px 0px 10px rgba(43, 39, 60, .1); */
 }
+
+.redSearchBox{
+    background-color: rosybrown;
+    min-width: 60px;
+    height: 100%;
+    /* height: 48px; */
+    display: flex;
+    /* box-shadow: 0px 0px 10px rgba(244, 57, 57, .6); */
+    box-shadow: 0px 0px 10px rgba(43, 39, 60, .6);
+    /* border: none; */
+    background-color: rgb(244, 57, 57);
+    /* border-radius: 5%; */
+    /* border-radius: 10px; */
+    border-radius: 0px 7px 7px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* position: relative;
+    align-self: flex-end */
+    /* right: 25px; */
+}
+
+.searchDiv {
+    height: 48px;
+    width: 750px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(43, 39, 60, .6);
+    border: none;
+    /* border-radius: 10%; */
+    /* border-radius: 10px; */
+    border-radius: 7px;
+    /* display: flex; */
+    /* justify-content: flex-end; */
+    border-left: none;
+    /* padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 13px;
+    padding-bottom: 13px; */
+
+}
+.searchInput{
+    /* background-color: rosybrown; */
+    /* border-radius: 10px; */
+    border-radius: 7px 0px 0px 7px;
+    /* border-radius: 5px; */
+    height: 80%;
+    /* width: 100%; */
+    width: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* height: 90%; */
+    /* width: 95%; */
+    /* width: 99%; */
+    border: none;
+}
+
+.magnifyingGlass{
+    height: 60%;
+    width: 50%;
+    cursor: pointer;
+}
+
+.searchLineLabel{
+    width: 2px;
+    height: 24px;
+    color: rgb(238, 238, 239);
+    background-color: rgb(238, 238, 239);
+}
+
+.categoryPlaceHolder{
+   /* color: rgb(187, 186, 192); */
+   /* background-color: red; */
+}
+
+.navButtonLinkBox{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.searchDiv select {
+    color: rgb(187, 186, 192);
+    font-weight: 400;
+    font-size: 18px;
+  }
+  .searchDiv option:not(:first-of-type) {
+    color: black;
+  }
+
+  .avatarCircle{
+      /* border-radius: 50%; */
+      border-radius: 7px;
+      color: rgb(244, 57, 57);
+      /* width: 35px; */
+      /* height: 35px; */
+      height: 48px;
+      width: 48px;
+      background-color: rgb(255, 255, 255);
+      /* position: relative; */
+      box-shadow: 0px 0px 10px rgba(43, 39, 60, .6);
+      cursor: pointer;
+  }
