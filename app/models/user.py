@@ -31,7 +31,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'img_url': self.image_url,
+            'img_url': self.img_url,
             'current_lat': self.current_lat,
             'current_long': self.current_long
         }
