@@ -22,11 +22,11 @@ function DropDownProfileButton({ styles }) {
 
     return (
         <div>
-            <button onClick={openMenu}>
+            <button className={styles.avatarButton} onClick={openMenu}>
                 <AiOutlineUser className={styles.avatarCircle} />
             </button>
             {showMenu && (
-                <Dropdown />
+                <Dropdown styles={styles} />
             )}
         </div>
     )

@@ -52,7 +52,7 @@ const NavBar = () => {
       <div className={styles.navButtonLinkBox}>
         {!user &&
           <>
-            <div>
+            <div className={styles.loginButton}>
               <NavLink to='/login' exact={true} activeClassName='active'>
                 Login
               </NavLink>
@@ -60,7 +60,7 @@ const NavBar = () => {
             {/* </div> */}
             {/* </li>
         <li> */}
-            <div>
+            <div className={styles.signupButton}>
               <NavLink to='/sign-up' exact={true} activeClassName='active'>
                 Sign Up
               </NavLink>
@@ -79,14 +79,17 @@ const NavBar = () => {
         {/* <div className={styles.avatarCircle}>
         </div> */}
         {user &&
-          <DropDownProfileButton styles={styles} />
+          <div>
+            <DropDownProfileButton styles={styles} />
+            {/* <LogoutButton /> */}
+
+          </div>
           // <>
           //   <div>
           //     <AiOutlineUser styles={styles} className={styles.avatarCircle} />
           //   </div>
 
           //   <div>
-          //     <LogoutButton />
           //   </div>
           // </>
         }

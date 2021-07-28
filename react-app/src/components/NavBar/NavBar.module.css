@@ -75,6 +75,7 @@
     border: none;
 }
 
+
 .magnifyingGlass{
     height: 60%;
     width: 50%;
@@ -104,6 +105,7 @@
     color: rgb(187, 186, 192);
     font-weight: 400;
     font-size: 18px;
+    width: 50.66%;
   }
   .searchDiv option:not(:first-of-type) {
     color: black;
@@ -121,4 +123,76 @@
       /* position: relative; */
       box-shadow: 0px 0px 10px rgba(43, 39, 60, .6);
       cursor: pointer;
+  }
+
+  .avatarButton{
+      border: none;
+      background-color: rgb(255, 255, 255);
+  }
+
+  .dropDown{
+    z-index: 100;
+    /* width: 30%; */
+    width: 10%;
+    /* NO WIDTH!!!!!!! because it needs to be filled with things dynamically */
+    /* height: 600px; */
+    height: 100px;
+    /* NO HEIGHT!!!!!!! because it needs to be filled with things dynamically */
+    background-color: white;
+    /* background-color: red; */
+    border: 1px solid rgb(155, 158, 158);
+    position: absolute;
+    /* top: 78px; */
+    right: 45px;
+    color: rgb(40, 40, 40);
+    /* padding: 5px 10px 10px 10px; */
+  }
+
+  .loginButton{
+    /* border-style: solid; */
+    border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    width: 45px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 14;
+    height: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+margin-right: 12px;
+  }
+  .loginButton a{
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(43, 39, 60);
+  }
+
+
+  .signupButton{
+    /* border-style: solid; */
+    border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    width: 61px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 14;
+    height: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(244, 57, 57)
+  }
+  .signupButton a{
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
   }
