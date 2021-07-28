@@ -14,7 +14,10 @@ class User(db.Model, UserMixin):
     current_lat = db.Column(db.String(255))
     current_long = db.Column(db.String(255))
 
-
+    businesses= db.relationship('Business', back_populates='owner')
+    images = db.relationship('Image', back_populates='user')
+    reviews= db.relationship('Review', back_populates='user')
+    comments= db.relationship('Comment', back_populates='user')
     @property
     def password(self):
         return self.hashed_password
