@@ -1,0 +1,17 @@
+.bannerDiv{
+    height: 600px;
+    background-image: url('https://images.pexels.com/photos/2089712/pexels-photo-2089712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-repeat: no-repeat;
+    /* background-size: 100% 100%; */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+
+.flexbox{
+    display: flex;
+    align-items: center
+}
