@@ -45,9 +45,12 @@ function App() {
           <NavBar />
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true}>
           <Home />
-        </ProtectedRoute>
+        </Route>
+        {/* <ProtectedRoute path='/' exact={true} >
+          <Home />
+        </ProtectedRoute> */}
       </Switch>
     </BrowserRouter>
   );

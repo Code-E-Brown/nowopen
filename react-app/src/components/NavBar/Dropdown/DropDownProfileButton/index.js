@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { AiOutlineUser } from 'react-icons/ai'
+import styles from '../../../NavBar/NavBar.module.css'
 import Dropdown from '..'
 
-function DropDownProfileButton({ styles }) {
+function DropDownProfileButton() {   // {styles} was passed in as a prop, no longer needed, best to import
     const [showMenu, setShowMenu] = useState(false)
 
     const openMenu = () => {

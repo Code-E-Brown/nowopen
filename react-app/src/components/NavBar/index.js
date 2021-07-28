@@ -13,7 +13,7 @@ import Searchbar from './Searchbar';
 const NavBar = () => {
 
   const user = useSelector(state => state.session.user);
-  console.log('AND YOUR USER IS', user)
+  
 
   return (
     <nav className={styles.navContainer}>
