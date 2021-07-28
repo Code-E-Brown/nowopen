@@ -1,5 +1,6 @@
 .bannerDiv{
-    height: 600px;
+    /* height: 600px; */
+    min-height: 100vh;
     background-image: url('https://images.pexels.com/photos/2089712/pexels-photo-2089712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     background-repeat: no-repeat;
     /* background-size: 100% 100%; */

@@ -1,17 +1,23 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './Home.module.css'
 import Searchbar from '../NavBar/Searchbar';
 import DropDownProfileButton from '../NavBar/Dropdown/DropDownProfileButton'
-
+import { getBusinesses } from '../../store/business';
 
 
 
 const Home = () => {
+    const dispatch = useDispatch()
 
     const user = useSelector(state => state.session.user);
+    useEffect(() => {
+
+        dispatch(getBusinesses())
+
+    }, [dispatch])
 
     return (
         <div className={styles.bannerDiv}>
@@ -19,18 +25,18 @@ const Home = () => {
                 <div className={styles.homeNavLinkBox}>
                     <div className={styles.navBox}>
                         <div className={styles.navLinksLeft}>
-                            <Link to='/food' exact={true} activeClassName='active'>
+                            <Link to='/food' exact='true'>
                                 Food
                             </Link>
                         </div>
                         <div className={styles.navLinksLeft}>
-                            <Link to='/food' exact={true} activeClassName='active'>
+                            <Link to='/food' exact='true'>
                                 Retail
                             </Link>
                         </div>
                         <div className={styles.navLinksLeft}>
 
-                            <Link to='/food' exact={true} activeClassName='active'>
+                            <Link to='/food' exact='true'>
                                 Events
                             </Link>
                         </div>
@@ -41,14 +47,14 @@ const Home = () => {
                         ) :
                             <>
                                 <div className={styles.loginButton}>
-                                    <Link to='/login' exact={true} activeClassName='active'>
+                                    <Link to='/login' exact='true'>
                                         Login
                                     </Link>
                                 </div>
                                 <div className={styles.signupButton}>
-                                    <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                                    <Link to='/sign-up' exact='true'>
                                         Sign Up
-                                    </NavLink>
+                                    </Link>
                                 </div>
                             </>
                         }
@@ -63,7 +69,7 @@ const Home = () => {
                     <Searchbar />
                 </div>
                 <div className={styles.blockBottom}>
-                    <div style={{ height: '38px' }}></div>
+                    <div style={{ height: '120px' }}></div>
                 </div>
             </div>
         </div>
