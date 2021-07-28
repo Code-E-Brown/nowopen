@@ -7,13 +7,15 @@ import styles from './NavBar.module.css'
 import { AiOutlineUser } from 'react-icons/ai'
 import DropDownProfileButton from './Dropdown/DropDownProfileButton'
 import Searchbar from './Searchbar';
+import SignupFormModal from '../SignupFormModal';
+import LoginFormModal from '../LoginFormModal';
 
 // import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
 
   const user = useSelector(state => state.session.user);
-  
+
 
   return (
     <nav className={styles.navContainer}>
@@ -29,17 +31,13 @@ const NavBar = () => {
         {!user &&
           <>
             <div className={styles.loginButton}>
-              <NavLink to='/login' exact={true} activeClassName='active'>
-                Login
-              </NavLink>
+              <LoginFormModal />
             </div>
             {/* </div> */}
             {/* </li>
         <li> */}
             <div className={styles.signupButton}>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
+              <SignupFormModal />
             </div>
           </>
         }

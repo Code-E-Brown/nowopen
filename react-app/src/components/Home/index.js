@@ -6,7 +6,8 @@ import styles from './Home.module.css'
 import Searchbar from '../NavBar/Searchbar';
 import DropDownProfileButton from '../NavBar/Dropdown/DropDownProfileButton'
 import { getBusinesses } from '../../store/business';
-
+import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
 
 
 const Home = () => {
@@ -47,14 +48,13 @@ const Home = () => {
                         ) :
                             <>
                                 <div className={styles.loginButton}>
-                                    <Link to='/login' exact='true'>
+                                    <LoginFormModal />
+                                    {/* <Link to='/login' exact='true'>
                                         Login
-                                    </Link>
+                                    </Link> */}
                                 </div>
                                 <div className={styles.signupButton}>
-                                    <Link to='/sign-up' exact='true'>
-                                        Sign Up
-                                    </Link>
+                                    <SignupFormModal />
                                 </div>
                             </>
                         }
