@@ -37,6 +37,10 @@ function App() {
           <NavBar />
           <SignUpForm />
         </Route>
+        <Route path='/businesses/food' exact={true}>
+          <NavBar />
+
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <NavBar />
           <UsersList />
