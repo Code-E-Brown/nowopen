@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Home from './components/Home';
+import MapContainer from './components/Maps';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,7 +40,7 @@ function App() {
         </Route>
         <Route path='/businesses/food' exact={true}>
           <NavBar />
-
+          <MapContainer />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <NavBar />
