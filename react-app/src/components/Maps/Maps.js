@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { useState } from 'react';
 
 const containerStyle = {
@@ -42,7 +42,12 @@ const Maps = ({ apiKey }) => {
                     mapContainerStyle={containerStyle}
                     center={center}
                     zoom={10}
-                />
+                >
+                    <Marker key='userMarker'
+                        position={center}
+                    />
+                </GoogleMap>
+
             )}
         </>
     );

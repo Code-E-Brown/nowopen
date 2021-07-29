@@ -26,18 +26,18 @@ const Home = () => {
                 <div className={styles.homeNavLinkBox}>
                     <div className={styles.navBox}>
                         <div className={styles.navLinksLeft}>
-                            <Link to='/food' exact='true'>
+                            <Link to='/businesses/food' exact='true'>
                                 Food
                             </Link>
                         </div>
                         <div className={styles.navLinksLeft}>
-                            <Link to='/food' exact='true'>
+                            <Link to='/businesses/retail' exact='true'>
                                 Retail
                             </Link>
                         </div>
                         <div className={styles.navLinksLeft}>
 
-                            <Link to='/food' exact='true'>
+                            <Link to='/businesses/events' exact='true'>
                                 Events
                             </Link>
                         </div>
