@@ -1,0 +1,59 @@
+.imageBox{
+    min-height: 30vw;
+    width: 100vw;
+    /* background-color: blanchedalmond; */
+    background-image: url('https://images.pexels.com/photos/7262998/pexels-photo-7262998.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') ;
+    background-repeat: no-repeat;
+    /* background-size: 100% 100%; */
+    background-size: cover;
+    /* position: absolute; */
+    /* background-size: contain; */
+    /* background-position: center;
+    display: flex;
+    align-content: center; */
+    /* flex-direction: column-reverse; */
+    /* filter: blur(2px); */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.infoBox{
+/* background-color: red; */
+height: 185px;
+/* box-shadow: 0px 0px 20px rgba(43, 39, 60, .6); */
+background-color: rgba(210, 180, 140, 0.534);
+background: linear-gradient(0deg, white, transparent);
+}
+.nameBox{
+
+}
+
+
+
+.bizName{
+    /* background-color: chartreuse; */
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+   color: rgb(255, 255, 255);
+   font-weight: 900;
+   font-size: 50px;
+   overflow-wrap: break-word;
+   width: 100%;
+   /* border-style: solid;
+   border-width: 1px;
+   border-color: white; */
+   /* position: absolute; */
+
+
+
+}
+
+.infoFlex{
+    /* background-color: chocolate; */
+    width: 80vw;
+    min-height: 30vw;
+    display: flex;
+    align-content: center;
+
+    flex-direction: column-reverse;
+}

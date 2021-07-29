@@ -10,6 +10,9 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Home from './components/Home';
 import MapContainer from './components/Maps';
+import CreateBusiness from './components/CreateBusiness';
+import Food from './components/Food';
+import BusinessPage from './components/BusinessPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,7 +43,8 @@ function App() {
         </Route>
         <Route path='/businesses/food' exact={true}>
           <NavBar />
-          <MapContainer />
+          <Food />
+          {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <NavBar />
@@ -53,9 +57,14 @@ function App() {
         <Route path='/' exact={true}>
           <Home />
         </Route>
-        {/* <ProtectedRoute path='/' exact={true} >
-          <Home />
-        </ProtectedRoute> */}
+        <ProtectedRoute path='/businesses/create' exact={true} >
+          <NavBar />
+          <CreateBusiness />
+        </ProtectedRoute>
+        <Route path='/businesses/:id' exact={true}>
+          <NavBar />
+          <BusinessPage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

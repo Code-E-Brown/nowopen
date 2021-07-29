@@ -35,41 +35,49 @@ const initialState = {};
 
 export const getBusinesses = () => async (dispatch) => {
     const response = await fetch('/api/businesses')
+
     if (response.ok) {
         const data = await response.json();
-        console.log('******', data.businesses)
+        // console.log('******', data.businesses)
         const businessesArray = data.businesses
         dispatch(setAllBusinessesInStore(businessesArray))
+        return businessesArray
     }
 }
 
 
-// export const createProject = (project) => async (dispatch) => {
-//     const response = await fetch('/api/projects/create', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({
-//             project
-//         }),
-//     });
+export const createBusiness = (business) => async (dispatch) => {
+    const response = await fetch('/api/businesses', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            business
+        }),
+    });
 
-//     if (response.ok) {
-//         const data = await response.json();
-//         const newProject = data.newProject
+    if (response.ok) {
+        const data = await response.json();
+        // console.log("^^^^^", data)
+        const newBiz = data
 
-//         dispatch(addProjectToStore(newProject))
-//         return newProject;
-//     } else if (response.status < 500) {
-//         const data = await response.json();
-//         if (data.errors) {
-//             return data.errors;
-//         }
-//     } else {
-//         return ['An error occurred. Please try again.']
-//     }
-// }
+        dispatch(addBusinessToStore(newBiz))
+        return newBiz;
+
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+
+    // } else if (response.status < 500) {
+    //     const data = await response.json();
+    //     if (data.errors) {
+    //         return data.errors;
+    //     }
+    // } else {
+    //     return ['An error occurred. Please try again.']
+    // }
+}
 // //TODO: build the API route to handle this fetch request
 // export const editProject = (newProject) => async dispatch => {
 //     console.log(newProject)
@@ -116,7 +124,7 @@ export const getBusinesses = () => async (dispatch) => {
 
 export default function reducer(state = initialState, action) {
     let newState;
-    console.log("HERE IS YOUR ACTION", action)
+    // console.log("HERE IS YOUR ACTION", action)
     switch (action.type) {
         case ADD_BUSINESS:
             newState = {}
