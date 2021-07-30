@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getKey } from '../../store/maps';
 import Maps from './Maps';
 
-const MapContainer = ({ containerStyle, foodBusinesses }) => {
+const MapContainer = ({ containerStyle, foodBusinesses, singleBusiness }) => {
     const key = useSelector((state) => state.maps.key);
     const dispatch = useDispatch();
 
@@ -21,6 +21,7 @@ const MapContainer = ({ containerStyle, foodBusinesses }) => {
     return (
         <Maps
             apiKey={key}
+            
             containerStyle={containerStyle}
             foodBusinesses={foodBusinesses} />
     );

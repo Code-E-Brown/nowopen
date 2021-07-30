@@ -49,11 +49,6 @@ function Food() {
                         </div>
                     </div>
                     <div className={style.invisDiv}></div>
-
-
-
-
-
                 </div>
             </div>
             <MapContainer foodBusinesses={foodBusinesses} containerStyle={{
