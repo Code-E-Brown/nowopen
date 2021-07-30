@@ -23,6 +23,7 @@ function BusinessPage() {
     const [toggleLocationEdit, setToggleLocationEdit] = useState(false)
     const [locationNote, setLocationNote] = useState('')
     const [liveRating, setLiveRating] = useState(null)
+    const [reviewText, setReviewText] = useState('')
 
     const currentBusiness = useSelector(state => state.businesses[businessId]);
     const user = useSelector(state => state.session.user)
@@ -80,6 +81,23 @@ function BusinessPage() {
             location_description: locationNote,
         }
         dispatch(editBusiness(changeOpenStatus))
+    }
+
+    const handleReviewSubmit = (e) => {
+        e.preventDefault()
+
+        const newReview = {
+            text: reviewText,
+            rating: liveRating,
+            business_id: +businessId,
+            user_id: user.id
+        }
+        console.log("*NEW REVIEW READY TO ROLL*", newReview)
+    }
+
+    const handleReviewCancel = (e) => {
+        setLiveRating(null)
+        setReviewText('')
     }
 
 
@@ -234,68 +252,80 @@ function BusinessPage() {
             <div className={style.infoSectionColumn}>
                 <h1>Reviews:</h1>
                 <div className={style.reviewBox}>
-                    <div className={style.leaveReviewCard}>
-                        Leave a review
-                        {liveRating === 1 ? (
-                            <>
-                                <BsStarFill onClick={e => setLiveRating(null)} />
-                                <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
-                            </>
-                        ) : null}
-                        {liveRating === 2 ? (
-                            <>
-                                <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
-                            </>
-                        ) : null}
-                        {liveRating === 3 ? (
-                            <>
-                                <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
+                    {user && user.id != currentBusiness?.user_id ? (
 
-                            </>
-                        ) : null}
-                        {liveRating === 4 ? (
-                            <>
-                                <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
+                        < div className={style.leaveReviewCard}>
+                            Leave a review
+                            {liveRating === 1 ? (
+                                <>
+                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
+                                </>
+                            ) : null}
+                            {liveRating === 2 ? (
+                                <>
+                                    <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
+                                </>
+                            ) : null}
+                            {liveRating === 3 ? (
+                                <>
+                                    <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
 
-                            </>
-                        ) : null}
-                        {liveRating === 5 ? (
-                            <>
-                                <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                            </>
-                        ) : null}
+                                </>
+                            ) : null}
+                            {liveRating === 4 ? (
+                                <>
+                                    <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
 
-                        {!liveRating &&
-                            <>
-                                <FiStar onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
-                            </>
-                        }
+                                </>
+                            ) : null}
+                            {liveRating === 5 ? (
+                                <>
+                                    <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                </>
+                            ) : null}
+
+                            {!liveRating &&
+                                <>
+                                    <FiStar onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
+                                </>
+                            }
+                            {liveRating &&
+                                <div>
+                                    <textarea onChange={e => setReviewText(e.target.value)} value={reviewText}></textarea>
+                                    <div>
+                                        <button onClick={handleReviewSubmit}>Submit review</button>
+                                        <button onClick={handleReviewCancel}>Cancel</button>
+                                    </div>
+                                </div>
+                            }
 
 
-                    </div>
+                        </div>)
+                        : null}
                     <div className={style.reviewCard}>
                         square
                     </div>
