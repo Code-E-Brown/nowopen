@@ -13,6 +13,7 @@ import MapContainer from './components/Maps';
 import CreateBusiness from './components/CreateBusiness';
 import Food from './components/Food';
 import BusinessPage from './components/BusinessPage';
+import EditBusiness from './components/EditBusiness'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,6 +66,10 @@ function App() {
           <NavBar />
           <BusinessPage />
         </Route>
+        <ProtectedRoute path='/businesses/:id/edit' exact={true}>
+          <NavBar />
+          <EditBusiness />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

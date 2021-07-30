@@ -10,9 +10,11 @@ function BusinessPage() {
     const { id } = useParams();
     const businessId = id;
     const dispatch = useDispatch()
+
     const [singleBusiness, setSingleBusiness] = useState({})
 
     const currentBusiness = useSelector(state => state.businesses[businessId]);
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
         const result = dispatch(getBusinesses())
@@ -53,18 +55,50 @@ function BusinessPage() {
                                                 See all Photos
                                             </Link>
                                         </div>
-                                        <div className={style.editButtonBox}>
-                                            <Link to={`/businesses/${currentBusiness.id}/edit`}>
-                                                Edit
-                                            </Link>
-                                        </div>
+                                        {user && user.id === currentBusiness?.user_id ? (
+                                            <div className={style.editButtonBox}>
+                                                <Link to={`/businesses/${currentBusiness.id}/edit`}>
+                                                    Edit
+                                                </Link>
+                                            </div>
+
+                                        )
+                                            : null}
                                     </div>
 
                                 </div>
                             </>
-                        ) : <div className={style.closedStatus}>
-                            Closed
-                        </div>}
+                        ) :
+                            <>
+                                <div className={style.closedStatus}>
+                                    Closed
+                                </div>
+                                <div className={style.locationInfoInvis}>
+                                    <div></div>
+                                    <div className={style.flexColumn}>
+
+                                        <div className={style.photoButtonBox}>
+                                            <Link to='#'>
+                                                See all Photos
+                                            </Link>
+                                        </div>
+                                        {user && user.id === currentBusiness?.user_id ? (
+                                            <div className={style.editButtonBox}>
+                                                <Link to={`/businesses/${currentBusiness.id}/edit`}>
+                                                    Edit
+                                                </Link>
+                                            </div>
+
+                                        )
+
+                                            : null}
+
+                                    </div>
+
+                                </div>
+                            </>
+                        }
+
                     </div>
                 </div>
             </div>

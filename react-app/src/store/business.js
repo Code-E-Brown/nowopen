@@ -79,46 +79,49 @@ export const createBusiness = (business) => async (dispatch) => {
     // }
 }
 // //TODO: build the API route to handle this fetch request
-// export const editProject = (newProject) => async dispatch => {
-//     console.log(newProject)
-//     const response = await fetch(`/api/projects/${newProject.id}/edit`, {
-//         method: 'PATCH',
-//         body: JSON.stringify(newProject),
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
+export const editBusiness = (updatedBiz) => async dispatch => {
+    console.log(updatedBiz)
+    const response = await fetch(`/api/businesses/${updatedBiz.id}/edit`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedBiz),
+        headers: {
+            'Content-Type': 'application/json',
+        },
 
-//     });
+    });
 
-//     if (response.ok) {
-//         const newProjectData = await response.json();
-//         console.log(newProjectData)
-//         dispatch(addProjectToStore(newProjectData))
-//         // return newProjectData
-//     }
-//     else if (response.status < 500) {
-//         const data = await response.json();
-//         if (data.errors) {
-//             return data.errors;
-//         }
-//     } else {
-//         return ['An error occurred. Please try again.']
-//     }
-// }
+    if (response.ok) {
+        const updatedBizData = await response.json()
+        // console.log("********** SUCCESS", updatedBizData)
+    }
+    //     const newProjectData = await response.json();
+    //     console.log(newProjectData)
+    //     dispatch(addProjectToStore(newProjectData))
+    //     // return newProjectData
+    // }
+    // else if (response.status < 500) {
+    //     const data = await response.json();
+    //     if (data.errors) {
+    //         return data.errors;
+    //     }
+    // } else {
+    //     return ['An error occurred. Please try again.']
+    // }
+}
 
-// export const deleteProject = (projectId) => async dispatch => {
-//     const response = await fetch(`/api/projects/${projectId}`, {
-//         method: 'DELETE',
-//     });
+export const deleteBusiness = (businessId) => async dispatch => {
+    const response = await fetch(`/api/businesses/${businessId}`, {
+        method: 'DELETE',
+    });
 
-//     if (response.ok) {
-//         const projectDeleteSuccessMessage = await response.json();
-//         dispatch(deleteProjectFromStore(projectId))
-
-//         return projectDeleteSuccessMessage
-//     }
-//     return null;
-// }
+    if (response.ok) {
+        const businessDeleteSuccessMessage = await response.json();
+        // dispatch(deleteProjectFromStore(projectId))
+        console.log(businessDeleteSuccessMessage)
+        // return projectDeleteSuccessMessage
+    }
+    // return null;
+}
 
 /* ------ DEFINE & EXPORT REDUCER ------ */
 

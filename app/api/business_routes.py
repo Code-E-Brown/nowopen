@@ -29,8 +29,23 @@ def create_business():
     return newBiz.to_dict()
 
 
-# @user_routes.route('/<int:id>')
-# @login_required
-# def user(id):
-#     user = User.query.get(id)
-#     return user.to_dict()
+@business_routes.route('/<int:id>/edit', methods=["PUT"])
+@login_required
+def edit_business(id):
+    businessToUpdate = Business.query.get(id)
+    print("ARE YOU NOT ENTERTAINED?********************", request.json)
+    businessToUpdate.name = request.json['name']
+    businessToUpdate.category_id = request.json['category_id']
+    businessToUpdate.description = request.json['description']
+    db.session.add(businessToUpdate)
+    db.session.commit()
+    return businessToUpdate.to_dict()
+
+@business_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_business(id):
+    businessToDelete = Business.query.get(id)
+    print(businessToDelete)
+    db.session.delete(businessToDelete)
+    db.session.commit()
+    return {'Success': 'Business deleted'}
