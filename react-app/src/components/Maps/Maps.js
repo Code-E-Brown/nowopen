@@ -14,7 +14,7 @@ import { AiTwotoneHome } from 'react-icons/ai'
 //     lng: -77.0956978,
 // };
 
-const Maps = ({ apiKey, containerStyle, foodBusinesses }) => {
+const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
 
     const [currentLat, setCurrentLat] = useState(null)
     const [currentLong, setCurrentLong] = useState(null)
@@ -34,11 +34,13 @@ const Maps = ({ apiKey, containerStyle, foodBusinesses }) => {
             }
         })
 
+
         // const center = {
         //     lat: currentLat,
         //     lng: currentLong,
         // };
     }, [selectedLocation])
+
     // console.log(containerStyle)
     if (!containerStyle) {
         containerStyle = {
@@ -46,6 +48,15 @@ const Maps = ({ apiKey, containerStyle, foodBusinesses }) => {
             height: '400px',
         }
     }
+
+    useEffect(() => {
+
+        if (singleBusiness) {
+            setCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
+            // console.log(singleBusiness, 'HERERERER')
+            // setCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
+        }
+    }, [singleBusiness])
 
     const handleSelect = item => {
         if (item.lat) {
@@ -65,10 +76,10 @@ const Maps = ({ apiKey, containerStyle, foodBusinesses }) => {
     }
 
 
-    const trying = {
-        lat: 39.0493,
-        lng: -77.1179,
-    }
+    // const trying = {
+    //     lat: 39.0493,
+    //     lng: -77.1179,
+    // }
 
     // if (!containerStyle) {
     //     containerStyle = {
@@ -109,7 +120,7 @@ const Maps = ({ apiKey, containerStyle, foodBusinesses }) => {
 
 
                         scaledSize={new window.google.maps.Size(15, 25)}
-                        icon={new window.google.maps.MarkerImage(
+                        icon={singleBusiness ? null : new window.google.maps.MarkerImage(
                             'http://www.clker.com/cliparts/5/v/V/e/t/J/simple-red-house-hi.png',
                             null, /* size is determined at runtime */
                             null, /* origin is 0,0 */

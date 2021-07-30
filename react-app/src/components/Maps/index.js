@@ -7,7 +7,7 @@ import Maps from './Maps';
 const MapContainer = ({ containerStyle, foodBusinesses, singleBusiness }) => {
     const key = useSelector((state) => state.maps.key);
     const dispatch = useDispatch();
-
+    // console.log('here', singleBusiness)
     useEffect(() => {
         if (!key) {
             dispatch(getKey());
@@ -21,7 +21,7 @@ const MapContainer = ({ containerStyle, foodBusinesses, singleBusiness }) => {
     return (
         <Maps
             apiKey={key}
-            
+            singleBusiness={singleBusiness}
             containerStyle={containerStyle}
             foodBusinesses={foodBusinesses} />
     );

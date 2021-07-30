@@ -10,15 +10,16 @@ function BusinessPage() {
     const { id } = useParams();
     const businessId = id;
     const dispatch = useDispatch()
-    // const [currentBusiness, setCurrentBusiness] = useState({})
+    const [singleBusiness, setSingleBusiness] = useState({})
 
     const currentBusiness = useSelector(state => state.businesses[businessId]);
 
     useEffect(() => {
-        dispatch(getBusinesses())
+        const result = dispatch(getBusinesses())
+        // setSingleBusiness(result.find(business => business.id === businessId))
 
+        // console.log('**************', result)
     }, [dispatch])
-
     return (
         <div>
             <div className={style.imageBox}>
@@ -49,14 +50,24 @@ function BusinessPage() {
                     </div>
                 </div>
             </div>
+            {currentBusiness?.now_open ? (
+                <>
+                    <div className={style.infoSection}>
+
+                        <MapContainer singleBusiness={currentBusiness} containerStyle={{
+                            width: '800px',
+                            height: '350px',
+                        }} />
+
+                        <div className={style.bizLocationDescription}>
+                            <h1>Location note:</h1>
+                            {currentBusiness.location_description}
+                        </div>
+                    </div>
+                </>
+            ) : null}
             <div className={style.infoSection}>
-                {/* <MapContainer containerStyle={{
-                    width: '250px',
-                    height: '250px',
-                }} /> */}
-            </div>
-            <div className={style.infoSection}>
-                
+
             </div>
         </div>
     )

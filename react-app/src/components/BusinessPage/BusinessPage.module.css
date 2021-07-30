@@ -139,13 +139,29 @@ background: linear-gradient(180deg, rgba(3, 3, 3, 0.411), transparent);
 .infoSection{
     /* background-color: red; */
     /* background-color: thistle; */
+    display: flex;
     min-height: 300px;
-
+    padding:20px;
+    justify-content: space-evenly;
     border-bottom: solid;
+    align-items: center;
+
     /* border-width: 1px; */
     border-color: rgba(179, 179, 179, 0.363);
 
 }
+
+.bizLocationDescription{
+/* background-color: red; */
+width: 400px;
+height: 310px;
+/* padding:20px; */
+box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+overflow-wrap: break-word;
+/* margin-left: 20px;
+margin-right: 20px; */
+}
+
 .infoInnerBox{
 height: 250px;
 width: 250px;
