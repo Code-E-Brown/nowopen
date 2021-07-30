@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
-from app.models import db, Business
+from app.models import db, Business, Review
 
 business_routes = Blueprint('businesses', __name__)
 
@@ -51,4 +51,34 @@ def delete_business(id):
     print(businessToDelete)
     db.session.delete(businessToDelete)
     db.session.commit()
+    return {'Success': 'Business deleted'}
+
+@business_routes.route('/<int:id>/reviews', methods=["POST"])
+@login_required
+def create_review(id):
+
+    newReview = Review(
+        text= request.json['text'],
+        rating=request.json['rating'],
+        business_id=request.json['business_id'],
+        user_id=request.json['user_id'],
+        )
+    # businessToDelete = Business.query.get(id)
+
+    db.session.add(newReview)
+    db.session.commit()
+
+    businessBeingReviewed = Business.query.get(id)
+    currentRating = businessBeingReviewed.rating
+
+    # newAvgBizRating = sum(bussinessBeingReviewed.to_dict()['reviews']['rating'])
+    # print(len(bussinessBeingReviewed.to_dict()['reviews']))
+    listOfCurrentBizReviews = businessBeingReviewed.to_dict()['reviews']
+
+    sumOfCurrentBizRatings = sum([review['rating'] for review in listOfCurrentBizReviews])
+
+    newAvg = sumOfCurrentBizRatings/len(listOfCurrentBizReviews)
+
+
+    print('AVERAGE',int(newAvg))
     return {'Success': 'Business deleted'}

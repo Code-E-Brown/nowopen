@@ -1,8 +1,8 @@
 /* ------ DEFINE ACTION TYPES AS CONSTANTS ------ */
 
-const ADD_BUSINESS = 'session/ADD_BUSINESS';
-const SET_BUSINESSES = 'session/SET_BUSINESSES';
-const REMOVE_BUSINESS = 'session/REMOVE_BUSINESS';
+const ADD_BUSINESS = 'business/ADD_BUSINESS';
+const SET_BUSINESSES = 'business/SET_BUSINESSES';
+const REMOVE_BUSINESS = 'business/REMOVE_BUSINESS';
 
 
 /* ------ DEFINE ACTION CREATORS ------ */

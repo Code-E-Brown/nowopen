@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom';
 import { getBusinesses, editBusiness } from '../../store/business';
+import { createReview } from '../../store/review';
 
 import { FiStar } from 'react-icons/fi';
 import { BsStarFill } from 'react-icons/bs';
@@ -92,7 +93,8 @@ function BusinessPage() {
             business_id: +businessId,
             user_id: user.id
         }
-        console.log("*NEW REVIEW READY TO ROLL*", newReview)
+
+        dispatch(createReview(newReview))
     }
 
     const handleReviewCancel = (e) => {
@@ -112,12 +114,12 @@ function BusinessPage() {
                             </h1>
                         </div>
                         <div className={style.ratingBox}>
-                            {/* {currentBusiness?.rating === 1 ? <>⭐</> : null}
+                            {currentBusiness?.rating === 1 ? <>⭐</> : null}
                             {currentBusiness?.rating === 2 ? <>⭐⭐</> : null}
                             {currentBusiness?.rating === 3 ? <>⭐⭐⭐</> : null}
                             {currentBusiness?.rating === 4 ? <>⭐⭐⭐⭐</> : null}
-                            {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null} */}
-                            ⭐⭐⭐⭐⭐ 57 reviews
+                            {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
+                            {currentBusiness?.reviews.length}
                         </div>
                         {currentBusiness?.now_open ? (
                             <>
