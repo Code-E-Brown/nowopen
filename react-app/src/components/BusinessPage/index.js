@@ -238,7 +238,7 @@ function BusinessPage() {
                         Leave a review
                         {liveRating === 1 ? (
                             <>
-                                <BsStarFill onClick={e => setLiveRating(1)} />
+                                <BsStarFill onClick={e => setLiveRating(null)} />
                                 <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
                                 <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
                                 <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
@@ -247,8 +247,8 @@ function BusinessPage() {
                         ) : null}
                         {liveRating === 2 ? (
                             <>
-                                <BsStarFill onClick={e => setLiveRating(1)} />
-                                <BsStarFill onClick={e => setLiveRating(2)} />
+                                <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
                                 <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
                                 <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
                                 <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
@@ -256,9 +256,9 @@ function BusinessPage() {
                         ) : null}
                         {liveRating === 3 ? (
                             <>
-                                <BsStarFill onClick={e => setLiveRating(1)} />
-                                <BsStarFill onClick={e => setLiveRating(2)} />
-                                <BsStarFill onClick={e => setLiveRating(3)} />
+                                <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
                                 <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
                                 <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
 
@@ -266,21 +266,21 @@ function BusinessPage() {
                         ) : null}
                         {liveRating === 4 ? (
                             <>
-                                <BsStarFill onClick={e => setLiveRating(1)} />
-                                <BsStarFill onClick={e => setLiveRating(2)} />
-                                <BsStarFill onClick={e => setLiveRating(3)} />
-                                <BsStarFill onClick={e => setLiveRating(4)} />
+                                <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
                                 <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
 
                             </>
                         ) : null}
                         {liveRating === 5 ? (
                             <>
-                                <BsStarFill onClick={e => setLiveRating(1)} />
-                                <BsStarFill onClick={e => setLiveRating(2)} />
-                                <BsStarFill onClick={e => setLiveRating(3)} />
-                                <BsStarFill onClick={e => setLiveRating(4)} />
-                                <BsStarFill onClick={e => setLiveRating(5)} />
+                                <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
                             </>
                         ) : null}
 
