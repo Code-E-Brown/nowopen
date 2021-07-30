@@ -181,8 +181,10 @@ function BusinessPage() {
                     </div>
                 </div>
             </div>
+            {/* {currentBusiness?.now_open && user?.id != } */}
             {
-                (currentBusiness?.now_open) && user ? user.id != currentBusiness.userId : (currentBusiness?.now_open) ? (
+
+                ((currentBusiness?.now_open) && user?.id != currentBusiness?.user_id) || currentBusiness?.now_open && !user ? (
                     <>
                         <div className={style.infoSection}>
 
