@@ -69,6 +69,7 @@ function EditBusiness() {
 
         if (deleteAlert === true) {
             dispatch(deleteBusiness(+businessId))
+            history.push(`/`)
         } else {
 
             setDeleteAlert(!deleteAlert)
