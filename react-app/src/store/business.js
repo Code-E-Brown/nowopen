@@ -92,6 +92,10 @@ export const editBusiness = (updatedBiz) => async dispatch => {
 
     if (response.ok) {
         const updatedBizData = await response.json()
+        if (updatedBizData) {
+            dispatch(addBusinessToStore(updatedBizData))
+            return updatedBizData
+        }
         // console.log("********** SUCCESS", updatedBizData)
     }
     //     const newProjectData = await response.json();

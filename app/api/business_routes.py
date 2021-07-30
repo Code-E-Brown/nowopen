@@ -13,7 +13,7 @@ def businesses():
     return {'businesses': [business.to_dict() for business in businesses]}
 
 @business_routes.route('', methods=['POST'])
-@ login_required
+@login_required
 def create_business():
     # newBusiness = Business(name=)
     # print('*************', request.json['business'])
@@ -33,10 +33,13 @@ def create_business():
 @login_required
 def edit_business(id):
     businessToUpdate = Business.query.get(id)
-    print("ARE YOU NOT ENTERTAINED?********************", request.json)
     businessToUpdate.name = request.json['name']
     businessToUpdate.category_id = request.json['category_id']
     businessToUpdate.description = request.json['description']
+    businessToUpdate.now_open = request.json['now_open']
+    businessToUpdate.current_lat = request.json['current_lat']
+    businessToUpdate.current_long = request.json['current_long']
+    businessToUpdate.location_description = request.json['location_description']
     db.session.add(businessToUpdate)
     db.session.commit()
     return businessToUpdate.to_dict()

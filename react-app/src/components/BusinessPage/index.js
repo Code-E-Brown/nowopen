@@ -4,7 +4,7 @@ import MapContainer from '../Maps';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom';
-import { getBusinesses } from '../../store/business';
+import { getBusinesses, editBusiness } from '../../store/business';
 
 function BusinessPage() {
     const { id } = useParams();
@@ -12,16 +12,72 @@ function BusinessPage() {
     const dispatch = useDispatch()
 
     const [singleBusiness, setSingleBusiness] = useState({})
+    const [isOpen, setIsOpen] = useState('')
+    const [currentLat, setCurrentLat] = useState('')
+    const [currentLong, setCurrentLong] = useState('')
+    const [currentlatLng, setCurrentLatLng] = useState('')
+    const [toggleLocationEdit, setToggleLocationEdit] = useState(false)
+    const [locationNote, setLocationNote] = useState('')
 
     const currentBusiness = useSelector(state => state.businesses[businessId]);
     const user = useSelector(state => state.session.user)
 
-    useEffect(() => {
-        const result = dispatch(getBusinesses())
-        // setSingleBusiness(result.find(business => business.id === businessId))
+    useEffect(async () => {
+        const result = await dispatch(getBusinesses())
+        const currentBiz = result.find(business => business.id === +businessId)
+        setSingleBusiness(result.find(business => business.id === +businessId))
 
         // console.log('**************', result)
-    }, [dispatch])
+        // if (currentBiz) {
+        //     setIsOpen(currentBiz.now_open)
+        // }
+    }, [dispatch, isOpen])
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(position => {
+            if (position) {
+                console.log(position, '******GOPLDLAKSJDHKLASDHJAKSDJH')
+                setCurrentLat(position.coords.latitude)
+                setCurrentLong(position.coords.longitude)
+                setCurrentLatLng({ lat: position.coords.latitude, lng: position.coords.longitude })
+
+            }
+        })
+
+
+        // const center = {
+        //     lat: currentLat,
+        //     lng: currentLong,
+        // };
+    }, [])
+
+
+    const handleGoLive = (e) => {
+        e.preventDefault()
+        // setIsOpen(!singleBusiness.now_open)
+        const changeOpenStatus = {
+            ...currentBusiness,
+            now_open: currentBusiness.now_open === true ? false : true,
+            current_lat: currentBusiness.now_open === true ? null : currentLat,
+            current_long: currentBusiness.now_open === true ? null : currentLong,
+            location_description: null,
+        }
+        dispatch(editBusiness(changeOpenStatus))
+
+    }
+
+    const handleLocationNoteSave = (e) => {
+        e.preventDefault()
+        setToggleLocationEdit(!toggleLocationEdit)
+
+        const changeOpenStatus = {
+            ...currentBusiness,
+            location_description: locationNote,
+        }
+        dispatch(editBusiness(changeOpenStatus))
+    }
+
+
     return (
         <div>
             <div className={style.imageBox}>
@@ -46,9 +102,9 @@ function BusinessPage() {
                                     Now Open!
                                 </div>
                                 <div className={style.locationInfo}>
-                                    <Link to='#'>
+                                    <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
                                         Located at: 555 E street, Washington D.C
-                                    </Link>
+                                    </a>
                                     <div className={style.flexColumn}>
                                         <div className={style.photoButtonBox}>
                                             <Link to='#'>
@@ -103,7 +159,7 @@ function BusinessPage() {
                 </div>
             </div>
             {
-                currentBusiness?.now_open ? (
+                (currentBusiness?.now_open) && user ? user.id != currentBusiness.userId : (currentBusiness?.now_open) ? (
                     <>
                         <div className={style.infoSection}>
 
@@ -113,7 +169,7 @@ function BusinessPage() {
                                 height: '350px',
                             }} />
 
-
+                            {/* <h1 className={style.glowStatus} contenteditable spellcheck="false">open</h1> */}
 
                             {/* <div className={style.bizLocationDescription}>
                                 <h1>Location note:</h1>
@@ -121,12 +177,50 @@ function BusinessPage() {
                             </div> */}
                             <div className={style.bizLocationDescription}>
                                 <h1>Location note:</h1>
-                                {currentBusiness.location_description}
+                                {currentBusiness?.location_description}
                             </div>
                         </div>
                     </>
                 ) : null
             }
+            {user && currentBusiness?.user_id === user?.id ? (
+                <>
+                    <div className={style.infoSection}>
+                        {currentBusiness?.now_open &&
+                            <MapContainer singleBusiness={currentBusiness} containerStyle={{
+                                width: '400px',
+                                height: '350px',
+                            }} />
+                        }
+
+                        {currentBusiness?.now_open ?
+                            <h1 onClick={handleGoLive} className={style.glowStatus} contenteditable spellcheck="false">open</h1>
+                            :
+                            <h1 onClick={handleGoLive} className={style.glowStatusClosed} contenteditable spellcheck="false">closed</h1>
+
+                        }
+
+                        {currentBusiness?.now_open &&
+                            <div className={style.bizLocationDescription}>
+                                <h1>Location note:</h1>
+                                <div>
+                                    {currentBusiness.location_description}
+                                </div>
+                                {toggleLocationEdit &&
+                                    <div>
+                                        <textarea onChange={e => setLocationNote(e.target.value)} placeholder='Add a few notes so people know how to find you!'>{currentBusiness.location_description}</textarea>
+                                    </div>
+                                }
+                                {toggleLocationEdit === true ?
+                                    <button onClick={handleLocationNoteSave}>Save note!</button>
+                                    :
+                                    <button onClick={e => setToggleLocationEdit(!toggleLocationEdit)}>Update location note!</button>
+                                }
+                            </div>
+                        }
+                    </div>
+                </>
+            ) : null}
             <div className={style.infoSection}>
 
             </div>
