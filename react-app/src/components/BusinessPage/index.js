@@ -1,4 +1,5 @@
 import style from './BusinessPage.module.css'
+import { Link } from 'react-router-dom';
 
 function BusinessPage() {
 
@@ -11,6 +12,17 @@ function BusinessPage() {
                             <h1 className={style.bizName}>
                                 HaloHalo Bar
                             </h1>
+                        </div>
+                        <div className={style.ratingBox}>
+                            ⭐⭐⭐⭐⭐ 57 reviews
+                        </div>
+                        <div className={style.openStatus}>
+                            Now Open!
+                        </div>
+                        <div className={style.locationInfo}>
+                            <Link>
+                                Located at: 555 E street, Washington D.C
+                            </Link>
                         </div>
                     </div>
                 </div>
