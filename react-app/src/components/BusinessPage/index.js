@@ -31,6 +31,11 @@ function BusinessPage() {
                             </h1>
                         </div>
                         <div className={style.ratingBox}>
+                            {/* {currentBusiness?.rating === 1 ? <>⭐</> : null}
+                            {currentBusiness?.rating === 2 ? <>⭐⭐</> : null}
+                            {currentBusiness?.rating === 3 ? <>⭐⭐⭐</> : null}
+                            {currentBusiness?.rating === 4 ? <>⭐⭐⭐⭐</> : null}
+                            {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null} */}
                             ⭐⭐⭐⭐⭐ 57 reviews
                         </div>
                         {currentBusiness?.now_open ? (
@@ -42,6 +47,19 @@ function BusinessPage() {
                                     <Link to='#'>
                                         Located at: 555 E street, Washington D.C
                                     </Link>
+                                    <div className={style.flexColumn}>
+                                        <div className={style.photoButtonBox}>
+                                            <Link to='#'>
+                                                See all Photos
+                                            </Link>
+                                        </div>
+                                        <div className={style.editButtonBox}>
+                                            <Link to={`/businesses/${currentBusiness.id}/edit`}>
+                                                Edit
+                                            </Link>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </>
                         ) : <div className={style.closedStatus}>
@@ -50,26 +68,35 @@ function BusinessPage() {
                     </div>
                 </div>
             </div>
-            {currentBusiness?.now_open ? (
-                <>
-                    <div className={style.infoSection}>
+            {
+                currentBusiness?.now_open ? (
+                    <>
+                        <div className={style.infoSection}>
 
-                        <MapContainer singleBusiness={currentBusiness} containerStyle={{
-                            width: '800px',
-                            height: '350px',
-                        }} />
+                            <MapContainer singleBusiness={currentBusiness} containerStyle={{
+                                // width: '800px',
+                                width: '400px',
+                                height: '350px',
+                            }} />
 
-                        <div className={style.bizLocationDescription}>
-                            <h1>Location note:</h1>
-                            {currentBusiness.location_description}
+
+
+                            {/* <div className={style.bizLocationDescription}>
+                                <h1>Location note:</h1>
+                                {currentBusiness.location_description}
+                            </div> */}
+                            <div className={style.bizLocationDescription}>
+                                <h1>Location note:</h1>
+                                {currentBusiness.location_description}
+                            </div>
                         </div>
-                    </div>
-                </>
-            ) : null}
+                    </>
+                ) : null
+            }
             <div className={style.infoSection}>
 
             </div>
-        </div>
+        </div >
     )
 }
 

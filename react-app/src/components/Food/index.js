@@ -55,7 +55,8 @@ function Food() {
             </div>
             <MapContainer foodBusinesses={foodBusinesses} containerStyle={{
                 width: '100%',
-                height: '600px',
+                // height: '600px',
+                // height: '800px',
             }} />
             {/* <div className={style.flexColumn}>
                 <h1>All Food</h1>

@@ -19,7 +19,8 @@
 
 .outerContainer{
     display: flex;
-    height: 600px;
+    /* height: 600px; */
+    height: 800px;
     /* background-color: red; */
 }
 
