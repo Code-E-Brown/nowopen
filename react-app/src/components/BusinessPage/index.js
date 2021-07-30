@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom';
 import { getBusinesses, editBusiness } from '../../store/business';
+import { TrafficLayer } from '@react-google-maps/api';
 
 function BusinessPage() {
     const { id } = useParams();
@@ -222,7 +223,18 @@ function BusinessPage() {
                 </>
             ) : null}
             <div className={style.infoSection}>
-
+                <div className={style.descriptionArea}>
+                    " {currentBusiness?.description}
+                </div>
+            </div>
+            <div className={style.infoSectionColumn}>
+                <h1>Reviews:</h1>
+                <div className={style.reviewBox}>
+                <div className={style.leaveReviewCard}>Leave a review</div>
+                    <div className={style.reviewCard}>
+                        square
+                    </div>
+                </div>
             </div>
         </div >
     )
