@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom';
 import { getBusinesses, editBusiness } from '../../store/business';
-import { createReview } from '../../store/review';
+import { createReview, getReviews } from '../../store/review';
 
 import { FiStar } from 'react-icons/fi';
 import { BsStarFill } from 'react-icons/bs';
@@ -27,10 +27,13 @@ function BusinessPage() {
     const [reviewText, setReviewText] = useState('')
 
     const currentBusiness = useSelector(state => state.businesses[businessId]);
+    const currentReviews = useSelector(state => state.reviews);
+
     const user = useSelector(state => state.session.user)
 
     useEffect(async () => {
         const result = await dispatch(getBusinesses())
+        const reviews = await dispatch(getReviews(+businessId))
         const currentBiz = result.find(business => business.id === +businessId)
         setSingleBusiness(result.find(business => business.id === +businessId))
 
@@ -38,7 +41,7 @@ function BusinessPage() {
         // if (currentBiz) {
         //     setIsOpen(currentBiz.now_open)
         // }
-    }, [dispatch, isOpen])
+    }, [dispatch])
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
@@ -84,7 +87,7 @@ function BusinessPage() {
         dispatch(editBusiness(changeOpenStatus))
     }
 
-    const handleReviewSubmit = (e) => {
+    const handleReviewSubmit = async (e) => {
         e.preventDefault()
 
         const newReview = {
@@ -94,7 +97,12 @@ function BusinessPage() {
             user_id: user.id
         }
 
-        dispatch(createReview(newReview))
+        const newRev = await dispatch(createReview(newReview))
+        setLiveRating(null)
+        setReviewText('')
+        if (newRev) {
+            dispatch(getBusinesses())
+        }
     }
 
     const handleReviewCancel = (e) => {
@@ -113,14 +121,16 @@ function BusinessPage() {
                                 {currentBusiness?.name}
                             </h1>
                         </div>
-                        <div className={style.ratingBox}>
-                            {currentBusiness?.rating === 1 ? <>⭐</> : null}
-                            {currentBusiness?.rating === 2 ? <>⭐⭐</> : null}
-                            {currentBusiness?.rating === 3 ? <>⭐⭐⭐</> : null}
-                            {currentBusiness?.rating === 4 ? <>⭐⭐⭐⭐</> : null}
-                            {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
-                            {currentBusiness?.reviews.length}
-                        </div>
+                        {currentBusiness &&
+                            <div className={style.ratingBox}>
+                                {currentBusiness?.rating === 1 ? <>⭐</> : null}
+                                {currentBusiness?.rating === 2 ? <>⭐⭐</> : null}
+                                {currentBusiness?.rating === 3 ? <>⭐⭐⭐</> : null}
+                                {currentBusiness?.rating === 4 ? <>⭐⭐⭐⭐</> : null}
+                                {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
+                                {currentBusiness?.reviews.length} reviews
+                            </div>
+                        }
                         {currentBusiness?.now_open ? (
                             <>
                                 <div className={style.openStatus}>
@@ -331,10 +341,10 @@ function BusinessPage() {
                         </div>)
                         : null}
                     <div className={style.reviewCard}>
-                        square
-                    </div>
+                        
                 </div>
             </div>
+        </div>
         </div >
     )
 }

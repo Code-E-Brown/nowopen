@@ -77,8 +77,20 @@ def create_review(id):
 
     sumOfCurrentBizRatings = sum([review['rating'] for review in listOfCurrentBizReviews])
 
-    newAvg = sumOfCurrentBizRatings/len(listOfCurrentBizReviews)
+    newAvg = round(sumOfCurrentBizRatings/len(listOfCurrentBizReviews))
+    # print("*************", newAvg)
+    businessBeingReviewed.rating = newAvg
+    db.session.add(businessBeingReviewed)
+    db.session.commit()
 
+    # print('AVERAGE',int(newAvg))
+    return newReview.to_dict()
 
-    print('AVERAGE',int(newAvg))
-    return {'Success': 'Business deleted'}
+@business_routes.route('/<int:id>/reviews')
+@login_required
+def get_reviews(id):
+
+    allReviewsForBusiness = Review.query.filter(Review.business_id == id).all()
+
+    # print('heres your list*****************', allReviewsForBusiness)
+    return {'reviews': [review.to_dict() for review in allReviewsForBusiness]}

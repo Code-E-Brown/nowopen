@@ -24,7 +24,24 @@ const deleteReviewFromStore = (reviewId) => ({
 const initialState = {};
 
 
+
+export const getReviews = (businessId) => async (dispatch) => {
+    const response = await fetch(`/api/businesses/${businessId}/reviews`)
+
+    if (response.ok) {
+        const data = await response.json();
+
+
+        // console.log('******', data.businesses)
+        // const businessesArray = data.businesses
+        dispatch(setAllReviewsInStore(data.reviews))
+        return data.reviews
+    }
+}
+
+
 export const createReview = (review) => async (dispatch) => {
+
     const response = await fetch(`/api/businesses/${review.business_id}/reviews`, {
         method: 'POST',
         headers: {
@@ -40,7 +57,7 @@ export const createReview = (review) => async (dispatch) => {
         // console.log("^^^^^", data)
         const newReview = data
         console.log(newReview, "********** YOU MADE IT HERE*")
-        // dispatch(addBusinessToStore(newReview))
+        dispatch(addReviewToStore(newReview))
         // return newReview;
 
     } else {
@@ -51,19 +68,18 @@ export const createReview = (review) => async (dispatch) => {
 
 export default function reducer(state = initialState, action) {
     let newState;
-    // console.log("HERE IS YOUR ACTION", action)
     switch (action.type) {
         case ADD_REVIEW:
             newState = {}
-            newState[action.business.id] = action.business
+            newState[action.review.id] = action.review
             return {
                 ...state,
                 ...newState
             };
         case SET_REVIEWS:
             newState = {}
-            action.businesses.forEach((business) => {
-                newState[business.id] = business
+            action.reviews.forEach((review) => {
+                newState[review.id] = review
             })
             return {
                 ...state,
@@ -71,7 +87,7 @@ export default function reducer(state = initialState, action) {
             };
         case REMOVE_REVIEW:
             newState = Object.assign({}, state)
-            delete newState[action.businessId]
+            delete newState[action.reviewId]
             return {
                 ...newState
             }
