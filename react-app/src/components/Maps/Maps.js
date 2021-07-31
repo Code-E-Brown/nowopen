@@ -28,6 +28,7 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
             if (position) {
+                
                 setCurrentLat(position.coords.latitude)
                 setCurrentLong(position.coords.longitude)
                 setCenter({ lat: position.coords.latitude, lng: position.coords.longitude })
@@ -130,7 +131,7 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
                         )}
                     />
                     {foodBusinesses && foodBusinesses.map(business =>
-                        business.current_lat ?
+                        business.current_lat && business.now_open ?
 
                             <Marker key={business.id}
                                 onClick={() => handleSelect(business)}

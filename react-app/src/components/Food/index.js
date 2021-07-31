@@ -15,7 +15,7 @@ function Food() {
     useEffect(async () => {
 
         const allBusinesses = await dispatch(getBusinesses())
-        setFoodBusinesses(allBusinesses.filter(business => business.category_id === 1))
+        setFoodBusinesses(allBusinesses.filter(business => business.category_id === 1 && business.now_open))
 
     }, [dispatch])
 

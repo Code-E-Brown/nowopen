@@ -10,7 +10,7 @@ const Searchbar = ({ apiKey }) => {
     const [searchParams, setSearchParams] = useState({})
     const [searchCategory, setSearchCategory] = useState('all')
     const [coordinates, setCoordinates] = useState(null)
-    console.log('COORDS', coordinates)
+    // console.log('COORDS', coordinates)
     const history = useHistory()
 
     const handleSelect = async value => {

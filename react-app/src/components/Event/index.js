@@ -17,7 +17,7 @@ function Event() {
     useEffect(async () => {
 
         const allBusinesses = await dispatch(getBusinesses())
-        setEventBusinesses(allBusinesses.filter(business => business.category_id === 3))
+        setEventBusinesses(allBusinesses.filter(business => business.category_id === 3 && business.now_open))
 
     }, [dispatch])
 

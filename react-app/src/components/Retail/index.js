@@ -17,7 +17,7 @@ function Retail() {
     useEffect(async () => {
 
         const allBusinesses = await dispatch(getBusinesses())
-        setRetailBusinesses(allBusinesses.filter(business => business.category_id === 2))
+        setRetailBusinesses(allBusinesses.filter(business => business.category_id === 2 && business.now_open))
 
     }, [dispatch])
 

@@ -32,7 +32,7 @@ def create_business():
 @business_routes.route('/<int:id>/edit', methods=["PUT"])
 @login_required
 def edit_business(id):
-    print('**************************', request.json)
+    # print('**************************', request.json)
     businessToUpdate = Business.query.get(id)
     businessToUpdate.name = request.json['name']
     businessToUpdate.category_id = request.json['category_id']
@@ -88,7 +88,7 @@ def create_review(id):
     return newReview.to_dict()
 
 @business_routes.route('/<int:id>/reviews')
-@login_required
+# @login_required
 def get_reviews(id):
 
     allReviewsForBusiness = Review.query.filter(Review.business_id == id).all()
