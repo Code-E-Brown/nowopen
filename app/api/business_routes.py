@@ -32,6 +32,7 @@ def create_business():
 @business_routes.route('/<int:id>/edit', methods=["PUT"])
 @login_required
 def edit_business(id):
+    print('**************************', request.json)
     businessToUpdate = Business.query.get(id)
     businessToUpdate.name = request.json['name']
     businessToUpdate.category_id = request.json['category_id']

@@ -43,14 +43,16 @@ function EditBusiness() {
             setBizName(currentBiz.name)
             setBizCategory(currentBiz.category_id)
             setBizDescription(currentBiz.description)
+
         }
 
     }, [dispatch])
 
 
-    const handleEdit = (e) => {
+    const handleEdit = async (e) => {
         e.preventDefault()
         const updatedBiz = {
+            ...currentBusiness,
             id: +businessId,
             name: bizName,
             user_id: user.id,
@@ -59,7 +61,7 @@ function EditBusiness() {
         }
         // console.log(updatedBiz)
         if (updatedBiz) {
-            dispatch(editBusiness(updatedBiz))
+            let result = await dispatch(editBusiness(updatedBiz))
             history.push(`/businesses/${+businessId}`)
         }
     }
