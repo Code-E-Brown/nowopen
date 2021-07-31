@@ -41,6 +41,7 @@
 }
 
 .searchDiv {
+    z-index: 900;
     height: 48px;
     width: 750px;
     display: flex;
@@ -65,15 +66,19 @@
     /* border-radius: 10px; */
     border-radius: 7px 0px 0px 7px;
     /* border-radius: 5px; */
-    height: 80%;
+    /* height: 80%; */
+    height:30px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
     /* width: 100%; */
-    width: 50%;
+    /* width: 50%; */
     margin-left: 10px;
     margin-right: 10px;
     /* height: 90%; */
     /* width: 95%; */
     /* width: 99%; */
     border: none;
+
 }
 
 
@@ -197,3 +202,14 @@
     font-weight: 600;
     color: rgb(255, 255, 255);
   }
+
+
+.searchFlex {
+  display: flex;
+  flex-direction: column;
+  /* height: 80%; */
+  width: 50%;
+  justify-content: center;
+
+
+}

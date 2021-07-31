@@ -9,6 +9,8 @@ import DropDownProfileButton from './Dropdown/DropDownProfileButton'
 import Searchbar from './Searchbar';
 import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
+import SearchContainer from './Searchbar/SearchBar';
+
 
 // import LogoutButton from './auth/LogoutButton';
 
@@ -26,7 +28,8 @@ const NavBar = () => {
           Home
         </NavLink>
       </div>
-      <Searchbar />
+      {/* <Searchbar /> */}
+      <SearchContainer />
       <div className={styles.navButtonLinkBox}>
         {!user &&
           <>

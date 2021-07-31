@@ -8,6 +8,7 @@ import DropDownProfileButton from '../NavBar/Dropdown/DropDownProfileButton'
 import { getBusinesses } from '../../store/business';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import SearchContainer from '../NavBar/Searchbar/SearchBar';
 
 
 const Home = () => {
@@ -66,7 +67,8 @@ const Home = () => {
 
                     <h1 className={styles.logoText}>Now Open</h1>
 
-                    <Searchbar />
+                    {/* <Searchbar /> */}
+                    <SearchContainer />
                 </div>
                 <div className={styles.blockBottom}>
                     <div style={{ height: '120px' }}></div>
