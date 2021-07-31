@@ -5,7 +5,6 @@ import { getBusinesses } from "../../store/business"
 import style from './Food.module.css'
 import { Link } from 'react-router-dom';
 import logoStyle from '../BusinessPage/BusinessPage.module.css'
-import { BsLayoutSidebarInsetReverse } from "react-icons/bs"
 
 function Food() {
     const [foodBusinesses, setFoodBusinesses] = useState([])
