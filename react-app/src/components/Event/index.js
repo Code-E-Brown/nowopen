@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { getBusinesses } from "../../store/business"
 import { Link } from 'react-router-dom';
 import style from '../Food/Food.module.css'
+import logoStyle from '../BusinessPage/BusinessPage.module.css'
+
 
 
 function Event() {
@@ -48,6 +50,15 @@ function Event() {
                                 <div className={style.descriptionBox}>
                                     {business.description}
                                 </div>
+                                {business.now_open ?
+                                    <div className={logoStyle.openStatus}>
+                                        Open
+                                    </div>
+                                    :
+                                    <div className={logoStyle.closedStatus}>
+                                        Closed
+                                    </div>
+                                }
                             </div>
                         </div>
 

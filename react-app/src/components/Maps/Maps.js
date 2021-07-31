@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { AiTwotoneHome } from 'react-icons/ai'
 
@@ -144,7 +145,11 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
                         <InfoWindow
                             position={selectedLocation}
                             onCloseClick={() => setSelectedLocation({})}
-                        ><div><h1>{selectedBusiness.name}</h1>
+                        ><div><h1>
+                            <Link to={`/businesses/${selectedBusiness.id}`}>
+                                {selectedBusiness.name}
+                            </Link>
+                        </h1>
                                 <h2>Now open!</h2>
                                 <p>{selectedBusiness.description}</p>
                                 <a href={`https://www.google.com/maps/dir/${center.lat},${center.lng}/${selectedBusiness.current_lat},${selectedBusiness.current_long}`} target="_blank" rel="noopener noreferrer">Get directions!</a>
