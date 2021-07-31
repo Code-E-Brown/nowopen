@@ -18,7 +18,7 @@ const Searchbar = () => {
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyCHe59rZ2oh-fL6OzMcp5TOvM46H8yosX0",
+        googleMapsApiKey: null
     });
 
     return (
