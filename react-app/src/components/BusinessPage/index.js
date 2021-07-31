@@ -27,7 +27,8 @@ function BusinessPage() {
     const [reviewText, setReviewText] = useState('')
 
     const currentBusiness = useSelector(state => state.businesses[businessId]);
-    const currentReviews = useSelector(state => state.reviews);
+    const currentReviews = useSelector(state => Object.values(state.reviews));
+
 
     const user = useSelector(state => state.session.user)
 
@@ -100,9 +101,8 @@ function BusinessPage() {
         const newRev = await dispatch(createReview(newReview))
         setLiveRating(null)
         setReviewText('')
-        if (newRev) {
-            dispatch(getBusinesses())
-        }
+        dispatch(getBusinesses())
+
     }
 
     const handleReviewCancel = (e) => {
@@ -341,10 +341,12 @@ function BusinessPage() {
                         </div>)
                         : null}
                     <div className={style.reviewCard}>
-                        
+                        {currentReviews && currentReviews.map(review => (
+                            <div>{review.text}</div>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
         </div >
     )
 }

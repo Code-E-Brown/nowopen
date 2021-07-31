@@ -34,6 +34,8 @@ export const getReviews = (businessId) => async (dispatch) => {
 
         // console.log('******', data.businesses)
         // const businessesArray = data.businesses
+        // console.log('******',data.reviews)
+
         dispatch(setAllReviewsInStore(data.reviews))
         return data.reviews
     }

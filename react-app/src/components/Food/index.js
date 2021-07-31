@@ -27,22 +27,28 @@ function Food() {
                     <div className={style.listHeader}> <h1 className={style.listH1}>The Best 10 Restaurants in Your Area</h1></div>
                     {foodBusinesses && foodBusinesses.map(business => (
 
-                            <div className={style.businessCard} key={business.id}>
-                                <div className={style.innerCard}>
-                                    <div className={style.businessImage}>
+                        <div className={style.businessCard} key={business.id}>
+                            <div className={style.innerCard}>
+                                <div className={style.businessImage}>
 
-                                    </div>
-                                    <Link className={style.businessCardLink} to={`/businesses/${business.id}`}>
-                                        <h1 className={style.businessCardName}>{business.name}</h1>
-                                    </Link>
-                                    <div className={style.ratingsDiv}>
-                                        ⭐⭐⭐⭐⭐ 5
-                                    </div>
-                                    <div className={style.descriptionBox}>
-                                        {business.description}
-                                    </div>
+                                </div>
+                                <Link className={style.businessCardLink} to={`/businesses/${business.id}`}>
+                                    <h1 className={style.businessCardName}>{business.name}</h1>
+                                </Link>
+                                <div className={style.ratingsDiv}>
+                                    {business.rating === 1 ? <>⭐</> : null}
+                                    {business.rating === 2 ? <>⭐⭐</> : null}
+                                    {business.rating === 3 ? <>⭐⭐⭐</> : null}
+                                    {business.rating === 4 ? <>⭐⭐⭐⭐</> : null}
+                                    {business?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
+                                    {business?.reviews.length}
+                                    
+                                </div>
+                                <div className={style.descriptionBox}>
+                                    {business.description}
                                 </div>
                             </div>
+                        </div>
 
                     ))}
                     <div className={style.businessCard}>
