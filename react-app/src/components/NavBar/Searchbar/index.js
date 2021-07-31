@@ -1,6 +1,26 @@
 import styles from '../NavBar.module.css'
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import { useState } from 'react'
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 
 const Searchbar = () => {
+
+    const [address, setAddress] = useState('')
+
+    const [coordinates, setCoordinates] = useState('')
+    console.log('COORDS', coordinates)
+
+
+    const handleSelect = async value => {
+        const results = await geocodeByAddress(value)
+        console.log(results)
+    }
+
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyCHe59rZ2oh-fL6OzMcp5TOvM46H8yosX0",
+    });
+
     return (
         <div className={styles.searchDiv}>
             <select defaultValue='What are you searching for?' className={styles.searchInput} type='text'>
@@ -12,7 +32,30 @@ const Searchbar = () => {
             </select>
 
             <label className={styles.searchLineLabel}></label>
-            <input className={styles.searchInput} type='text'></input>
+            {isLoaded && (
+
+                <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                        <>
+                            <input {...getInputProps({ placeholder: "Start typing!" })} className={styles.searchInput} type='text'></input>
+                            <div>
+                                {loading ? <div>Loading...</div> : null}
+                                {suggestions.map((suggestion) => {
+                                    const style = {
+                                        backgroundColor: suggestion.active ? 'yellow' : 'white'
+                                    }
+                                    return (
+                                        <div key={suggestion.description}{...getSuggestionItemProps(suggestion, {style})}>
+                                            {suggestion.description}
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </>
+                    )}
+                </PlacesAutocomplete>
+            )}
+            {/* <input className={styles.searchInput} type='text'></input> */}
             <div className={styles.redSearchBox}>
                 <svg
                     className={styles.magnifyingGlass}

@@ -146,7 +146,7 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
                             position={selectedLocation}
                             onCloseClick={() => setSelectedLocation({})}
                         ><div><h1>
-                            <Link to={`/businesses/${selectedBusiness.id}`}>
+                            <Link to={`businesses/${selectedBusiness.id}`}>
                                 {selectedBusiness.name}
                             </Link>
                         </h1>
