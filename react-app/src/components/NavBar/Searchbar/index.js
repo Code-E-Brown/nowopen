@@ -32,8 +32,8 @@ const Searchbar = ({ apiKey }) => {
                 searchCategory: searchCategory === 'all' ? searchCategory : +searchCategory,
                 coordinates,
             }
-            history.push(`businesses/search/${coordinates.lat}/${coordinates.lng}/${searchCategory}`)
-            console.log(searchInput)
+            history.push(`/businesses/search/${coordinates.lat}/${coordinates.lng}/${searchCategory}`)
+            // console.log(searchInput)
         }
 
 
