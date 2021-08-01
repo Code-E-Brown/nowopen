@@ -16,6 +16,7 @@ import BusinessPage from './components/BusinessPage';
 import EditBusiness from './components/EditBusiness'
 import Retail from './components/Retail';
 import Event from './components/Event';
+import FoodWrapper from './components/Food/FoodWrapper';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,7 +47,8 @@ function App() {
         </Route>
         <Route path='/businesses/food' exact={true}>
           <NavBar />
-          <Food />
+          {/* <Food /> */}
+          <FoodWrapper />
           {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
         </Route>
         <Route path='/businesses/retail' exact={true}>

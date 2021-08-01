@@ -5,7 +5,7 @@ import { getKey } from '../../store/maps';
 
 import BusinessAddress from '.';
 
-const AddressWrapper = (currentBusiness, currentLat, currentLong,) => {
+const AddressWrapper = ({currentBusiness, currentLat, currentLong}) => {
     const key = useSelector((state) => state.maps.key);
     const dispatch = useDispatch();
     useEffect(() => {

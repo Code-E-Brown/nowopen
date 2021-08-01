@@ -6,19 +6,217 @@ import style from './Food.module.css'
 import { Link } from 'react-router-dom';
 import logoStyle from '../BusinessPage/BusinessPage.module.css'
 
-function Food() {
+function Food({ apiKey, userState, userLocation }) {
     const [foodBusinesses, setFoodBusinesses] = useState([])
+    const [newFoodBz, setNewFoodBz] = useState([])
+    // const [userLocation, setUserLocation] = useState('')
+    // const [userState, setUserState] = useState('')
 
     const dispatch = useDispatch()
+    // const locationFilter = async (business) => {
+
+    //     const newArr = []
+
+    //     if (business.category_id === 1 && business.now_open) {
+
+    //         const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+    //         const json = await result.json()
+    //         const locationArray = json.results
+    //         // console.log('********', json.results)
+    //         for (let i = 0; i < locationArray.length; i++) {
+    //             const obj = locationArray[i];
+    //             // console.log(obj.types[0], 'OBJ')
+    //             // console.log(obj.types[0], 'OBJ')
+    //             if (obj.types[0] === 'administrative_area_level_1') {
+    //                 console.log('biz state', obj.address_components[0].long_name)
+    //                 console.log('userState', userState)
+    //                 console.log('compare', userState, obj.address_components[0].long_name, obj.address_components[0].long_name === userState)
+    //                 if (obj.address_components[0].long_name === userState) {
+    //                     console.log("ARE YOUY HERE???")
+
+    //                     newArr.push(business)
+    //                     return newArr
+    //                 }
+
+    //             }
+    //         }
+    //     }
+
+    // }
     const businesses = useSelector(state => Object.values(state.businesses));
+    // const businesses = useSelector(state => Object.values(state.businesses).filter((business) => locationFilter(business)));
+
+
 
     useEffect(async () => {
 
         const allBusinesses = await dispatch(getBusinesses())
         setFoodBusinesses(allBusinesses.filter(business => business.category_id === 1 && business.now_open))
+        // const locationFilter = async (businesses) => {
+        // if (allBusinesses.length) {
 
+        //     const newArr = []
+        //     for (let index = 0; index < allBusinesses.length; index++) {
+        //         let business = allBusinesses[index]
+        //         // (async function (business) {
+        //         if (business.category_id === 1 && business.now_open) {
+        //             // console.log('test')
+
+        //             const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+        //             const json = await result.json()
+        //             const locationArray = json.results
+        //             // console.log('********', json.results)
+        //             for (let i = 0; i < locationArray.length; i++) {
+        //                 const obj = locationArray[i];
+        //                 // console.log(obj.types[0], 'OBJ')
+        //                 // console.log(obj.types[0], 'OBJ')
+        //                 if (obj.types[0] === 'administrative_area_level_1') {
+        //                     console.log('biz state', obj.address_components[0].long_name)
+        //                     if (obj.address_components[0].long_name === userState) {
+        //                         console.log(business)
+        //                         newArr.push(business)
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     console.log(newArr, 'hi')
+        // }
+
+        //     return newArr
+        // }
+        // setFoodBusinesses(await locationFilter(allBusinesses))
+        // let res = await locationFilter(allBusinesses)
+        // await console.log("PLEASE", res)
+        // await console.log(newArr, 'bingo baby')
+
+
+
+        // const locationFilter = async (businesses) => {
+
+        //     const newArr = []
+
+        //     businesses.forEach(business => {
+        //         (async function () {
+        //             if (business.category_id === 1 && business.now_open) {
+
+        //                 const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+        //                 const json = await result.json()
+        //                 const locationArray = json.results
+        //                 // console.log('********', json.results)
+        //                 for (let i = 0; i < locationArray.length; i++) {
+        //                     const obj = locationArray[i];
+        //                     // console.log(obj.types[0], 'OBJ')
+        //                     // console.log(obj.types[0], 'OBJ')
+        //                     if (obj.types[0] === 'administrative_area_level_1') {
+        //                         console.log('biz state', obj.address_components[0].long_name)
+        //                         if (obj.address_components[0].long_name === userState) {
+        //                             newArr.push(business)
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //             return false
+        //         })();
+        //     })
+        //     console.log(newArr)
+        // }
+        // setFoodBusinesses(allBusinesses.filter(business => locationFilter(business)))
+        // navigator.geolocation.getCurrentPosition(position => {
+        //     if (position) {
+        //         setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
+        //     }
+        // })
     }, [dispatch])
 
+    // if (!businesses) {
+    //     return null
+    // }
+
+    // const locationFilter = async (businesses) => {
+
+    //     const newArr = []
+    //     for (let index = 0; index < businesses.length; index++) {
+    //         let business = businesses[index]
+    //         // (async function (business) {
+    //         if (business.category_id === 1 && business.now_open) {
+
+    //             const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+    //             const json = await result.json()
+    //             const locationArray = json.results
+    //             // console.log('********', json.results)
+    //             for (let i = 0; i < locationArray.length; i++) {
+    //                 const obj = locationArray[i];
+    //                 // console.log(obj.types[0], 'OBJ')
+    //                 // console.log(obj.types[0], 'OBJ')
+    //                 if (obj.types[0] === 'administrative_area_level_1') {
+    //                     console.log('biz state', obj.address_components[0].long_name)
+    //                     if (obj.address_components[0].long_name === userState) {
+    //                         newArr.push(business)
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return newArr
+
+    // }
+
+
+    // console.log("END RESULT", trying)
+
+
+
+
+    // const locationFilter = async (business) => {
+    //     if (business.category_id === 1 && business.now_open) {
+
+    //         const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+    //         const json = await result.json()
+    //         const locationArray = json.results
+    //         // console.log('********', json.results)
+    //         for (let i = 0; i < locationArray.length; i++) {
+    //             const obj = locationArray[i];
+    //             // console.log(obj.types[0], 'OBJ')
+    //             // console.log(obj.types[0], 'OBJ')
+    //             if (obj.types[0] === 'administrative_area_level_1') {
+    //                 console.log('biz state', obj.address_components[0].long_name)
+    //                 if (obj.address_components[0].long_name === userState) {
+    //                     return true
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return false
+    // }
+
+    // if (businesses.length) {
+    //     console.log(businesses, '**')
+    //     setFoodBusinesses(businesses.filter(business => locationFilter(business)))
+    // }
+
+
+    // if (userLocation) {
+    //     // console.log(userLocation)
+    //     (async function () {
+
+    //         const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${userLocation.lat},${userLocation.lng}&key=${apiKey}`)
+    //         const json = await result.json()
+    //         const locationArray = json.results
+    //         // console.log('********', json.results)
+    //         for (let i = 0; i < locationArray.length; i++) {
+    //             const obj = locationArray[i];
+    //             // console.log(obj.types[0], 'OBJ')
+    //             // console.log(obj.types[0], 'OBJ')
+    //             if (obj.types[0] === 'administrative_area_level_1') {
+    //                 return setUserState(obj.address_components[0].long_name)
+    //             }
+    //         }
+
+    //     })();
+    // }
+
+    // console.log(userState)
 
 
     return (
