@@ -63,13 +63,13 @@ function Food() {
 
                     ))}
                     {!foodBusinesses.length &&
+                        // <div className={style.businessCard}>
                         <div className={style.businessCard}>
-                            <div className={style.businessCard}>
-                                <div className={style.innerCard}>
-                                    <h1 className={style.businessCardName}>Sorry no results at this time...</h1>
-                                </div>
+                            <div className={style.innerCard}>
+                                <h1 className={style.businessCardName}>Sorry no results at this time...</h1>
                             </div>
                         </div>
+                        // </div>
                     }
                     <div className={style.invisDiv}></div>
                 </div>
