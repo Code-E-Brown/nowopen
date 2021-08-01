@@ -7,7 +7,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { getBusinesses, editBusiness } from '../../store/business';
 import { createReview, getReviews } from '../../store/review';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-
+import AddressWrapper from '../BusinessAddress/AddressWrapper';
 
 import { FiStar } from 'react-icons/fi';
 
@@ -143,10 +143,12 @@ function BusinessPage() {
                                     Now Open!
                                 </div>
                                 <div className={style.locationInfo}>
-                                    {/* <BusinessAddress currentBusiness={currentBusiness} currentLat={currentLat} currentLong={currentLong} /> */}
-                                    <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
+                                    {currentBusiness &&
+                                        <AddressWrapper currentBusiness={currentBusiness} currentLat={currentLat} currentLong={currentLong} />
+                                    }
+                                    {/* <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
                                         Located at: 555 E street, Washington D.C
-                                    </a>
+                                    </a> */}
                                     <div className={style.flexColumn}>
                                         <div className={style.photoButtonBox}>
                                             <Link to='#'>
