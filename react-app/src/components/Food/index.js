@@ -51,41 +51,53 @@ function Food({ apiKey, userState, userLocation }) {
     useEffect(async () => {
 
         const allBusinesses = await dispatch(getBusinesses())
-        setFoodBusinesses(allBusinesses.filter(business => business.category_id === 1 && business.now_open))
-        // const locationFilter = async (businesses) => {
-        // if (allBusinesses.length) {
+        // setFoodBusinesses(allBusinesses.filter(business => business.category_id === 1 && business.now_open))
+        const locationFilter = async (businesses) => {
 
-        //     const newArr = []
-        //     for (let index = 0; index < allBusinesses.length; index++) {
-        //         let business = allBusinesses[index]
-        //         // (async function (business) {
-        //         if (business.category_id === 1 && business.now_open) {
-        //             // console.log('test')
+            const newArr = []
 
-        //             const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
-        //             const json = await result.json()
-        //             const locationArray = json.results
-        //             // console.log('********', json.results)
-        //             for (let i = 0; i < locationArray.length; i++) {
-        //                 const obj = locationArray[i];
-        //                 // console.log(obj.types[0], 'OBJ')
-        //                 // console.log(obj.types[0], 'OBJ')
-        //                 if (obj.types[0] === 'administrative_area_level_1') {
-        //                     console.log('biz state', obj.address_components[0].long_name)
-        //                     if (obj.address_components[0].long_name === userState) {
-        //                         console.log(business)
-        //                         newArr.push(business)
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        //     console.log(newArr, 'hi')
-        // }
+            for (let index = 0; index < allBusinesses.length; index++) {
+                let business = allBusinesses[index]
+                // (async function (business) {
+                if (business.category_id === 1 && business.now_open) {
+                    // console.log('test')
 
-        //     return newArr
-        // }
-        // setFoodBusinesses(await locationFilter(allBusinesses))
+                    const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+                    const json = await result.json()
+                    const locationArray = json.results
+                    // console.log('********', json.results)
+                    for (let i = 0; i < locationArray.length; i++) {
+                        const obj = locationArray[i];
+                        // console.log(obj.types[0], 'OBJ')
+                        // console.log(obj.types[0], 'OBJ')
+                        if (obj.types[0] === 'administrative_area_level_1') {
+                            console.log('biz state', obj.address_components[0].long_name, userState)
+                            if (obj.address_components[0].long_name === userState) {
+                                console.log(business)
+                                newArr.push(business)
+                            }
+                        }
+                    }
+                }
+
+            }
+            // console.log(newArr, 'hi')
+
+            return newArr
+        }
+
+        const filteredByState = await locationFilter(allBusinesses)
+        // console.log('FINALLY!!!!', test)
+
+        if (filteredByState) {
+
+            setFoodBusinesses(await locationFilter(allBusinesses))
+        }
+
+
+        /// EVERYTHING ABOVE
+
+
         // let res = await locationFilter(allBusinesses)
         // await console.log("PLEASE", res)
         // await console.log(newArr, 'bingo baby')
@@ -223,7 +235,7 @@ function Food({ apiKey, userState, userLocation }) {
         <div className={style.outerContainer}>
             <div className={style.leftSide}>
                 <div className={style.scrollable}>
-                    <div className={style.listHeader}> <h1 className={style.listH1}>The Best 10 Mobile Restaurants in Your Area</h1></div>
+                    <div className={style.listHeader}> <h1 className={style.listH1}> Now Open, Mobile Restaurants in {userState}</h1></div>
                     {foodBusinesses && foodBusinesses.map(business => (
 
                         <div className={style.businessCard} key={business.id}>

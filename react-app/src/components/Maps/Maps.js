@@ -22,19 +22,21 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
     const [center, setCenter] = useState({ lat: 38.9072, lng: 77.0369 })
     const [selectedLocation, setSelectedLocation] = useState({})
     const [selectedBusiness, setSelelectedBusiness] = useState({})
+    const [newCenter, setNewCenter] = useState('')
 
 
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
             if (position) {
-                
+
                 setCurrentLat(position.coords.latitude)
                 setCurrentLong(position.coords.longitude)
                 setCenter({ lat: position.coords.latitude, lng: position.coords.longitude })
 
             }
         })
+
 
 
         // const center = {
@@ -52,9 +54,11 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
     }
 
     useEffect(() => {
-
         if (singleBusiness) {
-            setCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
+            console.log("SINGLEBUS", singleBusiness)
+            setNewCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
+            // setCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
+
             // console.log(singleBusiness, 'HERERERER')
             // setCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
         }
@@ -112,12 +116,12 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
 
                 <GoogleMap
                     mapContainerStyle={containerStyle}
-                    center={center}
+                    center={newCenter ? newCenter : center}
 
                     zoom={12}
                 >
                     <Marker key='userMarker'
-                        position={center}
+                        position={newCenter ? newCenter : center}
                         onClick={() => handleSelect(center)}
 
 

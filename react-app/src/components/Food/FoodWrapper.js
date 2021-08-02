@@ -49,11 +49,15 @@ const FoodWrapper = () => {
 
 
     return (
-        <Food
-            apiKey={key}
-            userLocation={userLocation}
-            userState={userState}
-        />
+        <>
+            {userState &&
+                <Food
+                    apiKey={key}
+                    userLocation={userLocation}
+                    userState={userState}
+                />
+            }
+        </>
     );
 };
 
