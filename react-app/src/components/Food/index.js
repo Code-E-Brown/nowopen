@@ -9,6 +9,7 @@ import logoStyle from '../BusinessPage/BusinessPage.module.css'
 function Food({ apiKey, userState, userLocation }) {
     const [foodBusinesses, setFoodBusinesses] = useState([])
     const [newFoodBz, setNewFoodBz] = useState([])
+    const [message, setMessage] = useState('')
     // const [userLocation, setUserLocation] = useState('')
     // const [userState, setUserState] = useState('')
 
@@ -71,9 +72,9 @@ function Food({ apiKey, userState, userLocation }) {
                         // console.log(obj.types[0], 'OBJ')
                         // console.log(obj.types[0], 'OBJ')
                         if (obj.types[0] === 'administrative_area_level_1') {
-                            console.log('biz state', obj.address_components[0].long_name, userState)
+                            // console.log('biz state', obj.address_components[0].long_name, userState)
                             if (obj.address_components[0].long_name === userState) {
-                                console.log(business)
+                                // console.log(business)
                                 newArr.push(business)
                             }
                         }
@@ -89,9 +90,15 @@ function Food({ apiKey, userState, userLocation }) {
         const filteredByState = await locationFilter(allBusinesses)
         // console.log('FINALLY!!!!', test)
 
-        if (filteredByState) {
+        if (filteredByState.length) {
 
+            setMessage('')
             setFoodBusinesses(await locationFilter(allBusinesses))
+
+        }
+        else {
+            setMessage(`Could not find open Mobile Restaurants in ${userState}, here's a complete list of mobile restaurants that are now open:`)
+            setFoodBusinesses(allBusinesses.filter(business => business.category_id === 1 && business.now_open))
         }
 
 
@@ -139,7 +146,7 @@ function Food({ apiKey, userState, userLocation }) {
         //         setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
         //     }
         // })
-    }, [dispatch])
+    }, [dispatch, userLocation, userState])
 
     // if (!businesses) {
     //     return null
@@ -235,7 +242,15 @@ function Food({ apiKey, userState, userLocation }) {
         <div className={style.outerContainer}>
             <div className={style.leftSide}>
                 <div className={style.scrollable}>
-                    <div className={style.listHeader}> <h1 className={style.listH1}> Now Open, Mobile Restaurants in {userState}</h1></div>
+                    <div className={style.listHeader}>
+                        {!message ? (
+                            <h1 className={style.listH1}> Now Open, Mobile Restaurants in {userState}</h1>
+
+                        ) :
+                            <h1 className={style.listH1}> {message}</h1>
+
+                        }
+                    </div>
                     {foodBusinesses && foodBusinesses.map(business => (
 
                         <div className={style.businessCard} key={business.id}>
