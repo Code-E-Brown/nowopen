@@ -17,15 +17,18 @@ const FoodWrapper = () => {
         }
     }, [dispatch, key]);
 
+    if (!userLocation) {
+
+        navigator.geolocation.getCurrentPosition(position => {
+            if (position) {
+                setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
+            }
+        })
+    }
     if (!key) {
         return null;
     }
 
-    navigator.geolocation.getCurrentPosition(position => {
-        if (position) {
-            setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
-        }
-    })
 
     if (userLocation) {
 
@@ -50,13 +53,13 @@ const FoodWrapper = () => {
 
     return (
         <>
-            {userState &&
-                <Food
-                    apiKey={key}
-                    userLocation={userLocation}
-                    userState={userState}
-                />
-            }
+
+            <Food
+                apiKey={key}
+                userLocation={userLocation}
+                userState={userState}
+            />
+
         </>
     );
 };
