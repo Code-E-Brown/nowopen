@@ -67,6 +67,20 @@ export const createReview = (review) => async (dispatch) => {
     }
 }
 
+export const deleteReview = (reviewId) => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        const deleteResponse = await response.json();
+        console.log(deleteResponse)
+        dispatch(deleteReviewFromStore(reviewId))
+        // return projectDeleteSuccessMessage
+    }
+    // return null;
+}
+
 
 export default function reducer(state = initialState, action) {
     let newState;

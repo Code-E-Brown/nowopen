@@ -97,7 +97,7 @@ function Food({ apiKey, userState, userLocation }) {
 
         }
         else {
-            setMessage(`Could not find open Mobile Restaurants in ${userState}, here's a complete list of mobile restaurants that are now open:`)
+            setMessage(`Could not find open Mobile Restaurants in your area, here's a complete list of mobile restaurants that are now open:`)
             setFoodBusinesses(allBusinesses.filter(business => business.category_id === 1 && business.now_open))
         }
 

@@ -486,10 +486,15 @@ cursor: pointer;
   font-size: 38px;
   color: rgb(102, 102, 102);
   font-family: Pacifico, cursive;
+  border-bottom: solid;
+  align-items: center;
+
+  border-width: 4px;
+  border-color: rgba(179, 179, 179, 0.363);
 }
 
 .reviewBox {
-  background-color: red;
+  /* background-color: red; */
   /* height: 200px; */
   width: 1000px;
 }
@@ -500,9 +505,9 @@ cursor: pointer;
 
   display: flex;
   flex-direction: column;
-  min-height: 300px;
+  /* min-height: 1000px; */
   padding:20px;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   border-bottom: solid;
   align-items: center;
 
@@ -518,15 +523,208 @@ cursor: pointer;
 }
 
 .reviewCard{
-  background-color: chartreuse;
+  /* background-color: chartreuse; */
   width: 80%;
-  height: 250px;
+  /* height: 200px; */
+  margin-bottom: 20px;
 }
 
 
 .leaveReviewCard{
-  height: 100px;
-  width: 80%;
-  background-color: pink;
+  /* height: 100px; */
+  width: 60%;
+  background-color: rgb(244, 57, 57);
   margin:15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  min-height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
 }
+.leaveReviewCardTwo{
+  /* height: 100px; */
+  width: 60%;
+  background-color: rgb(244, 57, 57);
+  margin:15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  min-height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  /* box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6); */
+}
+
+.starBox {
+  display: flex;
+  flex-direction: row;
+  margin-top:5px;
+
+  /* box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6); */
+}
+
+.textArea{
+  width: 500px;
+  /* width: 100%; */
+  min-height: 105px;
+  font-family: Pacifico, cursive;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+}
+
+.review{
+  /* background-color: blueviolet; */
+  min-height: 105px;
+  border-radius: 10px;
+  /* margin:30px; */
+  padding:15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+}
+
+
+.reviewUser{
+  background-color: white;
+  display: flex;
+  width: 100%;
+  /* flex-direction: column; */
+  align-content: center;
+  /* justify-content: space-between; */
+  border-bottom: solid;
+  border-color: rgb(102, 102, 102);
+  /* border-top: solid; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.reviewIcon {
+ color:  rgb(244, 57, 57);
+ font-size: 40px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ /* height: 100px; */
+ margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.user{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+  font-family: Pacifico, cursive;
+  font-size: 20px;
+  font-weight: 400px;
+  color: rgb(59, 59, 59);
+  text-transform: capitalize;
+  margin: 10px;
+  /* margin-top: 10px;
+  margin-bottom: 10px; */
+}
+
+.invisPush{
+  margin-right: 40px;
+}
+
+.reviewStarBox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+  /* margin: 10px; */
+  /* box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6); */
+}
+
+.reviewTextBox{
+  background-color: white;
+  /* min-height: 82px; */
+  font-size: 25px;
+  /* color: rgb(59, 59, 59); */
+  padding: 10px;
+  font-family: Pacifico, cursive;
+}
+
+.textAreaContainer{
+  padding: 15px;
+}
+
+.buttonContainer{
+  padding-left: 15px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.submitButton{
+background-color: white;
+font-family: Pacifico, cursive;
+/* color:  rgb(244, 57, 57); */
+font-size: 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+}
+.cancelButton{
+background-color: white;
+font-family: Pacifico, cursive;
+/* color:  rgb(244, 57, 57); */
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 15px;
+border-radius: 10px;
+width: 104px;
+}
+
+.controlButtons{
+  /* background-color: tomato; */
+  display: flex;
+  justify-content: flex-end;
+  /* position: relative; */
+}
+
+.trashCan{
+color: red;
+font-size: 20px;
+position: absolute;
+cursor: pointer;
+/* height: 30px;
+background-color: turquoise; */
+
+}
+.editIcon{
+color: red;
+font-size: 20px;
+position: relative;
+/* position: absolute; */
+cursor: pointer;
+right: 40px;
+/* height: 30px;
+background-color: turquoise; */
+
+}
+.editIconContainer{
+color: red;
+
+font-size: 20px;
+/* position: relative; */
+position: absolute;
+cursor: pointer;
+
+/* height: 30px;
+width: 30px; */
+/* background-color: turquoise; */
+
+}
+
+

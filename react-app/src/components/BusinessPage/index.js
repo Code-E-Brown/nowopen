@@ -5,13 +5,16 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom';
 import { getBusinesses, editBusiness } from '../../store/business';
-import { createReview, getReviews } from '../../store/review';
+import { createReview, getReviews, deleteReview } from '../../store/review';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import AddressWrapper from '../BusinessAddress/AddressWrapper';
 
 import { FiStar } from 'react-icons/fi';
+import { RiMapPinUserFill } from 'react-icons/ri';
+import { RiEdit2Line } from 'react-icons/ri';
 
 import { BsStarFill } from 'react-icons/bs';
+import { MdDelete } from 'react-icons/md';
 
 
 
@@ -114,6 +117,19 @@ function BusinessPage() {
     const handleReviewCancel = (e) => {
         setLiveRating(null)
         setReviewText('')
+    }
+
+    const handleReviewDelete = async e => {
+        e.preventDefault()
+        console.log(+e.target.parentElement.parentElement.id)
+        await dispatch(deleteReview(+e.target.parentElement.parentElement.id))
+        await dispatch(getBusinesses())
+    }
+    const handleReviewEdit = async e => {
+        e.preventDefault()
+        console.log(+e.target.parentElement.parentElement.id)
+        // await dispatch(deleteReview(+e.target.parentElement.parentElement.id))
+        // await dispatch(getBusinesses())
     }
 
 
@@ -269,7 +285,7 @@ function BusinessPage() {
             ) : null}
             <div className={style.infoSection}>
                 <div className={style.descriptionArea}>
-                    " {currentBusiness?.description}
+                    - {currentBusiness?.description}
                 </div>
             </div>
             <div className={style.infoSectionColumn}>
@@ -277,83 +293,160 @@ function BusinessPage() {
                 <div className={style.reviewBox}>
                     {user && user.id != currentBusiness?.user_id ? (
 
-                        < div className={style.leaveReviewCard}>
-                            Leave a review
-                            {liveRating === 1 ? (
-                                <>
-                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
-                                </>
-                            ) : null}
-                            {liveRating === 2 ? (
-                                <>
-                                    <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
-                                </>
-                            ) : null}
-                            {liveRating === 3 ? (
-                                <>
-                                    <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
+                        <div className={style.leaveReviewCard}>
+                            <div className={style.leaveReviewCardTwo}>
 
-                                </>
-                            ) : null}
-                            {liveRating === 4 ? (
-                                <>
-                                    <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
 
-                                </>
-                            ) : null}
-                            {liveRating === 5 ? (
-                                <>
-                                    <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                    <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
-                                </>
-                            ) : null}
-
-                            {!liveRating &&
-                                <>
-                                    <FiStar onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
-                                    <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
-                                </>
-                            }
-                            {liveRating &&
-                                <div>
-                                    <textarea onChange={e => setReviewText(e.target.value)} value={reviewText}></textarea>
-                                    <div>
-                                        <button onClick={handleReviewSubmit}>Submit review</button>
-                                        <button onClick={handleReviewCancel}>Cancel</button>
+                                <h1>
+                                    Leave a review
+                                </h1>
+                                {liveRating === 1 ? (
+                                    <div className={style.starBox}>
+                                        <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
                                     </div>
-                                </div>
-                            }
+                                ) : null}
+                                {liveRating === 2 ? (
+                                    <div className={style.starBox}>
+                                        <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
+                                    </div>
+                                ) : null}
+                                {liveRating === 3 ? (
+                                    <div className={style.starBox}>
+                                        <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
 
+                                    </div>
+                                ) : null}
+                                {liveRating === 4 ? (
+                                    <div className={style.starBox}>
+                                        <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
 
+                                    </div>
+                                ) : null}
+                                {liveRating === 5 ? (
+                                    <div className={style.starBox}>
+                                        <BsStarFill onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                        <BsStarFill onClick={e => setLiveRating(null)} style={{ color: 'yellow' }} />
+                                    </div>
+                                ) : null}
+
+                                {!liveRating &&
+                                    <div className={style.starBox}>
+                                        <FiStar onClick={e => setLiveRating(1)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(2)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(3)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(4)} style={{ color: 'yellow' }} />
+                                        <FiStar onClick={e => setLiveRating(5)} style={{ color: 'yellow' }} />
+                                    </div>
+                                }
+                                {liveRating &&
+                                    <div>
+                                        <div className={style.textAreaContainer}>
+                                            <textarea placeHolder='Share your experience!' className={style.textArea} onChange={e => setReviewText(e.target.value)} value={reviewText}></textarea>
+                                        </div>
+                                        <div className={style.buttonContainer}>
+                                            <button className={style.submitButton} onClick={handleReviewSubmit}>Submit review</button>
+                                            <button className={style.cancelButton} onClick={handleReviewCancel}>Cancel</button>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
                         </div>)
                         : null}
-                    <div className={style.reviewCard}>
-                        {currentReviews && currentReviews.map(review => (
-                            <div>{review.text}</div>
-                        ))}
-                    </div>
+                    {currentReviews && currentReviews.map(review => (
+                        <div key={review.id} className={style.reviewCard}>
+                            <div className={style.review}>
+                                <div id={review.id} className={style.controlButtons}>
+
+                                    <MdDelete onClick={handleReviewDelete} className={style.trashCan} />
+                                    <div id={review.id} className={style.editIconContainer}>
+                                        <RiEdit2Line onClick={handleReviewEdit} className={style.editIcon} />
+                                    </div>
+
+
+                                </div>
+
+                                <div className={style.reviewUser}>
+                                    {/* <div> */}
+
+
+                                    <div className={style.reviewIcon}>
+                                        <RiMapPinUserFill />
+                                    </div>
+                                    <div className={style.user}>
+                                        {review['user'].username}
+
+                                        <div className={style.reviewStarBox}>
+                                            {review.rating === 1 &&
+                                                <>
+                                                    <BsStarFill style={{ color: 'red' }} />
+
+                                                </>
+                                            }
+                                            {review.rating === 2 &&
+                                                <>
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+
+                                                </>
+                                            }
+                                            {review.rating === 3 &&
+                                                <>
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+
+                                                </>
+                                            }
+                                            {review.rating === 4 &&
+                                                <>
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                </>
+                                            }
+                                            {review.rating === 5 &&
+                                                <>
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                    <BsStarFill style={{ color: 'red' }} />
+                                                </>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    {/* </div> */}
+                                    {/* <div className={style.invisPush}></div> */}
+                                </div>
+
+                                <div className={style.reviewTextBox}>
+                                    "{review.text}"
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div >
