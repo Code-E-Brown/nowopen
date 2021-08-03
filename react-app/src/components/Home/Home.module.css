@@ -1,5 +1,6 @@
 .bannerDiv{
-    height: 600px;
+    /* height: 600px; */
+    min-height: 100vh;
     background-image: url('https://images.pexels.com/photos/2089712/pexels-photo-2089712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     background-repeat: no-repeat;
     /* background-size: 100% 100%; */
@@ -8,6 +9,7 @@
     display: flex;
     align-content: center;
     justify-content: center;
+
     /* flex-direction: column; */
 }
 
@@ -121,7 +123,7 @@
 .logoText {
     /* height: 50px; */
     /* width: 50px; */
-    font-size: 70px;
+    font-size: 80px;
     font-family: Pacifico, cursive;
     font-weight: 100;
     margin-bottom: 45px;

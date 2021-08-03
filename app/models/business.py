@@ -33,4 +33,5 @@ class Business(db.Model):
             'current_lat': self.current_lat,
             'current_long':self.current_long,
             'rating': self.rating,
+            'reviews': [review.to_dict() for review in self.reviews]
         }

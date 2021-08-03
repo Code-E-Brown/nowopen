@@ -9,6 +9,14 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Home from './components/Home';
+import MapContainer from './components/Maps';
+import CreateBusiness from './components/CreateBusiness';
+import Food from './components/Food';
+import BusinessPage from './components/BusinessPage';
+import EditBusiness from './components/EditBusiness'
+import Retail from './components/Retail';
+import Event from './components/Event';
+import FoodWrapper from './components/Food/FoodWrapper';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +45,22 @@ function App() {
           <NavBar />
           <SignUpForm />
         </Route>
+        <Route path='/businesses/food' exact={true}>
+          <NavBar />
+          {/* <Food /> */}
+          <FoodWrapper />
+          {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
+        </Route>
+        <Route path='/businesses/retail' exact={true}>
+          <NavBar />
+          <Retail />
+          {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
+        </Route>
+        <Route path='/businesses/events' exact={true}>
+          <NavBar />
+          <Event />
+          {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <NavBar />
           <UsersList />
@@ -48,9 +72,18 @@ function App() {
         <Route path='/' exact={true}>
           <Home />
         </Route>
-        {/* <ProtectedRoute path='/' exact={true} >
-          <Home />
-        </ProtectedRoute> */}
+        <ProtectedRoute path='/businesses/create' exact={true} >
+          <NavBar />
+          <CreateBusiness />
+        </ProtectedRoute>
+        <Route path='/businesses/:id' exact={true}>
+          <NavBar />
+          <BusinessPage />
+        </Route>
+        <ProtectedRoute path='/businesses/:id/edit' exact={true}>
+          <NavBar />
+          <EditBusiness />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

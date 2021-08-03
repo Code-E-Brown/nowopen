@@ -1,0 +1,730 @@
+.imageBox{
+    min-height: 30vw;
+    width: 100%;
+    /* background-color: blanchedalmond; */
+    background-image: url('https://images.pexels.com/photos/7262998/pexels-photo-7262998.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') ;
+    background-repeat: no-repeat;
+    /* background-size: 100% 100%; */
+    background-size: cover;
+    /* position: absolute; */
+    /* background-size: contain; */
+    /* background-position: center;
+    display: flex;
+    align-content: center; */
+    /* flex-direction: column-reverse; */
+    /* filter: blur(2px); */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.infoBox{
+/* background-color: red; */
+padding-left: 10px;
+border-radius: 5px;
+height: 185px;
+/* box-shadow: 0px 0px 20px rgba(43, 39, 60, .6); */
+/* background-color: rgba(210, 180, 140, 0.137); */
+background: linear-gradient(180deg, rgba(3, 3, 3, 0.411), transparent);
+}
+
+.ratingBox{
+    /* background-color: red; */
+    margin-top: 8px;
+    font-size: 20px;
+    color: white;
+}
+
+.openStatus {
+    /* margin-top: 8px;
+    font-size: 25px;
+    color: white; */
+    margin-top: 12px;
+    font-size: 25px;
+    font-family: Pacifico, cursive;
+    font-weight: 100;
+    /* text-decoration: none; */
+    color: rgb(250, 0, 0);
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57);
+    /* animation-name:glow;
+    animation-duration:.00001s;
+    animation-iteration-count:infinite;
+    animation-direction:alternate; */
+}
+.closedStatus {
+    /* margin-top: 8px;
+    font-size: 25px;
+    color: white; */
+    margin-top: 12px;
+    font-size: 25px;
+    font-family: Pacifico, cursive;
+    font-weight: 100;
+    /* text-decoration: none; */
+    color: rgb(7, 0, 0);
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57);
+    /* animation-name:glow;
+    animation-duration:.00001s;
+    animation-iteration-count:infinite;
+    animation-direction:alternate; */
+}
+.locationInfo{
+    font-size: 20px;
+    color: white;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    /* font-size: 25px;
+    font-family: Pacifico, cursive;
+    font-weight: 100;
+    margin-bottom: 45px;
+
+    color: rgb(250, 0, 0);
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57); */
+
+}
+.locationInfo > a{
+    /* font-family: Pacifico, cursive; */
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+    /* color: rgb(250, 0, 0); */
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57); */
+
+    /* font-size: 20px;
+    color: white;
+    margin-top: 12px; */
+    /* font-size: 25px;
+    font-family: Pacifico, cursive;
+    font-weight: 100;
+    margin-bottom: 45px;
+
+    color: rgb(250, 0, 0);
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57); */
+
+}
+.locationInfo a:hover{
+    font-weight: 700;
+    /* font-family: Pacifico, cursive; */
+    text-decoration: underline;
+    /* color: rgb(250, 0, 0);
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57); */
+}
+
+.bizName{
+    /* background-color: chartreuse; */
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+   color: rgb(255, 255, 255);
+   font-weight: 900;
+   font-size: 50px;
+   overflow-wrap: break-word;
+   width: 100%;
+   /* border-style: solid;
+   border-width: 1px;
+   border-color: white; */
+   /* position: absolute; */
+
+
+
+}
+
+.infoFlex{
+    /* background-color: chocolate; */
+    width: 80vw;
+    min-height: 30vw;
+    display: flex;
+    align-content: center;
+
+    flex-direction: column-reverse;
+}
+
+.infoSection{
+    /* background-color: red; */
+    /* background-color: thistle; */
+    display: flex;
+    min-height: 300px;
+    padding:20px;
+    justify-content: space-evenly;
+    border-bottom: solid;
+    align-items: center;
+
+    /* border-width: 1px; */
+    border-color: rgba(179, 179, 179, 0.363);
+
+}
+
+.bizLocationDescription{
+/* background-color: red; */
+width: 400px;
+height: 310px;
+/* padding:20px; */
+box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+overflow-wrap: break-word;
+/* margin-left: 20px;
+margin-right: 20px; */
+}
+
+.infoInnerBox{
+height: 250px;
+width: 250px;
+background-color: white;
+}
+
+/* @keyframes glow{
+    from{    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57);
+    }
+    to{    text-shadow: 0 0 10px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57);
+    }
+  } */
+
+  .loginButton{
+    /* border-style: solid; */
+    border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    width: 45px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 14;
+    height: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+  }
+  .loginButton a{
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(43, 39, 60);
+  }
+.editButtonBox{
+    /* border-style: solid; */
+
+    border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    width: 45px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 14;
+    height: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 12px; */
+    background-color: rgb(244, 57, 57);
+    margin-right: 100px;
+  }
+  .editButtonBox > a{
+    color: white;
+    text-decoration: none;
+    /* font-weight: 600; */
+
+  }
+
+  .flexColumn {
+      display: flex;
+
+  }
+
+
+  .photoButtonBox{
+    /* border-style: solid; */
+    border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    width: 145px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 14;
+    height: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 12px; */
+    /* background-color: rgb(244, 57, 57); */
+    margin-right: 100px;
+  }
+
+  .photoButtonBox > a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+
+  }
+
+  .locationInfoInvis{
+    font-size: 20px;
+    color: white;
+    margin-top: 12px;
+    display: flex;
+    width: 100%;
+    /* height: 10px; */
+    /* background-color: red; */
+    justify-content: space-between;
+    /* font-size: 25px;
+    font-family: Pacifico, cursive;
+    font-weight: 100;
+    margin-bottom: 45px;
+
+    color: rgb(250, 0, 0);
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57); */
+
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Exo+2:200i');
+
+
+.glowStatus {
+
+  font-size: 10px;
+cursor: pointer;
+
+  --neon-text-color: red;
+  --neon-border-color: red;
+}
+
+.glowStatus body {
+  font-family: 'Exo 2', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  /* min-height: 100vh; */
+}
+
+.glowStatus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  font-size: 5rem;
+  font-weight: 200;
+  font-style: italic;
+  color: #fff;
+  padding: 4rem 6rem 5.5rem;
+  border: 0.4rem solid #fff;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  animation: flicker 1.5s infinite alternate;
+}
+.glowStatus:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  font-size: 5rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #fff;
+  padding: 4rem 6rem 5.5rem;
+  border: 0.4rem solid #fff;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  animation: flicky 5s infinite alternate;
+}
+
+.glowStatus::-moz-selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+
+.glowStatus::selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+
+.glowStatus:focus {
+  outline: none;
+}
+
+/* Animate neon flicker */
+@keyframes flicker {
+
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+
+        text-shadow:
+            -0.2rem -0.2rem 1rem #fff,
+            0.2rem 0.2rem 1rem #fff,
+            0 0 2rem var(--neon-text-color),
+            0 0 4rem var(--neon-text-color),
+            0 0 6rem var(--neon-text-color),
+            0 0 8rem var(--neon-text-color),
+            0 0 10rem var(--neon-text-color);
+
+        box-shadow:
+            0 0 .5rem #fff,
+            inset 0 0 .5rem #fff,
+            0 0 2rem var(--neon-border-color),
+            inset 0 0 2rem var(--neon-border-color),
+            0 0 4rem var(--neon-border-color),
+            inset 0 0 4rem var(--neon-border-color);
+    }
+
+    /* 20%, 24%, 55% {
+        text-shadow: none;
+        box-shadow: none;
+    } */
+}
+@keyframes flicky {
+
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+
+        text-shadow:
+            -0.2rem -0.2rem 1rem #fff,
+            0.2rem 0.2rem 1rem #fff,
+            0 0 2rem var(--neon-text-color),
+            0 0 4rem var(--neon-text-color),
+            0 0 6rem var(--neon-text-color),
+            0 0 8rem var(--neon-text-color),
+            0 0 10rem var(--neon-text-color);
+
+        box-shadow:
+            0 0 .5rem #fff,
+            inset 0 0 .5rem #fff,
+            0 0 2rem var(--neon-border-color),
+            inset 0 0 2rem var(--neon-border-color),
+            0 0 4rem var(--neon-border-color),
+            inset 0 0 4rem var(--neon-border-color);
+    }
+
+    /* 20%, 24%, 55% {
+        text-shadow: none;
+        box-shadow: none;
+    } */
+}
+
+.glowStatusClosed {
+
+  font-size: 10px;
+  cursor: pointer;
+
+  --neon-text-color: black;
+  --neon-border-color: black;
+}
+
+.glowStatusClosed body {
+  font-family: 'Exo 2', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  /* min-height: 100vh; */
+}
+
+.glowStatusClosed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  font-size: 5rem;
+  font-weight: 200;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.651);
+  padding: 4rem 6rem 5.5rem;
+  border: 0.4rem solid rgba(0, 0, 0, 0.651);
+  border-radius: 2rem;
+  text-transform: uppercase;
+  animation: flicker 1.5s infinite alternate;
+}
+
+.glowStatusClosed::-moz-selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+
+.glowStatusClosed::selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+
+.glowStatusClosed:focus {
+  outline: none;
+}
+
+/* Animate neon flicker */
+@keyframes flicker {
+
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+
+        text-shadow:
+            -0.2rem -0.2rem 1rem #fff,
+            0.2rem 0.2rem 1rem #fff,
+            0 0 2rem var(--neon-text-color),
+            0 0 4rem var(--neon-text-color),
+            0 0 6rem var(--neon-text-color),
+            0 0 8rem var(--neon-text-color),
+            0 0 10rem var(--neon-text-color);
+
+        box-shadow:
+            0 0 .5rem #fff,
+            inset 0 0 .5rem #fff,
+            0 0 2rem var(--neon-border-color),
+            inset 0 0 2rem var(--neon-border-color),
+            0 0 4rem var(--neon-border-color),
+            inset 0 0 4rem var(--neon-border-color);
+    }
+
+    /* 20%, 24%, 55% {
+        text-shadow: none;
+        box-shadow: none;
+    } */
+}
+
+
+.descriptionArea{
+  font-size: 38px;
+  color: rgb(102, 102, 102);
+  font-family: Pacifico, cursive;
+  border-bottom: solid;
+  align-items: center;
+
+  border-width: 4px;
+  border-color: rgba(179, 179, 179, 0.363);
+}
+
+.reviewBox {
+  /* background-color: red; */
+  /* height: 200px; */
+  width: 1000px;
+}
+
+.infoSectionColumn{
+  /* background-color: red; */
+  /* background-color: thistle; */
+
+  display: flex;
+  flex-direction: column;
+  /* min-height: 1000px; */
+  padding:20px;
+  /* justify-content: space-evenly; */
+  border-bottom: solid;
+  align-items: center;
+
+  /* border-width: 1px; */
+  border-color: rgba(179, 179, 179, 0.363);
+
+}
+.reviewBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviewCard{
+  /* background-color: chartreuse; */
+  width: 80%;
+  /* height: 200px; */
+  margin-bottom: 20px;
+}
+
+
+.leaveReviewCard{
+  /* height: 100px; */
+  width: 60%;
+  background-color: rgb(244, 57, 57);
+  margin:15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  min-height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+}
+.leaveReviewCardTwo{
+  /* height: 100px; */
+  width: 60%;
+  background-color: rgb(244, 57, 57);
+  margin:15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  min-height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  /* box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6); */
+}
+
+.starBox {
+  display: flex;
+  flex-direction: row;
+  margin-top:5px;
+
+  /* box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6); */
+}
+
+.textArea{
+  width: 500px;
+  /* width: 100%; */
+  min-height: 105px;
+  font-family: Pacifico, cursive;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+}
+
+.review{
+  /* background-color: blueviolet; */
+  min-height: 105px;
+  border-radius: 10px;
+  /* margin:30px; */
+  padding:15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+}
+
+
+.reviewUser{
+  background-color: white;
+  display: flex;
+  width: 100%;
+  /* flex-direction: column; */
+  align-content: center;
+  /* justify-content: space-between; */
+  border-bottom: solid;
+  border-color: rgb(102, 102, 102);
+  /* border-top: solid; */
+  /* margin-top: 10px; */
+  margin-bottom: 10px;
+
+}
+
+.reviewIcon {
+ color:  rgb(244, 57, 57);
+ font-size: 40px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ /* height: 100px; */
+ /* margin-top: 10px; */
+  margin-bottom: 10px;
+}
+
+.user{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+  font-family: Pacifico, cursive;
+  font-size: 20px;
+  font-weight: 400px;
+  color: rgb(59, 59, 59);
+  text-transform: capitalize;
+  margin: 10px;
+  /* margin-top: 10px;
+  margin-bottom: 10px; */
+}
+
+.invisPush{
+  margin-right: 40px;
+}
+
+.reviewStarBox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+  /* margin: 10px; */
+  /* box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6); */
+}
+
+.reviewTextBox{
+  background-color: white;
+  /* min-height: 82px; */
+  font-size: 25px;
+  /* color: rgb(59, 59, 59); */
+  padding: 10px;
+  font-family: Pacifico, cursive;
+}
+
+.textAreaContainer{
+  padding: 15px;
+}
+
+.buttonContainer{
+  padding-left: 15px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.submitButton{
+background-color: white;
+font-family: Pacifico, cursive;
+/* color:  rgb(244, 57, 57); */
+font-size: 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+}
+.cancelButton{
+background-color: white;
+font-family: Pacifico, cursive;
+/* color:  rgb(244, 57, 57); */
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 15px;
+border-radius: 10px;
+width: 104px;
+}
+
+.controlButtons{
+  /* background-color: tomato; */
+  display: flex;
+  justify-content: flex-end;
+  /* position: relative; */
+}
+
+.trashCan{
+color: red;
+font-size: 20px;
+position: absolute;
+cursor: pointer;
+/* height: 30px;
+background-color: turquoise; */
+
+}
+.editIcon{
+color: red;
+font-size: 20px;
+position: relative;
+/* position: absolute; */
+cursor: pointer;
+right: 70px;
+/* height: 30px;
+background-color: turquoise; */
+
+}
+.editIconContainer{
+color: red;
+
+font-size: 20px;
+/* position: relative; */
+position: absolute;
+cursor: pointer;
+
+/* height: 30px;
+width: 30px; */
+/* background-color: turquoise; */
+
+}
+
+

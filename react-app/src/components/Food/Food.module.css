@@ -1,0 +1,165 @@
+.leftSide
+{
+    /* width: 35vw; */
+    width: 50%;
+    /* height: 600px; */
+    /* margin-left: 10px; */
+    /* background-color: teal; */
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin: 20px; */
+    /* background-color: red; */
+
+}
+
+
+
+.outerContainer{
+    display: flex;
+    /* height: 600px; */
+    height: 800px;
+    /* background-color: red; */
+}
+
+.flexColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+.businessCard{
+overflow-wrap: break-word;
+height: 430px;
+width: 382px;
+/* border-style: solid;
+border-color: black;
+border-width: 1px; */
+/* background-color: teal; */
+/* margin: 60px; */
+margin-top: 10px;
+margin-left: 40px;
+margin-right: 40px;
+margin-bottom: 90px;
+border-radius: 20px;
+/* margin-left: 40px;
+margin-right: 40px;
+margin-top: 20px;
+margin-bottom: 20px; */
+
+/* margin-top: 10px;
+margin-bottom: 10px; */
+box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+
+}
+.innerCard{
+    padding: 20px;
+    overflow-wrap: break-word;
+}
+.businessCardName{
+font-size: 20px;
+font-weight: 700;
+margin-top: 8px;
+margin-bottom: 8px;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+.businessCardLink {
+    text-decoration: none;
+    color: black;
+}
+.businessCardLink:hover{
+    text-decoration: underline;
+
+    color: black;
+}
+.businessImage{
+    /* background-color: red; */
+    height: 160px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    /* background-size: 100% 100%; */
+    background-size: cover;
+    background-position: center;
+    /* display: flex;
+    align-content: center;
+    justify-content: center; */
+    background-image: url('https://assets.bonappetit.com/photos/60e46c6701084801b06de2a3/1:1/w_2560%2Cc_limit/Halo-Halo-Recipe-2021.jpg');
+}
+.listHeader{
+    overflow-wrap: break-word;
+    height: 100px;
+    width: 382px;
+    /* border-style: solid;
+    border-color: black;
+    border-width: 1px; */
+    /* background-color: teal; */
+    /* margin: 40px; */
+    margin-top: 70px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 10px;
+    /* margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px; */
+
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
+    /* box-shadow: 0px 0px 20px rgba(43, 39, 60, .6); */
+}
+
+.ratingsDiv{
+    /* background-color: red; */
+    /* width: 108px; */
+    height: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.scrollable{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 110%;
+}
+
+.listH1{
+font-weight: 700;
+font-size: 24px;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
+.invisDiv{
+    overflow-wrap: break-word;
+height: 1px;
+width: 382px;
+/* border-style: solid;
+border-color: black;
+border-width: 1px; */
+/* background-color: teal; */
+/* margin: 60px; */
+/* margin-top: 50px; */
+margin-left: 40px;
+margin-right: 40px;
+/* margin-bottom: 90px; */
+/* margin-left: 40px;
+margin-right: 40px;
+margin-top: 20px;
+margin-bottom: 20px; */
+
+/* margin-top: 10px;
+margin-bottom: 10px; */
+/* box-shadow: 0px 0px 20px rgba(43, 39, 60, .6); */
+}
+
+
+
+.descriptionBox{
+    color: rgba(117,114,128,1);
+    font-size: 14px;
+    font-weight: 400;
+    /* background-color: red; */
+    height: 80px;
+    overflow: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
