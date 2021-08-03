@@ -11,6 +11,7 @@ function CreateBusiness() {
     const [bizName, setBizName] = useState('')
     const [bizCategory, setBizCategory] = useState(null)
     const [bizDescription, setBizDescription] = useState('')
+    const [errors, setErrors] = useState(null)
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user);
@@ -44,7 +45,13 @@ function CreateBusiness() {
             }
             if (newBiz) {
                 const createdBiz = await dispatch(createBusiness(newBiz))
-                history.push(`/businesses/${createdBiz.id}`)
+                if (!createdBiz.errors) {
+                    history.push(`/businesses/${createdBiz.id}`)
+
+                } else {
+                    console.log('RESULT', createdBiz)
+                    setErrors(createdBiz.errors)
+                }
             }
         }
 
@@ -105,6 +112,7 @@ function CreateBusiness() {
                 <div className={style.flexContainer}>
                     <div className={style.leftSide}>
                         <div className={style.confirmBox}>
+                        
 
                             <h1 className={style.bigLabel} style={{ marginTop: '15px' }}>Does this look correct?</h1>
                             <div>

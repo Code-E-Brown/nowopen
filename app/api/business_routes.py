@@ -1,8 +1,21 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
 from app.models import db, Business, Review
+from app.forms import CreateForm
 
 business_routes = Blueprint('businesses', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            # errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
+    return errorMessages
+
 
 
 @business_routes.route('')
@@ -15,18 +28,28 @@ def businesses():
 @business_routes.route('', methods=['POST'])
 @login_required
 def create_business():
-    # newBusiness = Business(name=)
-    # print('*************', request.json['business'])
-    newBiz = Business(
-        name=request.json['business']['name'],
-        user_id=request.json['business']['user_id'],
-        description=request.json['business']['description'],
-        category_id=request.json['business']['category_id'],
-        )
 
-    db.session.add(newBiz)
-    db.session.commit()
-    return newBiz.to_dict()
+    form = CreateForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    form['category_id'].data = request.json['business']['category_id']
+    form['description'].data = request.json['business']['description']
+    form['name'].data = request.json['business']['name']
+
+    if form.validate_on_submit():
+
+        newBiz = Business(
+            name=request.json['business']['name'],
+            user_id=request.json['business']['user_id'],
+            description=request.json['business']['description'],
+            category_id=request.json['business']['category_id'],
+            )
+
+        db.session.add(newBiz)
+        db.session.commit()
+        return newBiz.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @business_routes.route('/<int:id>/edit', methods=["PUT"])

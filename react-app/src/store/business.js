@@ -66,7 +66,9 @@ export const createBusiness = (business) => async (dispatch) => {
         return newBiz;
 
     } else {
-        return ['An error occurred. Please try again.']
+        const data = await response.json();
+        console.log("ERROR DATA", data)
+        return data
     }
 
     // } else if (response.status < 500) {
