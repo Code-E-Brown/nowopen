@@ -1,0 +1,125 @@
+.slideContainer{
+    /* background-color: teal; */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+
+}
+
+
+.flexBorderBox{
+    padding: 80px;
+    border-top: solid;
+    border-bottom: solid;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* font-family: 'Exo 2', sans-serif; */
+}
+
+.flexBorderBox div{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+
+    /* height: 40px; */
+}
+
+.input {
+    height: 35px;
+    min-width: 500px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.bigLabel{
+font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: 900;
+font-size: 28px;
+}
+
+.editButton{
+ /* font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: 900;
+font-size: 28px; */
+background: none;
+border: none;
+color: white;
+font-weight: 400;
+font-size: 16px;
+padding: 20px;
+cursor: pointer;
+}
+.backButton{
+ /* font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: 900;
+font-size: 28px; */
+background: none;
+border: none;
+/* color: white; */
+font-weight: 400;
+font-size: 16px;
+padding: 20px;
+cursor: pointer;
+}
+
+
+.textArea {
+    min-height: 100px;
+    min-width: 500px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.flexSpread{
+width: 500px;
+}
+
+.radioLabel{
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.radioInput {
+    height: 20px;
+    width: 20px;
+    margin-left:  15px;
+    margin-right: 15px;
+}
+
+.radioFlexBox{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.leftSide {
+    background-color: red;
+    width: 48vw;
+}
+.rightSide {
+    background-color: red;
+    width: 48vw;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.flexContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.previewCard{
+    width: 90%;
+    background: green;
+}

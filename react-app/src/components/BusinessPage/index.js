@@ -129,7 +129,7 @@ function BusinessPage() {
             user_id: user.id
         }
 
-        console.log(editedReview)
+        // console.log(editedReview)
 
         const updatedRev = await dispatch(editReview(editedReview))
         setEditLiveRating(null)
