@@ -101,33 +101,40 @@ function CreateBusiness() {
             return (
                 <div className={style.flexContainer}>
                     <div className={style.leftSide}>
-                        <h1>Does this look correct?</h1>
-                        <div>
-                            <label>Business Name:</label>
-                        </div>
-                        <div>
-                            <input onChange={e => setBizName(e.target.value)} value={bizName} type='text'></input>
-                        </div>
-                        <div>
-                            <label>Category:</label>
-                        </div>
-                        <div>
-                            <label htmlFor='food'>Food</label>
-                            <input type='radio' id='food' onChange={e => setBizCategory(e.target.value)} checked={bizCategory === "1" ? true : false} value='1'></input>
-                            <label htmlFor='retail' >Retail</label>
-                            <input type='radio' onChange={e => setBizCategory(e.target.value)} checked={bizCategory === "2" ? true : false} id='retail' value='2' ></input>
-                            <label htmlFor='event'>Event</label>
-                            <input type='radio' onChange={e => setBizCategory(e.target.value)} id='event' checked={bizCategory === "3" ? true : false} value='3'></input>
-                        </div>
-                        <div>
+                        <div className={style.confirmBox}>
+
+
+                            <h1 className={style.bigLabel}>Does this look correct?</h1>
                             <div>
-                                <label htmlFor='description'>Business Description:</label>
+                                <label className={style.radioLabel}>Business Name:</label>
                             </div>
                             <div>
-                                <textarea onChange={e => setBizDescription(e.target.value)} value={bizDescription} id='description' placeholder='Something goes heree'></textarea>
+                                <input placeholder='Enter business name!' className={style.input} onChange={e => setBizName(e.target.value)} value={bizName} type='text'></input>
                             </div>
+                            <div>
+                                <label className={style.radioLabel}>Category:</label>
+                            </div>
+                            <div>
+                                <label className={style.radioLabel} htmlFor='food'>Food</label>
+                                <input className={style.radioInput} type='radio' id='food' onChange={e => setBizCategory(e.target.value)} checked={bizCategory === "1" ? true : false} value='1'></input>
+                                <label className={style.radioLabel} htmlFor='retail' >Retail</label>
+                                <input className={style.radioInput} type='radio' onChange={e => setBizCategory(e.target.value)} checked={bizCategory === "2" ? true : false} id='retail' value='2' ></input>
+                                <label className={style.radioLabel} htmlFor='event'>Event</label>
+                                <input className={style.radioInput} type='radio' onChange={e => setBizCategory(e.target.value)} id='event' checked={bizCategory === "3" ? true : false} value='3'></input>
+                            </div>
+                            <div>
+                                <label className={style.radioLabel} htmlFor='description'>Business Description:</label>
+                            </div>
+                            <div>
+                                <textarea className={style.textArea} onChange={e => setBizDescription(e.target.value)} value={bizDescription} id='description' placeholder='Provide a brief description'></textarea>
+                            </div>
+
+                            <div className={style.editButtonBox}>
+                                <button className={style.editButton} onClick={handleCreate}>Create</button>
+                            </div>
+
+
                         </div>
-                        <button onClick={handleCreate}>Save and Create</button>
                     </div>
                     <div className={style.rightSide}>
                         <div className={style.previewCard}>
@@ -171,7 +178,7 @@ function CreateBusiness() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div >
             )
         }
 

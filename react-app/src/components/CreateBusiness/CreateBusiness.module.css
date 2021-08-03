@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     height: 500px;
-
+    background-color: re;
 }
 
 
@@ -37,6 +37,9 @@
     border-radius: 5px;
     padding: 10px;
     font-size: 16px;
+    border: none;
+
+    box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
 }
 
 .bigLabel{
@@ -77,6 +80,8 @@ cursor: pointer;
     border-radius: 5px;
     padding: 10px;
     font-size: 16px;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
 }
 
 .flexSpread{
@@ -103,12 +108,17 @@ justify-content: center;
 }
 
 .leftSide {
-    background-color: red;
-    width: 48vw;
+    /* background-color: greenyellow; */
+    width: 49vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+
 }
 .rightSide {
     /* background-color: red; */
-    width: 48vw;
+    width: 49vw;
     height: 600px;
     display: flex;
     justify-content: center;
@@ -122,10 +132,12 @@ justify-content: center;
 
 .previewCard{
     width: 90%;
+    height: 600px;
     /* background: green; */
     border-radius: 5px;
-    margin: 20px;
-    border:solid;
+
+    box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+    /* border:solid; */
 
 }
 
@@ -194,7 +206,7 @@ justify-content: center;
 }
 
 .innerBox{
-    background-color: blue;
+    /* background-color: blue; */
     width: 150px;
     height: 130px;
     background-color: rgba(136, 136, 136, 0.507);
@@ -212,3 +224,59 @@ justify-content: center;
     overflow-wrap: break-word;
     line-height: 35px;
 }
+
+.confirmBox {
+    /* background-color: hotpink; */
+    /* border: solid;
+    border-color: black; */
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+    width: 90%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexBox{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editButtonBox{
+    /* border-style: solid; */
+
+    border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    width: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 14;
+    height: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 12px; */
+    background-color: rgb(244, 57, 57);
+    /* margin-right: 100px; */
+  }
+
+
+  .leftSide label{
+      margin-top:15px;
+      margin-bottom:15px;
+  }
+  .leftSide div{
+      margin-top:15px;
+      margin-bottom:15px;
+  }
+  /* .rightSide{
+      margin-top:3px;
+      margin-bottom:15px;
+  } */
