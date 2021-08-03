@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createBusiness } from '../../store/business';
 import style from "./CreateBusiness.module.css"
 import preStyles from '../BusinessPage/BusinessPage.module.css'
+import { useHistory } from 'react-router-dom';
 
 function CreateBusiness() {
     const [currentSection, setSection] = useState('bizName');
@@ -11,6 +12,7 @@ function CreateBusiness() {
     const [bizCategory, setBizCategory] = useState(null)
     const [bizDescription, setBizDescription] = useState('')
     const dispatch = useDispatch()
+    const history = useHistory()
     const user = useSelector(state => state.session.user);
 
     const formContent = () => {
@@ -32,7 +34,7 @@ function CreateBusiness() {
             }
 
         }
-        const handleCreate = (e) => {
+        const handleCreate = async (e) => {
             e.preventDefault()
             const newBiz = {
                 name: bizName,
@@ -41,7 +43,8 @@ function CreateBusiness() {
                 category_id: +bizCategory
             }
             if (newBiz) {
-                dispatch(createBusiness(newBiz))
+                const createdBiz = await dispatch(createBusiness(newBiz))
+                history.push(`/businesses/${createdBiz.id}`)
             }
         }
 
