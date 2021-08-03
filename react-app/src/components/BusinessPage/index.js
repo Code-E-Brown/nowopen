@@ -300,9 +300,9 @@ function BusinessPage() {
                         }
 
                         {currentBusiness?.now_open ?
-                            <h1 onClick={handleGoLive} className={style.glowStatus} contenteditable spellcheck="false">open</h1>
+                            <h1 onClick={handleGoLive} className={style.glowStatus}>open</h1>
                             :
-                            <h1 onClick={handleGoLive} className={style.glowStatusClosed} contenteditable spellcheck="false">closed</h1>
+                            <h1 onClick={handleGoLive} className={style.glowStatusClosed}>closed</h1>
 
                         }
 
@@ -417,7 +417,7 @@ function BusinessPage() {
                         </div>)
                         : null}
                     {currentReviews && currentReviews.map(review => (
-                        <>
+                         <>
                             {editId != review.id ? (
 
 
