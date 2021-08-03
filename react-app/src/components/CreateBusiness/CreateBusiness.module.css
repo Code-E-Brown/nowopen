@@ -107,7 +107,7 @@ justify-content: center;
     width: 48vw;
 }
 .rightSide {
-    background-color: red;
+    /* background-color: red; */
     width: 48vw;
     height: 600px;
     display: flex;
@@ -117,9 +117,98 @@ justify-content: center;
 .flexContainer{
     display: flex;
     justify-content: space-between;
+
 }
 
 .previewCard{
     width: 90%;
-    background: green;
+    /* background: green; */
+    border-radius: 5px;
+    margin: 20px;
+    border:solid;
+
+}
+
+.bannerBox{
+    background-color: rgb(255, 255, 255);
+    /* background-color: rgba(136, 136, 136, 0.507); */
+    height: 35%;
+    display: flex;
+    border-radius: 5px 5px 0px 0px;
+    flex-direction: column-reverse;
+    border-bottom: solid;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.infoBox{
+    background-color: rgba(136, 136, 136, 0.507);
+    width: 90%;
+    border-radius: 5px 5px 0px 0px;
+    padding: 8px;
+    /* height: 85px; */
+}
+
+.nameBox{
+    /* background-color: lightgray; */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    /* color: white; */
+}
+.starBox{
+    /* background-color: rgb(105, 116, 105); */
+    margin-top: 8px;
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 150;
+
+}
+
+.location{
+    margin-top: 10px;
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+}
+
+.descriptionBox{
+    /* background-color: greenyellow; */
+    min-height: 170px;
+    border-bottom: solid;
+    border-color: black;
+    border-width: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.descriptionBoxBottom{
+    /* background-color: greenyellow; */
+    min-height: 170px;
+    /* border-bottom: solid;
+    border-color: black; */
+    border-width: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.innerBox{
+    background-color: blue;
+    width: 150px;
+    height: 130px;
+    background-color: rgba(136, 136, 136, 0.507);
+}
+
+.description{
+    font-family: Pacifico, cursive;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(102, 102, 102);
+    border-bottom: solid;
+    align-items: center;
+    border-width: 4px;
+    max-width: 500px;
+    overflow-wrap: break-word;
+    line-height: 35px;
 }

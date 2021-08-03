@@ -131,7 +131,44 @@ function CreateBusiness() {
                     </div>
                     <div className={style.rightSide}>
                         <div className={style.previewCard}>
-                w
+                            <div className={style.bannerBox}>
+                                <div className={style.infoBox}>
+                                    <div className={style.nameBox}>
+                                        {bizName ? <>{bizName}</> :
+                                            <>
+                                                New Business
+                                            </>
+                                        }
+                                    </div>
+                                    <div className={style.starBox}>
+                                        ⭐⭐⭐⭐⭐ 52 reviews
+                                    </div>
+                                    <div className={preStyles.openStatus} style={{ marginTop: '8px', fontSize: '19px' }}>Now Open!</div>
+                                    <div className={style.location}>Located at: 5252 New Business Way, Washington D.C, USA</div>
+                                </div>
+                            </div>
+                            <div className={style.descriptionBox}>
+                                <div className={style.innerBox}>
+
+                                </div>
+                                <div className={style.innerBox}>
+
+                                </div>
+                                <div className={style.innerBox}>
+
+                                </div>
+                            </div>
+                            <div className={style.descriptionBoxBottom}>
+                                <div className={style.description}>
+                                    {bizDescription ? <>- {bizDescription}</> :
+                                        <>
+                                            - Description
+                                        </>
+                                    }
+
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
