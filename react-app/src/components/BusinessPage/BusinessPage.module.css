@@ -600,7 +600,7 @@ cursor: pointer;
   border-bottom: solid;
   border-color: rgb(102, 102, 102);
   /* border-top: solid; */
-  margin-top: 10px;
+  /* margin-top: 10px; */
   margin-bottom: 10px;
 
 }
@@ -708,7 +708,7 @@ font-size: 20px;
 position: relative;
 /* position: absolute; */
 cursor: pointer;
-right: 40px;
+right: 70px;
 /* height: 30px;
 background-color: turquoise; */
 

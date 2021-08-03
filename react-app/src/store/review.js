@@ -74,11 +74,32 @@ export const deleteReview = (reviewId) => async dispatch => {
 
     if (response.ok) {
         const deleteResponse = await response.json();
-        console.log(deleteResponse)
+        // console.log(deleteResponse)
         dispatch(deleteReviewFromStore(reviewId))
         // return projectDeleteSuccessMessage
     }
     // return null;
+}
+
+export const editReview = (updatedReview) => async dispatch => {
+
+    const response = await fetch(`/api/reviews/${updatedReview.id}/edit`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedReview),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+
+    });
+
+    if (response.ok) {
+        const updatedReview = await response.json()
+
+        dispatch(addReviewToStore(updatedReview))
+        
+    }
+    //     // console.log("********** SUCCESS", updatedBizData)
+    // }
 }
 
 
