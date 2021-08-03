@@ -97,7 +97,7 @@ function Food({ apiKey, userState, userLocation }) {
 
         }
         else {
-            setMessage(`Could not find open Mobile Restaurants in your area, here's a complete list of mobile restaurants that are now open:`)
+            setMessage(`No results in your area, here's a complete list of mobile restaurants that are now open!`)
             setFoodBusinesses(allBusinesses.filter(business => business.category_id === 1 && business.now_open))
         }
 
@@ -291,7 +291,7 @@ function Food({ apiKey, userState, userLocation }) {
                         // <div className={style.businessCard}>
                         <div className={style.businessCard}>
                             <div className={style.innerCard}>
-                                <h1 className={style.businessCardName}>Sorry no results at this time...</h1>
+                                <h1 className={style.businessCardName}>Sorry there's nothing open at this time...</h1>
                             </div>
                         </div>
                         // </div>
