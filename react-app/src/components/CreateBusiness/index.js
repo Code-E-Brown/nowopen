@@ -106,8 +106,7 @@ function CreateBusiness() {
                     <div className={style.leftSide}>
                         <div className={style.confirmBox}>
 
-
-                            <h1 className={style.bigLabel}>Does this look correct?</h1>
+                            <h1 className={style.bigLabel} style={{ marginTop: '15px' }}>Does this look correct?</h1>
                             <div>
                                 <label className={style.radioLabel}>Business Name:</label>
                             </div>
