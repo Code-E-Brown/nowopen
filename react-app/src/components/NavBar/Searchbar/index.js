@@ -68,6 +68,22 @@ const Searchbar = ({ apiKey }) => {
 
                                 <div>
                                     {loading ? <div>Loading...</div> : null}
+                                    {/* {address && <div style={{
+                                        // backgroundColor: suggestion.active ? 'rgb(244, 57, 57)' : 'white',
+                                        // color: suggestion.active ? 'white' : 'black',
+                                        // fontWeight: suggestion.active ? '700' : '400',
+                                        // position: "absolute",
+                                        // top: "200px",
+                                        // height: '500px',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        width: '395px',
+                                        alignItems: 'center',
+                                        borderBottom: 'solid',
+                                        height: '40px',
+                                        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans- serif",
+                                        zIndex: 900,
+                                    }}>Hello</div>} */}
                                     {suggestions.map((suggestion) => {
                                         const style = {
                                             backgroundColor: suggestion.active ? 'rgb(244, 57, 57)' : 'white',

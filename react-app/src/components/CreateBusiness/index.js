@@ -49,7 +49,7 @@ function CreateBusiness() {
                     history.push(`/businesses/${createdBiz.id}`)
 
                 } else {
-                    console.log('RESULT', createdBiz)
+                    // console.log('RESULT', createdBiz.errors)
                     setErrors(createdBiz.errors)
                 }
             }
@@ -112,9 +112,11 @@ function CreateBusiness() {
                 <div className={style.flexContainer}>
                     <div className={style.leftSide}>
                         <div className={style.confirmBox}>
-                        
 
                             <h1 className={style.bigLabel} style={{ marginTop: '15px' }}>Does this look correct?</h1>
+                            {errors && errors.map(error => (
+                                <div key={error} style={{ color: 'red' }}>{error}</div>
+                            ))}
                             <div>
                                 <label className={style.radioLabel}>Business Name:</label>
                             </div>
