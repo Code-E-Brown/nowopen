@@ -16,13 +16,13 @@ const Searchbar = ({ apiKey }) => {
     const handleSelect = async value => {
         const results = await geocodeByAddress(value)
         const latLng = await getLatLng(results[0])
-        console.log('hi', latLng)
+        // console.log('hi', latLng)
         setCoordinates(latLng)
         setAddress(value)
         // console.log(results)
     }
 
-    console.log(address)
+    // console.log(address)
     // const handleSetAddress = (e) => {
     //     setAddress(e)
     // }
@@ -86,11 +86,9 @@ const Searchbar = ({ apiKey }) => {
                                             zIndex: 900,
                                         }
                                         return (
-
                                             <div key={suggestion.description}{...getSuggestionItemProps(suggestion, { style })}>
                                                 {suggestion.description}
                                             </div>
-
                                         )
                                     })}
                                 </div>
