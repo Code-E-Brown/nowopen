@@ -40,7 +40,7 @@ function BusinessPage() {
     const currentBusiness = useSelector(state => state.businesses[businessId]);
     const currentReviews = useSelector(state => Object.values(state.reviews).filter(review => review.business_id === +businessId));
 
-
+    const [editErrors, setEditErrors] = useState(null)
 
 
     const user = useSelector(state => state.session.user)
@@ -147,6 +147,7 @@ function BusinessPage() {
             dispatch(getBusinesses())
         } else {
             // console.log(result.errors)
+            setEditErrors(result.errors)
         }
 
     }
@@ -631,6 +632,9 @@ function BusinessPage() {
                                             {editLiveRating &&
                                                 <div>
                                                     <div className={style.textAreaContainer}>
+                                                        {editErrors && editErrors.map(error => (
+                                                            <div style={{ marginBottom: '5px' }} key={error}>{error}</div>
+                                                        ))}
                                                         <textarea placeholder='Share your experience!' className={style.textArea} onChange={e => setEditReviewText(e.target.value)} value={editReviewText.length ? editReviewText : review.text}></textarea>
                                                     </div>
                                                     <div className={style.buttonContainer}>
