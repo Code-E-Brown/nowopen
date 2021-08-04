@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
 from app.models import db, Business, Review
-from app.forms import CreateForm
+from app.forms import CreateForm, ReviewForm
 
 business_routes = Blueprint('businesses', __name__)
 
@@ -95,34 +95,45 @@ def delete_business(id):
 @login_required
 def create_review(id):
 
-    newReview = Review(
-        text= request.json['text'],
-        rating=request.json['rating'],
-        business_id=request.json['business_id'],
-        user_id=request.json['user_id'],
-        )
-    
+    form = ReviewForm()
 
-    db.session.add(newReview)
-    db.session.commit()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # form['category_id'].data = request.json['category_id']
+    # form['description'].data = request.json['description']
+    form['text'].data = request.json['text']
 
-    businessBeingReviewed = Business.query.get(id)
-    currentRating = businessBeingReviewed.rating
+    if form.validate_on_submit():
 
-    # newAvgBizRating = sum(bussinessBeingReviewed.to_dict()['reviews']['rating'])
-    # print(len(bussinessBeingReviewed.to_dict()['reviews']))
-    listOfCurrentBizReviews = businessBeingReviewed.to_dict()['reviews']
+        newReview = Review(
+            text= request.json['text'],
+            rating=request.json['rating'],
+            business_id=request.json['business_id'],
+            user_id=request.json['user_id'],
+            )
 
-    sumOfCurrentBizRatings = sum([review['rating'] for review in listOfCurrentBizReviews])
 
-    newAvg = round(sumOfCurrentBizRatings/len(listOfCurrentBizReviews))
-    # print("*************", newAvg)
-    businessBeingReviewed.rating = newAvg
-    db.session.add(businessBeingReviewed)
-    db.session.commit()
+        db.session.add(newReview)
+        db.session.commit()
 
-    # print('AVERAGE',int(newAvg))
-    return newReview.to_dict()
+        businessBeingReviewed = Business.query.get(id)
+        currentRating = businessBeingReviewed.rating
+
+        # newAvgBizRating = sum(bussinessBeingReviewed.to_dict()['reviews']['rating'])
+        # print(len(bussinessBeingReviewed.to_dict()['reviews']))
+        listOfCurrentBizReviews = businessBeingReviewed.to_dict()['reviews']
+
+        sumOfCurrentBizRatings = sum([review['rating'] for review in listOfCurrentBizReviews])
+
+        newAvg = round(sumOfCurrentBizRatings/len(listOfCurrentBizReviews))
+        # print("*************", newAvg)
+        businessBeingReviewed.rating = newAvg
+        db.session.add(businessBeingReviewed)
+        db.session.commit()
+
+        # print('AVERAGE',int(newAvg))
+        return newReview.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @business_routes.route('/<int:id>/reviews')
 # @login_required

@@ -157,8 +157,12 @@ background: linear-gradient(180deg, rgba(3, 3, 3, 0.411), transparent);
 /* background-color: red; */
 width: 400px;
 height: 310px;
+display: flex;
+flex-direction: column;
+/* justify-content: center; */
+align-items: center;
 /* padding:20px; */
-box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+/* box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6); */
 overflow-wrap: break-word;
 /* margin-left: 20px;
 margin-right: 20px; */
@@ -488,6 +492,7 @@ cursor: pointer;
   font-family: Pacifico, cursive;
   border-bottom: solid;
   align-items: center;
+  text-align: center;
 
   border-width: 4px;
   border-color: rgba(179, 179, 179, 0.363);
@@ -522,9 +527,13 @@ cursor: pointer;
   justify-content: center;
 }
 
+.outerFix{
+  width: 80%;
+}
+
 .reviewCard{
   /* background-color: chartreuse; */
-  width: 80%;
+  /* width: 80%; */
   /* height: 200px; */
   margin-bottom: 20px;
 }
@@ -532,7 +541,7 @@ cursor: pointer;
 
 .leaveReviewCard{
   /* height: 100px; */
-  width: 60%;
+  width: 70%;
   background-color: rgb(244, 57, 57);
   margin:15px;
   display: flex;
@@ -547,7 +556,7 @@ cursor: pointer;
 }
 .leaveReviewCardTwo{
   /* height: 100px; */
-  width: 60%;
+  width: 70%;
   background-color: rgb(244, 57, 57);
   margin:15px;
   display: flex;
@@ -728,3 +737,47 @@ width: 30px; */
 }
 
 
+
+.locationNote{
+  font-family: Pacifico, cursive;
+  font-size: 30px;
+  /* color: rgb(102, 102, 102); */
+  color: rgb(244, 57, 57);
+  border-bottom: solid;
+  margin-top: 10px;
+
+}
+
+
+.outerDescBox{
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.innerDescBox{
+padding: 10px;
+color: rgb(46, 46, 46);
+font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 24px;
+font-weight: 400;
+/* font-family: Pacifico, cursive; */
+line-height: 30px;
+}
+
+
+.noteText{
+  width: 350px;
+  height: 100px;
+}
+
+
+.reviewsHeader{
+  font-size: 40px;
+  font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+
+}
