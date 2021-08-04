@@ -92,10 +92,6 @@ function EditBusiness() {
             }, 6000)
         }
 
-
-
-
-
     }
 
     return (

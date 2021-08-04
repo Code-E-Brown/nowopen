@@ -417,7 +417,7 @@ function BusinessPage() {
                         </div>)
                         : null}
                     {currentReviews && currentReviews.map(review => (
-                         <>
+                        <>
                             {editId != review.id ? (
 
 

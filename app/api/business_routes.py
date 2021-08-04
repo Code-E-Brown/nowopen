@@ -79,7 +79,7 @@ def edit_business(id):
         db.session.add(businessToUpdate)
         db.session.commit()
         return businessToUpdate.to_dict()
-        
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @business_routes.route('/<int:id>', methods=["DELETE"])
@@ -101,7 +101,7 @@ def create_review(id):
         business_id=request.json['business_id'],
         user_id=request.json['user_id'],
         )
-    # businessToDelete = Business.query.get(id)
+    
 
     db.session.add(newReview)
     db.session.commit()

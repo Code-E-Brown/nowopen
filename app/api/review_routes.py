@@ -11,7 +11,7 @@ review_routes = Blueprint('reviews', __name__)
 # @login_required
 def deleteReview(id):
     reviewToDelete = Review.query.get(id)
-    print("DELETE THIS", reviewToDelete)
+    # print("DELETE THIS", reviewToDelete)
     businessId= reviewToDelete.to_dict()['business_id']
     db.session.delete(reviewToDelete)
     db.session.commit()
