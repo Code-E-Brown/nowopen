@@ -543,7 +543,8 @@ cursor: pointer;
   /* height: 100px; */
   width: 70%;
   background-color: rgb(244, 57, 57);
-  margin:15px;
+  /* margin:15px; */
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -779,5 +780,67 @@ line-height: 30px;
   font-size: 40px;
   font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
+  margin-bottom: 25px;
+}
 
+
+.locationButtonBox{
+  /* border-style: solid; */
+
+  border: solid;
+  border-width: 1px;
+  border-color:rgb(187, 186, 192);
+  width: 190px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 4px;
+  font-size: 14;
+  height: 20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-right: 12px; */
+  background-color: rgb(244, 57, 57);
+  /* margin-right: 100px; */
+}
+.locationButtonBox button{
+  background-color: rgb(244, 57, 57);
+  border:none;
+  cursor: pointer;
+  color:white;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.saveLocationButtonBox{
+  /* border-style: solid; */
+
+  border: solid;
+  border-width: 1px;
+  border-color:rgb(187, 186, 192);
+  width: 190px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 4px;
+  font-size: 14;
+  height: 20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-right: 12px; */
+  background-color: rgb(244, 57, 57);
+  /* margin-right: 100px; */
+}
+.saveLocationButtonBox button{
+  background-color: rgb(244, 57, 57);
+  border:none;
+  cursor: pointer;
+  color:white;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
