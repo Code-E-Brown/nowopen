@@ -56,17 +56,31 @@ def create_business():
 @login_required
 def edit_business(id):
     # print('**************************', request.json)
+
+    form = CreateForm()
+
+
     businessToUpdate = Business.query.get(id)
-    businessToUpdate.name = request.json['name']
-    businessToUpdate.category_id = request.json['category_id']
-    businessToUpdate.description = request.json['description']
-    businessToUpdate.now_open = request.json['now_open']
-    businessToUpdate.current_lat = request.json['current_lat']
-    businessToUpdate.current_long = request.json['current_long']
-    businessToUpdate.location_description = request.json['location_description']
-    db.session.add(businessToUpdate)
-    db.session.commit()
-    return businessToUpdate.to_dict()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    form['category_id'].data = request.json['category_id']
+    form['description'].data = request.json['description']
+    form['name'].data = request.json['name']
+
+    if form.validate_on_submit():
+        businessToUpdate.name = request.json['name']
+        businessToUpdate.category_id = request.json['category_id']
+        businessToUpdate.description = request.json['description']
+        businessToUpdate.now_open = request.json['now_open']
+        businessToUpdate.current_lat = request.json['current_lat']
+        businessToUpdate.current_long = request.json['current_long']
+        businessToUpdate.location_description = request.json['location_description']
+
+        db.session.add(businessToUpdate)
+        db.session.commit()
+        return businessToUpdate.to_dict()
+        
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @business_routes.route('/<int:id>', methods=["DELETE"])
 @login_required

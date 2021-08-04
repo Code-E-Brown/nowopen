@@ -24,6 +24,7 @@ function EditBusiness() {
     const [deleteText, setDeleteText] = useState('Delete')
     const [deleteAlert, setDeleteAlert] = useState(false)
     const [countDown, setCountDown] = useState(6)
+    const [errors, setErrors] = useState(null)
 
     const currentBusiness = useSelector(state => state.businesses[businessId]);
     // if (currentBusiness != undefined) {
@@ -60,10 +61,16 @@ function EditBusiness() {
             description: bizDescription,
             category_id: +bizCategory
         }
-        // console.log(updatedBiz)
         if (updatedBiz) {
+            // console.log(updatedBiz)
             let result = await dispatch(editBusiness(updatedBiz))
-            history.push(`/businesses/${+businessId}`)
+            if (!result.errors) {
+
+
+                history.push(`/businesses/${+businessId}`)
+            } else {
+                setErrors(result.errors)
+            }
         }
     }
 
@@ -96,8 +103,10 @@ function EditBusiness() {
             <div className={style.leftSide}>
                 <div className={style.confirmBox}>
 
-
                     <h1 className={style.bigLabel} style={{ marginTop: '50px' }}>Does this look correct?</h1>
+                    {errors && errors.map(error => (
+                        <div key={error} style={{ color: 'red' }}>{error}</div>
+                    ))}
                     <div>
                         <label className={style.radioLabel}>Business Name:</label>
                     </div>
@@ -127,7 +136,7 @@ function EditBusiness() {
                     </div>
 
                     {deleteAlert &&
-                        <div style={{ margin: '-10px', color: 'red', fontWeight: '600'}}>Are you sure you want to delete your business? Click to confirm.</div>
+                        <div style={{ margin: '-10px', color: 'red', fontWeight: '600' }}>Are you sure you want to delete your business? Click to confirm.</div>
                     }
                     <div className={preStyles.editButtonBox} style={{ backgroundColor: 'white', marginRight: '0px', marginBottom: '50px' }}>
                         <button className={style.backButton} onClick={handleDelete}>{deleteText}</button>
