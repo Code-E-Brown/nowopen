@@ -1,0 +1,284 @@
+.slideContainer{
+    /* background-color: teal; */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    background-color: re;
+}
+
+
+.flexBorderBox{
+    padding: 80px;
+    border-top: solid;
+    border-bottom: solid;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* font-family: 'Exo 2', sans-serif; */
+}
+
+.flexBorderBox div{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+
+    /* height: 40px; */
+}
+
+.input {
+    height: 35px;
+    min-width: 500px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+
+    box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+}
+
+.bigLabel{
+font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: 900;
+font-size: 28px;
+}
+
+.editButton{
+ /* font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: 900;
+font-size: 28px; */
+background: none;
+border: none;
+color: white;
+font-weight: 400;
+font-size: 16px;
+padding: 20px;
+cursor: pointer;
+}
+.backButton{
+ /* font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: 900;
+font-size: 28px; */
+background: none;
+border: none;
+/* color: white; */
+font-weight: 400;
+font-size: 16px;
+padding: 20px;
+cursor: pointer;
+}
+
+
+.textArea {
+    min-height: 100px;
+    min-width: 500px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+}
+
+.flexSpread{
+width: 500px;
+}
+
+.radioLabel{
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.radioInput {
+    height: 20px;
+    width: 20px;
+    margin-left:  15px;
+    margin-right: 15px;
+}
+
+.radioFlexBox{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.leftSide {
+    /* background-color: greenyellow; */
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 600px; */
+
+}
+.rightSide {
+    /* background-color: red; */
+    width: 50vw;
+    /* height: 600px; */
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.flexContainer{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.previewCard{
+    width: 90%;
+    height: 700px;
+    /* background: green; */
+    border-radius: 5px;
+
+    box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+    /* border:solid; */
+
+}
+
+.bannerBox{
+    background-color: rgb(255, 255, 255);
+    /* background-color: rgba(136, 136, 136, 0.507); */
+    height: 35%;
+    display: flex;
+    border-radius: 5px 5px 0px 0px;
+    flex-direction: column-reverse;
+    border-bottom: solid;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.infoBox{
+    background-color: rgba(136, 136, 136, 0.507);
+    width: 90%;
+    border-radius: 5px 5px 0px 0px;
+    padding: 8px;
+    /* height: 85px; */
+}
+
+.nameBox{
+    /* background-color: lightgray; */
+    overflow-wrap: break-word;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    /* color: white; */
+}
+.starBox{
+    /* background-color: rgb(105, 116, 105); */
+    margin-top: 8px;
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 150;
+
+}
+
+.location{
+    margin-top: 10px;
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+}
+
+.descriptionBox{
+    /* background-color: greenyellow; */
+    min-height: 170px;
+    border-bottom: solid;
+    border-color: black;
+    border-width: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.descriptionBoxBottom{
+    /* background-color: greenyellow; */
+    min-height: 170px;
+    /* border-bottom: solid;
+    border-color: black; */
+    border-width: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.innerBox{
+    /* background-color: blue; */
+    width: 150px;
+    height: 130px;
+    background-color: rgba(136, 136, 136, 0.507);
+}
+
+.description{
+    font-family: Pacifico, cursive;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(102, 102, 102);
+    border-bottom: solid;
+    align-items: center;
+    border-width: 4px;
+    max-width: 500px;
+    overflow-wrap: break-word;
+    line-height: 35px;
+}
+
+.confirmBox {
+    /* background-color: hotpink; */
+    /* border: solid;
+    border-color: black; */
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px rgba(51, 51, 53, 0.6);
+    width: 90%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexBox{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editButtonBox{
+    /* border-style: solid; */
+
+    border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    width: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 14;
+    height: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 12px; */
+    background-color: rgb(244, 57, 57);
+    /* margin-right: 100px; */
+  }
+
+
+  .leftSide label{
+      margin-top:15px;
+      margin-bottom:15px;
+  }
+  .leftSide div{
+      margin-top:15px;
+      margin-bottom:15px;
+  }
+  /* .rightSide{
+      margin-top:3px;
+      margin-bottom:15px;
+  } */

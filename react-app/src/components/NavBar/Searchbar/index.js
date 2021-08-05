@@ -3,6 +3,11 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import { useEffect, useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { useHistory } from 'react-router';
+import { useSelector, useDispatch } from 'react-redux';
+import { getBusinesses } from '../../../store/business';
+import { Link } from 'react-router-dom';
+import { AiOutlineShop } from 'react-icons/ai';
+import { useRef } from 'react';
 
 const Searchbar = ({ apiKey }) => {
 
@@ -10,19 +15,43 @@ const Searchbar = ({ apiKey }) => {
     const [searchParams, setSearchParams] = useState({})
     const [searchCategory, setSearchCategory] = useState('all')
     const [coordinates, setCoordinates] = useState(null)
+    const [startingBusinesses, setStartingBusinesses] = useState(null)
+    const [businessResults, setBusinessResults] = useState(null)
+    const [hovering, setHovering] = useState(null)
+    const [hoverId, setHoverId] = useState(null)
+    const node = useRef()
+
     // console.log('COORDS', coordinates)
     const history = useHistory()
+    const dispatch = useDispatch()
+
+    const businesses = useSelector(state => Object.values(state.businesses));
+
+
+    useEffect(async () => {
+        const allBusinesses = await dispatch(getBusinesses())
+        const startingArray = []
+        // setStartingBusinesses(allBusinesses)
+        allBusinesses.forEach(business => {
+            const newObj = {
+                id: business.id,
+                name: business.name
+            }
+            startingArray.push(newObj)
+        })
+        setStartingBusinesses(startingArray)
+    }, [dispatch])
 
     const handleSelect = async value => {
         const results = await geocodeByAddress(value)
         const latLng = await getLatLng(results[0])
-        console.log('hi', latLng)
+        // console.log('hi', latLng)
         setCoordinates(latLng)
         setAddress(value)
         // console.log(results)
     }
 
-    console.log(address)
+    // console.log(address)
     // const handleSetAddress = (e) => {
     //     setAddress(e)
     // }
@@ -36,14 +65,67 @@ const Searchbar = ({ apiKey }) => {
             // console.log(searchInput)
         }
 
+    }
+
+    const handleMouseEnter = e => {
+        setHovering(true)
+        setHoverId(e.target.id)
+    }
+
+    const handleMouseLeave = e => {
+        setHovering(false)
+        setHoverId(null)
+    }
 
 
+    const handleChange = (e) => {
+        setAddress(e)
+    }
+
+    useEffect(() => {
+        // console.log(address)
+        const searchArray = []
+
+        if (startingBusinesses && address) {
+            startingBusinesses.forEach(business => {
+                if (business.name.toUpperCase().startsWith(address.toUpperCase())) {
+                    searchArray.push(business)
+                }
+            })
+            setBusinessResults(searchArray)
+        } else {
+            setBusinessResults(null)
+        }
+    }, [address])
+
+    const handleLinkClick = (e) => {
+        setAddress('')
     }
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: apiKey
     });
+
+    useEffect(() => {
+
+        document.addEventListener("mousedown", handleClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClick);
+        };
+    }, []);
+
+    const handleClick = e => {
+
+        // && (e.target.id != '' || !e.target.id.includes("Places"))
+        if (node.current.contains(e.target) || (e.target.id != '' || e.target.id.includes("Places"))) {
+            // console.log('id', e.target.id, (e.target.id != ''), (!e.target.id.includes("Places")), node, 'inside')
+            return;
+        }
+        // console.log('id', e.target.id, (e.target.id != ''), (!e.target.id.includes("Places")), node, 'outside')
+        setBusinessResults([])
+    };
 
     return (
         <div className={styles.searchDiv}>
@@ -58,16 +140,24 @@ const Searchbar = ({ apiKey }) => {
             <label className={styles.searchLineLabel}></label>
             {isLoaded && (
 
-                <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
+                <PlacesAutocomplete value={address} onChange={handleChange} onSelect={handleSelect}>
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div className={styles.searchFlex}>
 
-                            <input {...getInputProps({ placeholder: "address, city, state or zip" })} className={styles.searchInput} type='text'></input>
-                            <div style={{ position: 'absolute', height: '500px' }} >
-                                <div style={{ height: "55%" }}></div>
+                            <input ref={node} onClick={handleClick} {...getInputProps({ placeholder: "address, city, state or zip" })} className={styles.searchInput} type='text'></input>
+                            <div style={{ position: 'absolute', height: '500px', zIndex: '-1' }} >
+                                <div style={{ height: "55%", zIndex: '-1' }}></div>
 
                                 <div>
                                     {loading ? <div>Loading...</div> : null}
+                                    {businessResults && businessResults.map(business => (
+
+                                        <Link onClick={handleLinkClick} id={business.id} className={styles.businessSearchLink} style={{ color: hovering && +hoverId === business.id ? 'white' : 'black', fontWeight: hovering && +hoverId === business.id ? '700' : '400' }} to={`/businesses/${business.id}`}>
+                                            <div key={business.id} id={business.id} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.businessSearchDiv} style={{ zIndex: '1', backgroundColor: hovering && +hoverId === business.id ? 'rgb(244, 57, 57)' : 'white' }}>
+                                                {business.name} <AiOutlineShop />
+                                            </div>
+                                        </Link>
+                                    ))}
                                     {suggestions.map((suggestion) => {
                                         const style = {
                                             backgroundColor: suggestion.active ? 'rgb(244, 57, 57)' : 'white',
@@ -86,11 +176,9 @@ const Searchbar = ({ apiKey }) => {
                                             zIndex: 900,
                                         }
                                         return (
-
                                             <div key={suggestion.description}{...getSuggestionItemProps(suggestion, { style })}>
                                                 {suggestion.description}
                                             </div>
-
                                         )
                                     })}
                                 </div>

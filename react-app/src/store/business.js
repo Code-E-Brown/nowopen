@@ -66,7 +66,9 @@ export const createBusiness = (business) => async (dispatch) => {
         return newBiz;
 
     } else {
-        return ['An error occurred. Please try again.']
+        const data = await response.json();
+        // console.log("ERROR DATA", data)
+        return data
     }
 
     // } else if (response.status < 500) {
@@ -80,7 +82,7 @@ export const createBusiness = (business) => async (dispatch) => {
 }
 // //TODO: build the API route to handle this fetch request
 export const editBusiness = (updatedBiz) => async dispatch => {
-    console.log(updatedBiz)
+    // console.log(updatedBiz)
     const response = await fetch(`/api/businesses/${updatedBiz.id}/edit`, {
         method: 'PUT',
         body: JSON.stringify(updatedBiz),
@@ -92,11 +94,19 @@ export const editBusiness = (updatedBiz) => async dispatch => {
 
     if (response.ok) {
         const updatedBizData = await response.json()
-        if (updatedBizData) {
-            dispatch(addBusinessToStore(updatedBizData))
-            return updatedBizData
-        }
+
+        dispatch(addBusinessToStore(updatedBizData))
+        return updatedBizData
+
+        // else {
+        //     const errors = await response.json()
+        //     console.log("errors?", errors)
+        // }
         // console.log("********** SUCCESS", updatedBizData)
+    } else {
+        const errors = await response.json()
+        // console.log("errors?", errors.errors)
+        return errors
     }
     //     const newProjectData = await response.json();
     //     console.log(newProjectData)

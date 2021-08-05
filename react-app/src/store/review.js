@@ -58,12 +58,13 @@ export const createReview = (review) => async (dispatch) => {
         const data = await response.json();
         // console.log("^^^^^", data)
         const newReview = data
-        console.log(newReview, "********** YOU MADE IT HERE*")
+        // console.log(newReview, "********** YOU MADE IT HERE*")
         dispatch(addReviewToStore(newReview))
-        // return newReview;
+        return newReview;
 
     } else {
-        return ['An error occurred. Please try again.']
+        const errors = await response.json();
+        return errors
     }
 }
 
@@ -96,7 +97,12 @@ export const editReview = (updatedReview) => async dispatch => {
         const updatedReview = await response.json()
 
         dispatch(addReviewToStore(updatedReview))
-        
+        return updatedReview
+
+    } else {
+        const errors = await response.json()
+        return errors
+
     }
     //     // console.log("********** SUCCESS", updatedBizData)
     // }

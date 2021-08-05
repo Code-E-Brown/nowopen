@@ -8,8 +8,9 @@ import logoStyle from '../BusinessPage/BusinessPage.module.css'
 
 
 
-function Event() {
+function Event({ apiKey, userState, userLocation }) {
     const [eventBusinesses, setEventBusinesses] = useState([])
+    const [message, setMessage] = useState('')
 
     const dispatch = useDispatch()
     const businesses = useSelector(state => Object.values(state.businesses));
@@ -17,9 +18,57 @@ function Event() {
     useEffect(async () => {
 
         const allBusinesses = await dispatch(getBusinesses())
-        setEventBusinesses(allBusinesses.filter(business => business.category_id === 3 && business.now_open))
+        // setEventBusinesses(allBusinesses.filter(business => business.category_id === 3 && business.now_open))
+        const locationFilter = async (businesses) => {
 
-    }, [dispatch])
+            const newArr = []
+
+            for (let index = 0; index < allBusinesses.length; index++) {
+                let business = allBusinesses[index]
+                // (async function (business) {
+                if (business.category_id === 3 && business.now_open) {
+                    // console.log('test')
+
+                    const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+                    const json = await result.json()
+                    const locationArray = json.results
+                    // console.log('********', json.results)
+                    for (let i = 0; i < locationArray.length; i++) {
+                        const obj = locationArray[i];
+                        // console.log(obj.types[0], 'OBJ')
+                        // console.log(obj.types[0], 'OBJ')
+                        if (obj.types[0] === 'administrative_area_level_1') {
+                            // console.log('biz state', obj.address_components[0].long_name, userState)
+                            if (obj.address_components[0].long_name === userState) {
+                                // console.log(business)
+                                newArr.push(business)
+                            }
+                        }
+                    }
+                }
+
+            }
+            // console.log(newArr, 'hi')
+
+            return newArr
+        }
+
+        const filteredByState = await locationFilter(allBusinesses)
+        // console.log('FINALLY!!!!', filteredByState)
+
+        if (filteredByState.length) {
+
+            setMessage('')
+            setEventBusinesses(await locationFilter(allBusinesses))
+
+        }
+        else {
+            setMessage(`No results in your area, here's a complete list of pop-up events that are now open!`)
+            setEventBusinesses(allBusinesses.filter(business => business.category_id === 3 && business.now_open))
+        }
+
+
+    }, [dispatch, userLocation, userState])
 
 
 
@@ -27,7 +76,16 @@ function Event() {
         <div className={style.outerContainer}>
             <div className={style.leftSide}>
                 <div className={style.scrollable}>
-                    <div className={style.listHeader}> <h1 className={style.listH1}>The Best 10 Pop-up Events in Your Area</h1></div>
+                    <div className={style.listHeader}>
+                        {!message ? (
+                            <h1 className={style.listH1}>Now Open, Pop-up Events in {userState}</h1>
+
+                        ) :
+                            <h1 className={style.listH1}> {message}</h1>
+
+                        }
+
+                    </div>
                     {eventBusinesses && eventBusinesses.map(business => (
 
                         <div className={style.businessCard} key={business.id}>
