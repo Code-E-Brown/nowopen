@@ -55,7 +55,7 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
 
     useEffect(() => {
         if (singleBusiness) {
-            console.log("SINGLEBUS", singleBusiness)
+            // console.log("SINGLEBUS", singleBusiness)
             setNewCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
             // setCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
 
