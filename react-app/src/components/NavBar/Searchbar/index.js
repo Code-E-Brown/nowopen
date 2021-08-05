@@ -3,6 +3,10 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import { useEffect, useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { useHistory } from 'react-router';
+import { useSelector, useDispatch } from 'react-redux';
+import { getBusinesses } from '../../../store/business';
+import { Link } from 'react-router-dom';
+import { AiOutlineShop } from 'react-icons/ai';
 
 const Searchbar = ({ apiKey }) => {
 
@@ -10,8 +14,29 @@ const Searchbar = ({ apiKey }) => {
     const [searchParams, setSearchParams] = useState({})
     const [searchCategory, setSearchCategory] = useState('all')
     const [coordinates, setCoordinates] = useState(null)
+    const [startingBusinesses, setStartingBusinesses] = useState(null)
+    const [businessResults, setBusinessResults] = useState(null)
+    const [hovering, setHovering] = useState(null)
     // console.log('COORDS', coordinates)
     const history = useHistory()
+    const dispatch = useDispatch()
+
+    const businesses = useSelector(state => Object.values(state.businesses));
+
+
+    useEffect(async () => {
+        const allBusinesses = await dispatch(getBusinesses())
+        const startingArray = []
+        // setStartingBusinesses(allBusinesses)
+        allBusinesses.forEach(business => {
+            const newObj = {
+                id: business.id,
+                name: business.name
+            }
+            startingArray.push(newObj)
+        })
+        setStartingBusinesses(startingArray)
+    }, [dispatch])
 
     const handleSelect = async value => {
         const results = await geocodeByAddress(value)
@@ -36,8 +61,30 @@ const Searchbar = ({ apiKey }) => {
             // console.log(searchInput)
         }
 
+    }
 
+    const handleChange = (e) => {
+        setAddress(e)
+    }
 
+    useEffect(() => {
+        console.log(address)
+        const searchArray = []
+
+        if (startingBusinesses && address) {
+            startingBusinesses.forEach(business => {
+                if (business.name.toUpperCase().startsWith(address.toUpperCase())) {
+                    searchArray.push(business)
+                }
+            })
+            setBusinessResults(searchArray)
+        } else {
+            setBusinessResults(null)
+        }
+    }, [address])
+
+    const handleLinkClick = (e) => {
+        setAddress('')
     }
 
     const { isLoaded } = useJsApiLoader({
@@ -58,7 +105,7 @@ const Searchbar = ({ apiKey }) => {
             <label className={styles.searchLineLabel}></label>
             {isLoaded && (
 
-                <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
+                <PlacesAutocomplete value={address} onChange={handleChange} onSelect={handleSelect}>
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div className={styles.searchFlex}>
 
@@ -68,22 +115,14 @@ const Searchbar = ({ apiKey }) => {
 
                                 <div>
                                     {loading ? <div>Loading...</div> : null}
-                                    {/* {address && <div style={{
-                                        // backgroundColor: suggestion.active ? 'rgb(244, 57, 57)' : 'white',
-                                        // color: suggestion.active ? 'white' : 'black',
-                                        // fontWeight: suggestion.active ? '700' : '400',
-                                        // position: "absolute",
-                                        // top: "200px",
-                                        // height: '500px',
-                                        cursor: 'pointer',
-                                        display: 'flex',
-                                        width: '395px',
-                                        alignItems: 'center',
-                                        borderBottom: 'solid',
-                                        height: '40px',
-                                        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans- serif",
-                                        zIndex: 900,
-                                    }}>Hello</div>} */}
+                                    {businessResults && businessResults.map(business => (
+
+                                        <div key={business.id} onMouseEnter={e => setHovering(true)} onMouseLeave={e => setHovering(false)} className={styles.businessSearchDiv} style={{ backgroundColor: hovering ? 'rgb(244, 57, 57)' : 'white' }}>
+                                            <Link onClick={handleLinkClick} className={styles.businessSearchLink} style={{ color: hovering ? 'white' : 'black', fontWeight: hovering ? '700' : '400' }} to={`/businesses/${business.id}`}>
+                                                {business.name} <AiOutlineShop />
+                                            </Link>
+                                        </div>
+                                    ))}
                                     {suggestions.map((suggestion) => {
                                         const style = {
                                             backgroundColor: suggestion.active ? 'rgb(244, 57, 57)' : 'white',
