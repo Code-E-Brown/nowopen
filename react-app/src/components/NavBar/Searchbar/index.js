@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getBusinesses } from '../../../store/business';
 import { Link } from 'react-router-dom';
 import { AiOutlineShop } from 'react-icons/ai';
+import { useRef } from 'react';
 
 const Searchbar = ({ apiKey }) => {
 
@@ -17,6 +18,9 @@ const Searchbar = ({ apiKey }) => {
     const [startingBusinesses, setStartingBusinesses] = useState(null)
     const [businessResults, setBusinessResults] = useState(null)
     const [hovering, setHovering] = useState(null)
+    const [hoverId, setHoverId] = useState(null)
+    const node = useRef()
+
     // console.log('COORDS', coordinates)
     const history = useHistory()
     const dispatch = useDispatch()
@@ -63,12 +67,23 @@ const Searchbar = ({ apiKey }) => {
 
     }
 
+    const handleMouseEnter = e => {
+        setHovering(true)
+        setHoverId(e.target.id)
+    }
+
+    const handleMouseLeave = e => {
+        setHovering(false)
+        setHoverId(null)
+    }
+
+
     const handleChange = (e) => {
         setAddress(e)
     }
 
     useEffect(() => {
-        console.log(address)
+        // console.log(address)
         const searchArray = []
 
         if (startingBusinesses && address) {
@@ -92,6 +107,26 @@ const Searchbar = ({ apiKey }) => {
         googleMapsApiKey: apiKey
     });
 
+    useEffect(() => {
+
+        document.addEventListener("mousedown", handleClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClick);
+        };
+    }, []);
+
+    const handleClick = e => {
+
+        // && (e.target.id != '' || !e.target.id.includes("Places"))
+        if (node.current.contains(e.target) || (e.target.id != '' || e.target.id.includes("Places"))) {
+            // console.log('id', e.target.id, (e.target.id != ''), (!e.target.id.includes("Places")), node, 'inside')
+            return;
+        }
+        // console.log('id', e.target.id, (e.target.id != ''), (!e.target.id.includes("Places")), node, 'outside')
+        setBusinessResults([])
+    };
+
     return (
         <div className={styles.searchDiv}>
             <select defaultValue='What are you searching for?' onChange={e => setSearchCategory(e.target.value)} className={styles.searchInput} type='text'>
@@ -109,19 +144,19 @@ const Searchbar = ({ apiKey }) => {
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div className={styles.searchFlex}>
 
-                            <input {...getInputProps({ placeholder: "address, city, state or zip" })} className={styles.searchInput} type='text'></input>
-                            <div style={{ position: 'absolute', height: '500px' }} >
-                                <div style={{ height: "55%" }}></div>
+                            <input ref={node} onClick={handleClick} {...getInputProps({ placeholder: "address, city, state or zip" })} className={styles.searchInput} type='text'></input>
+                            <div style={{ position: 'absolute', height: '500px', zIndex: '-1' }} >
+                                <div style={{ height: "55%", zIndex: '-1' }}></div>
 
                                 <div>
                                     {loading ? <div>Loading...</div> : null}
                                     {businessResults && businessResults.map(business => (
 
-                                        <div key={business.id} onMouseEnter={e => setHovering(true)} onMouseLeave={e => setHovering(false)} className={styles.businessSearchDiv} style={{ backgroundColor: hovering ? 'rgb(244, 57, 57)' : 'white' }}>
-                                            <Link onClick={handleLinkClick} className={styles.businessSearchLink} style={{ color: hovering ? 'white' : 'black', fontWeight: hovering ? '700' : '400' }} to={`/businesses/${business.id}`}>
+                                        <Link onClick={handleLinkClick} id={business.id} className={styles.businessSearchLink} style={{ color: hovering && +hoverId === business.id ? 'white' : 'black', fontWeight: hovering && +hoverId === business.id ? '700' : '400' }} to={`/businesses/${business.id}`}>
+                                            <div key={business.id} id={business.id} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.businessSearchDiv} style={{ zIndex: '1', backgroundColor: hovering && +hoverId === business.id ? 'rgb(244, 57, 57)' : 'white' }}>
                                                 {business.name} <AiOutlineShop />
-                                            </Link>
-                                        </div>
+                                            </div>
+                                        </Link>
                                     ))}
                                     {suggestions.map((suggestion) => {
                                         const style = {
