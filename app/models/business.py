@@ -14,6 +14,8 @@ class Business(db.Model):
     current_long = db.Column(db.String(100))
     rating = db.Column(db.Integer, default=0, nullable=False)
     category_id= db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
+    card_image= db.Column(db.String(2000), default=None)
+    banner_image= db.Column(db.String(2000), default=None)
 
 
     category = db.relationship("Category", back_populates='businesses')
@@ -33,5 +35,7 @@ class Business(db.Model):
             'current_lat': self.current_lat,
             'current_long':self.current_long,
             'rating': self.rating,
+            'card_image': self.card_image,
+            'banner_image': self.banner_image,
             'reviews': [review.to_dict() for review in self.reviews]
         }

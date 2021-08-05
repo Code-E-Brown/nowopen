@@ -18,6 +18,7 @@ function Retail({ apiKey, userState, userLocation }) {
     useEffect(async () => {
 
         const allBusinesses = await dispatch(getBusinesses())
+
         // setRetailBusinesses(allBusinesses.filter(business => business.category_id === 2 && business.now_open))
         const locationFilter = async (businesses) => {
 
@@ -70,8 +71,12 @@ function Retail({ apiKey, userState, userLocation }) {
 
     }, [dispatch, userLocation, userState])
 
+    const formatter = (url1, url2) => {
 
+        return `url(${url1}), url(${url2})`
+    }
 
+    // const imageChecker
     return (
         <div className={style.outerContainer}>
             <div className={style.leftSide}>
@@ -89,7 +94,11 @@ function Retail({ apiKey, userState, userLocation }) {
 
                         <div className={style.businessCard} key={business.id}>
                             <div className={style.innerCard}>
-                                <div className={style.businessImage}>
+
+
+                                <div className={style.businessImage} style={{ backgroundImage: formatter(business?.card_image, 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') }}>
+                                    {/* <div className={style.businessImage} style={{ backgroundImage: `url(${business.card_image})`.ok ? `url(${business.card_image})` : 'url("https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")' }} > */}
+                                    {/* <div className={style.businessImage} style={{ backgroundImage: formatter('https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') }}> */}
 
                                 </div>
                                 <Link className={style.businessCardLink} to={`/businesses/${business.id}`}>

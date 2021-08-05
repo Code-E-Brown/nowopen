@@ -35,6 +35,8 @@ def create_business():
     form['category_id'].data = request.json['business']['category_id']
     form['description'].data = request.json['business']['description']
     form['name'].data = request.json['business']['name']
+    # form['name'].data = request.json['business']['name']
+
 
     if form.validate_on_submit():
 
@@ -43,6 +45,9 @@ def create_business():
             user_id=request.json['business']['user_id'],
             description=request.json['business']['description'],
             category_id=request.json['business']['category_id'],
+            card_image=request.json['business']['card_image'],
+            banner_image=request.json['business']['banner_image'],
+
             )
 
         db.session.add(newBiz)
@@ -74,7 +79,9 @@ def edit_business(id):
         businessToUpdate.now_open = request.json['now_open']
         businessToUpdate.current_lat = request.json['current_lat']
         businessToUpdate.current_long = request.json['current_long']
-        businessToUpdate.location_description = request.json['location_description']
+        businessToUpdate.location_description = request.json['location_description'],
+        businessToUpdate.card_image=request.json['card_image'],
+        businessToUpdate.banner_image=request.json['banner_image'],
 
         db.session.add(businessToUpdate)
         db.session.commit()

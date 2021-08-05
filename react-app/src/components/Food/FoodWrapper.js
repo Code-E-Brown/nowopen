@@ -15,6 +15,8 @@ const FoodWrapper = () => {
         if (!key) {
             dispatch(getKey());
         }
+
+
     }, [dispatch, key]);
 
     if (!userLocation) {

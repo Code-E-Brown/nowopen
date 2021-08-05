@@ -3,7 +3,6 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AiTwotoneHome } from 'react-icons/ai'
 
 // const containerStyle = {
 //     width: '400px',
@@ -36,8 +35,6 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
 
             }
         })
-
-
 
         // const center = {
         //     lat: currentLat,

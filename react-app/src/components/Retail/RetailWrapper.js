@@ -15,6 +15,9 @@ const RetailWrapper = () => {
         if (!key) {
             dispatch(getKey());
         }
+
+        
+
     }, [dispatch, key]);
 
     if (!userLocation) {

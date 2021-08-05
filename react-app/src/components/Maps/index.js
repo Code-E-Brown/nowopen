@@ -12,6 +12,7 @@ const MapContainer = ({ containerStyle, foodBusinesses, singleBusiness }) => {
         if (!key) {
             dispatch(getKey());
         }
+
     }, [dispatch, key]);
 
     if (!key) {

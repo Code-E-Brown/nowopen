@@ -54,7 +54,7 @@ function Event({ apiKey, userState, userLocation }) {
         }
 
         const filteredByState = await locationFilter(allBusinesses)
-        // console.log('FINALLY!!!!', filteredByState)
+
 
         if (filteredByState.length) {
 
@@ -67,9 +67,12 @@ function Event({ apiKey, userState, userLocation }) {
             setEventBusinesses(allBusinesses.filter(business => business.category_id === 3 && business.now_open))
         }
 
-
     }, [dispatch, userLocation, userState])
 
+
+    const formatter = (url1, url2) => {
+        return `url(${url1}), url(${url2})`
+    }
 
 
     return (
@@ -90,7 +93,7 @@ function Event({ apiKey, userState, userLocation }) {
 
                         <div className={style.businessCard} key={business.id}>
                             <div className={style.innerCard}>
-                                <div className={style.businessImage}>
+                                <div className={style.businessImage} style={{ backgroundImage: formatter(business?.card_image, 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') }}>
 
                                 </div>
                                 <Link className={style.businessCardLink} to={`/businesses/${business.id}`}>

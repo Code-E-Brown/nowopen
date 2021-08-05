@@ -237,6 +237,11 @@ function Food({ apiKey, userState, userLocation }) {
 
     // console.log(userState)
 
+    const formatter = (url1, url2) => {
+        return `url(${url1}), url(${url2})`
+    }
+
+
 
     return (
         <div className={style.outerContainer}>
@@ -255,7 +260,7 @@ function Food({ apiKey, userState, userLocation }) {
 
                         <div className={style.businessCard} key={business.id}>
                             <div className={style.innerCard}>
-                                <div className={style.businessImage}>
+                                <div className={style.businessImage} style={{ backgroundImage: formatter(business?.card_image, 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') }}>
 
                                 </div>
                                 <Link className={style.businessCardLink} to={`/businesses/${business.id}`}>

@@ -190,91 +190,98 @@ function BusinessPage() {
     }
 
 
+    const formatter = (url1, url2) => {
+        return `url(${url1}), url(${url2})`
+    }
+
+
     return (
         <div>
-            <div className={style.imageBox}>
-                <div className={style.infoFlex}>
-                    <div className={style.infoBox}>
-                        <div className={style.nameBox}>
-                            <h1 className={style.bizName}>
-                                {currentBusiness?.name}
-                            </h1>
-                        </div>
-                        {currentBusiness &&
-                            <div className={style.ratingBox}>
-                                {currentBusiness?.rating === 1 ? <>⭐</> : null}
-                                {currentBusiness?.rating === 2 ? <>⭐⭐</> : null}
-                                {currentBusiness?.rating === 3 ? <>⭐⭐⭐</> : null}
-                                {currentBusiness?.rating === 4 ? <>⭐⭐⭐⭐</> : null}
-                                {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
-                                {currentBusiness?.reviews.length} reviews
+            {currentBusiness &&
+                <div className={style.imageBox} style={{ backgroundImage: `url(${currentBusiness?.banner_image})` }}>
+                    <div className={style.infoFlex}>
+                        <div className={style.infoBox}>
+                            <div className={style.nameBox}>
+                                <h1 className={style.bizName}>
+                                    {currentBusiness?.name}
+                                </h1>
                             </div>
-                        }
-                        {currentBusiness?.now_open ? (
-                            <>
-                                <div className={style.openStatus}>
-                                    Now Open!
+                            {currentBusiness &&
+                                <div className={style.ratingBox}>
+                                    {currentBusiness?.rating === 1 ? <>⭐</> : null}
+                                    {currentBusiness?.rating === 2 ? <>⭐⭐</> : null}
+                                    {currentBusiness?.rating === 3 ? <>⭐⭐⭐</> : null}
+                                    {currentBusiness?.rating === 4 ? <>⭐⭐⭐⭐</> : null}
+                                    {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
+                                    {currentBusiness?.reviews.length} reviews
                                 </div>
-                                <div className={style.locationInfo}>
-                                    {currentBusiness &&
-                                        <AddressWrapper currentBusiness={currentBusiness} currentLat={currentLat} currentLong={currentLong} />
-                                    }
-                                    {/* <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
+                            }
+                            {currentBusiness?.now_open ? (
+                                <>
+                                    <div className={style.openStatus}>
+                                        Now Open!
+                                    </div>
+                                    <div className={style.locationInfo}>
+                                        {currentBusiness &&
+                                            <AddressWrapper currentBusiness={currentBusiness} currentLat={currentLat} currentLong={currentLong} />
+                                        }
+                                        {/* <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
                                         Located at: 555 E street, Washington D.C
                                     </a> */}
-                                    <div className={style.flexColumn}>
-                                        <div className={style.photoButtonBox}>
-                                            <Link to='#'>
-                                                See all Photos
-                                            </Link>
-                                        </div>
-                                        {user && user.id === currentBusiness?.user_id ? (
-                                            <div className={style.editButtonBox}>
-                                                <Link to={`/businesses/${currentBusiness.id}/edit`}>
-                                                    Edit
+                                        <div className={style.flexColumn}>
+                                            <div className={style.photoButtonBox}>
+                                                <Link to='#'>
+                                                    See all Photos
                                                 </Link>
                                             </div>
+                                            {user && user.id === currentBusiness?.user_id ? (
+                                                <div className={style.editButtonBox}>
+                                                    <Link to={`/businesses/${currentBusiness.id}/edit`}>
+                                                        Edit
+                                                    </Link>
+                                                </div>
 
-                                        )
-                                            : null}
-                                    </div>
-
-                                </div>
-                            </>
-                        ) :
-                            <>
-                                <div className={style.closedStatus}>
-                                    Closed
-                                </div>
-                                <div className={style.locationInfoInvis}>
-                                    <div></div>
-                                    <div className={style.flexColumn}>
-
-                                        <div className={style.photoButtonBox}>
-                                            <Link to='#'>
-                                                See all Photos
-                                            </Link>
+                                            )
+                                                : null}
                                         </div>
-                                        {user && user.id === currentBusiness?.user_id ? (
-                                            <div className={style.editButtonBox}>
-                                                <Link to={`/businesses/${currentBusiness.id}/edit`}>
-                                                    Edit
+
+                                    </div>
+                                </>
+                            ) :
+                                <>
+                                    <div className={style.closedStatus}>
+                                        Closed
+                                    </div>
+                                    <div className={style.locationInfoInvis}>
+                                        <div></div>
+                                        <div className={style.flexColumn}>
+
+                                            <div className={style.photoButtonBox}>
+                                                <Link to='#'>
+                                                    See all Photos
                                                 </Link>
                                             </div>
+                                            {user && user.id === currentBusiness?.user_id ? (
+                                                <div className={style.editButtonBox}>
+                                                    <Link to={`/businesses/${currentBusiness.id}/edit`}>
+                                                        Edit
+                                                    </Link>
+                                                </div>
 
-                                        )
+                                            )
 
-                                            : null}
+                                                : null}
+
+                                        </div>
 
                                     </div>
+                                </>
+                            }
 
-                                </div>
-                            </>
-                        }
-
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
             {/* {currentBusiness?.now_open && user?.id != } */}
             {
 
