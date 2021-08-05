@@ -244,7 +244,7 @@ function Food({ apiKey, userState, userLocation }) {
                 <div className={style.scrollable}>
                     <div className={style.listHeader}>
                         {!message ? (
-                            <h1 className={style.listH1}> Now Open, Mobile Restaurants in {userState}</h1>
+                            <h1 className={style.listH1}>Now Open, Mobile Restaurants in {userState}</h1>
 
                         ) :
                             <h1 className={style.listH1}> {message}</h1>

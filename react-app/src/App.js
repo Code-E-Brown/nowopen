@@ -17,6 +17,8 @@ import EditBusiness from './components/EditBusiness'
 import Retail from './components/Retail';
 import Event from './components/Event';
 import FoodWrapper from './components/Food/FoodWrapper';
+import EventWrapper from './components/Event/EventWrapper';
+import RetailWrapper from './components/Retail/RetailWrapper';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,12 +55,14 @@ function App() {
         </Route>
         <Route path='/businesses/retail' exact={true}>
           <NavBar />
-          <Retail />
+          <RetailWrapper />
+          {/* <Retail /> */}
           {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
         </Route>
         <Route path='/businesses/events' exact={true}>
           <NavBar />
-          <Event />
+          {/* <Event /> */}
+          <EventWrapper />
           {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
         </Route>
         <ProtectedRoute path='/users' exact={true} >
