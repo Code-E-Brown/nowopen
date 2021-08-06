@@ -69,6 +69,7 @@ function EditBusiness() {
 
         // const cardResult = await fetch(bizCardImage)
         // const bannerResult = await fetch(bizBannerImage)
+
         const updatedBiz = {
             ...currentBusiness,
             id: +businessId,
@@ -77,9 +78,9 @@ function EditBusiness() {
             description: bizDescription,
             category_id: +bizCategory,
             // card_image: cardResult.ok ? bizCardImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-            card_image: bizCardImage ? bizCardImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+            card_image: bizCardImage ? bizCardImage.split(' ').join('') : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
             // banner_image: bannerResult.ok ? bizBannerImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-            banner_image: bizBannerImage ? bizBannerImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            banner_image: bizBannerImage ? bizBannerImage.split(' ').join('') : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
         }
         if (updatedBiz) {
             // console.log(updatedBiz)
