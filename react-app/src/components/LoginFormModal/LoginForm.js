@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { login } from '../../store/session';
-import style from './LoginForm.module.css'
+import style from './LoginForm.module.css';
+import SignupFormModal from '../SignupFormModal';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
     const [errors, setErrors] = useState([]);
@@ -20,6 +22,11 @@ const LoginForm = () => {
             setErrors(data);
         }
     };
+
+    const demoLogin = async (e) => {
+        e.preventDefault();
+        const data = await dispatch(login('demo@aa.io', "password"));
+    }
 
     const updateEmail = (e) => {
         setEmail(e.target.value);
@@ -72,9 +79,12 @@ const LoginForm = () => {
             <div className={style.buttonBox}>
                 <button type='submit'>Login</button>
             </div>
+            <div className={style.demoButtonBox}>
+                <button onClick={demoLogin}>Demo</button>
+            </div>
 
             {/* </div> */}
-        </form>
+        </form >
     );
 };
 

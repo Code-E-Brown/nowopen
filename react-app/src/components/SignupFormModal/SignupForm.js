@@ -47,14 +47,15 @@ const SignUpForm = () => {
 
     return (
         <form className={style.signupForm} onSubmit={onSignUp}>
+            <div className={preStyle.fancyText}>Welcome!</div>
             {/* <div> */}
             {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
+                <div className={preStyle.error} key={ind}>{error}</div>
             ))}
             {/* </div> */}
             {/* <div> */}
             <div>
-                <label>User Name</label>
+                <label>Username</label>
             </div>
             <div>
                 <input
@@ -99,7 +100,7 @@ const SignUpForm = () => {
                     required={true}
                 ></input>
             </div>
-            <div>
+            <div className={style.buttonBox}>
                 <button type='submit'>Sign Up</button>
             </div>
         </form>

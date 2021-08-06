@@ -23,9 +23,21 @@
 }
 
 .blockBottom{
-    background-color: white;
+    /* background-color: white; */
     margin-bottom: 5%;
     /* width: 100%; */
+    color:rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    /* font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    /* font-family: Pacifico, cursive; */
+    color: rgb(255, 255, 255);
+    /* text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 42px rgb(244 57 57), 0 0 82px rgb(244 57 57), 0 0 92px rgb(244 57 57), 0 0 102px rgb(244 57 57), 0 0 151px rgb(244 57 57); */
+
 }
 
 
@@ -140,3 +152,36 @@
         0 0 102px rgb(244, 57, 57),
         0 0 151px rgb(244, 57, 57);
   }
+
+  .theMostProlificAndIconicDevOfAllTime{
+    font-size: 30px;
+    font-family: Pacifico, cursive;
+    font-weight: 100;
+    margin: 20px;
+    /* margin-bottom: 45px; */
+    /* text-decoration: none; */
+    /* text-decoration: outline; */
+    color: rgb(250, 0, 0);
+    text-shadow:
+        0 0 5px #fff,
+        0 0 5px #fff,
+        0 0 5px #fff,
+        0 0 42px rgb(244, 57, 57),
+        0 0 82px rgb(244, 57, 57),
+        0 0 92px rgb(244, 57, 57),
+        0 0 102px rgb(244, 57, 57),
+        0 0 151px rgb(244, 57, 57);
+  }
+
+
+  .icon{
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 39px;
+
+  }
+
+.aboutLinks{
+  color: white;
+
+}

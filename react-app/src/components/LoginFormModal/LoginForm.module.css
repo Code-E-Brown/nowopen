@@ -1,12 +1,13 @@
 .loginForm{
     /* background-color: rgb(244, 57, 57, 0.6); */
-    height: 300px;
+    /* height: 300px; */
     width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 0px 10px rgb(244, 57, 57, 0.6)
+    box-shadow: 0px 0px 10px rgb(244, 57, 57, 0.6);
+    padding: 15px;
 }
 .loginForm label{
 font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -64,8 +65,8 @@ font-size: 20px;
     height: 20px;
     display:flex;
     align-items: center;
-    position: relative;
-    top:12px;
+    /* position: relative;
+    top:12px; */
     justify-content: center;
     /* margin-right: 12px; */
     background-color: rgb(244, 57, 57);
@@ -87,4 +88,37 @@ font-size: 20px;
     font-weight: 900;
     font-size: 15px;
       color: darkred;
+  }
+
+  .demoButtonBox{
+    /* border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192); */
+    width: 150px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 14;
+    height: 20px;
+    display:flex;
+    align-items: center;
+    /* position: relative;
+    top:12px; */
+    justify-content: center;
+    /* margin-right: 12px; */
+    /* background-color: rgb(244, 57, 57); */
+    /* margin-right: 100px; */
+}
+
+.demoButtonBox button{
+    /* background-color: rgb(244, 57, 57); */
+    background: none;
+    border:none;
+    cursor: pointer;
+    color:rgb(244, 57, 57);
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
