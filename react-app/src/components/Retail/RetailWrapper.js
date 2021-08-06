@@ -11,12 +11,20 @@ const RetailWrapper = () => {
     const [userState, setUserState] = useState('')
 
     const dispatch = useDispatch();
+
     useEffect(() => {
         if (!key) {
             dispatch(getKey());
         }
 
-        
+        // if (!userLocation) {
+
+        //     navigator.geolocation.getCurrentPosition(position => {
+        //         if (position) {
+        //             setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
+        //         }
+        //     })
+        // }
 
     }, [dispatch, key]);
 

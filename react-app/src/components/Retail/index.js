@@ -16,6 +16,7 @@ function Retail({ apiKey, userState, userLocation }) {
     const businesses = useSelector(state => Object.values(state.businesses));
 
     useEffect(async () => {
+        const myAbortController = new AbortController();
 
         const allBusinesses = await dispatch(getBusinesses())
 
@@ -30,7 +31,9 @@ function Retail({ apiKey, userState, userLocation }) {
                 if (business.category_id === 2 && business.now_open) {
                     // console.log('test')
 
-                    const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+                    const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`, {
+                        signal: myAbortController.signal
+                    })
                     const json = await result.json()
                     const locationArray = json.results
                     // console.log('********', json.results)
@@ -68,6 +71,11 @@ function Retail({ apiKey, userState, userLocation }) {
             setRetailBusinesses(allBusinesses.filter(business => business.category_id === 2 && business.now_open))
         }
 
+
+
+        return () => {
+            myAbortController.abort();
+        }
 
     }, [dispatch, userLocation, userState])
 
@@ -110,7 +118,7 @@ function Retail({ apiKey, userState, userLocation }) {
                                     {business.rating === 3 ? <>⭐⭐⭐</> : null}
                                     {business.rating === 4 ? <>⭐⭐⭐⭐</> : null}
                                     {business?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
-                                    {business?.reviews.length}
+                                    {business?.reviews.length ? business.reviews.length : 'No reviews'}
 
                                 </div>
                                 <div className={style.descriptionBox}>

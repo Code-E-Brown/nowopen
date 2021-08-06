@@ -16,8 +16,10 @@ const EventWrapper = () => {
             dispatch(getKey());
         }
 
-   
+
+
     }, [dispatch, key]);
+
 
     if (!userLocation) {
 
@@ -27,6 +29,7 @@ const EventWrapper = () => {
             }
         })
     }
+
     if (!key) {
         return null;
     }

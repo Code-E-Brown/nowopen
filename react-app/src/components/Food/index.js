@@ -272,7 +272,7 @@ function Food({ apiKey, userState, userLocation }) {
                                     {business.rating === 3 ? <>⭐⭐⭐</> : null}
                                     {business.rating === 4 ? <>⭐⭐⭐⭐</> : null}
                                     {business?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
-                                    {business?.reviews.length}
+                                    {business?.reviews.length ? business.reviews.length : 'No reviews'}
 
                                 </div>
                                 <div className={style.descriptionBox}>
