@@ -55,7 +55,7 @@ const Searchbar = ({ apiKey }) => {
     // const handleSetAddress = (e) => {
     //     setAddress(e)
     // }
-    const handleSearchClick = () => {
+    const handleSearchClick = (e) => {
         if (coordinates && address) {
             const searchInput = {
                 searchCategory: searchCategory === 'all' ? searchCategory : +searchCategory,
@@ -63,6 +63,13 @@ const Searchbar = ({ apiKey }) => {
             }
             history.push(`/businesses/search/${coordinates.lat}/${coordinates.lng}/${searchCategory}`)
             // console.log(searchInput)
+        } else if (address && businessResults.length > 0) {
+            // } else if (address) {
+            // console.log(businessResults)
+            // console.log(e.target.outerHTML.startsWith('<path'))
+            // console.log(e.target.outerHTML)
+            history.push(`/businesses/${businessResults[0].id}`)
+            setBusinessResults([])
         }
 
     }
@@ -119,7 +126,7 @@ const Searchbar = ({ apiKey }) => {
     const handleClick = e => {
 
         // && (e.target.id != '' || !e.target.id.includes("Places"))
-        if (node.current.contains(e.target) || (e.target.id != '' || e.target.id.includes("Places"))) {
+        if (node.current.contains(e.target) || (e.target.id != '' || e.target.id.includes("Places")) || e.target.outerHTML.startsWith('<path')) {
             // console.log('id', e.target.id, (e.target.id != ''), (!e.target.id.includes("Places")), node, 'inside')
             return;
         }
@@ -189,8 +196,10 @@ const Searchbar = ({ apiKey }) => {
             )
             }
             {/* <input className={styles.searchInput} type='text'></input> */}
-            <div className={styles.redSearchBox} onClick={handleSearchClick}>
+            <div className={styles.redSearchBox} id='notEmpty' onClick={handleSearchClick}>
                 <svg
+                    id='notEmpty'
+                    onClick={handleSearchClick}
                     className={styles.magnifyingGlass}
                     xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                     width="50" height="50"

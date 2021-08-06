@@ -19,6 +19,7 @@ import Event from './components/Event';
 import FoodWrapper from './components/Food/FoodWrapper';
 import EventWrapper from './components/Event/EventWrapper';
 import RetailWrapper from './components/Retail/RetailWrapper';
+import SearchResultWrapper from './components/SearchResult/SearchResultWrapper';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -88,6 +89,10 @@ function App() {
           <NavBar />
           <EditBusiness />
         </ProtectedRoute>
+        <Route path='/businesses/search/:lat/:long/:catId'>
+          <NavBar />
+          <SearchResultWrapper />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

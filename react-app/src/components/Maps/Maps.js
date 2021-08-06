@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 //     lng: -77.0956978,
 // };
 
-const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
+const Maps = ({ apiKey, containerStyle, singleBusiness, searchLocation, foodBusinesses }) => {
 
     const [currentLat, setCurrentLat] = useState(null)
     const [currentLong, setCurrentLong] = useState(null)
@@ -22,7 +22,6 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
     const [selectedLocation, setSelectedLocation] = useState({})
     const [selectedBusiness, setSelelectedBusiness] = useState({})
     const [newCenter, setNewCenter] = useState('')
-
 
 
     useEffect(() => {
@@ -59,7 +58,11 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
             // console.log(singleBusiness, 'HERERERER')
             // setCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
         }
-    }, [singleBusiness])
+
+        if (searchLocation) {
+            setNewCenter({ lat: searchLocation.lat, lng: searchLocation.long })
+        }
+    }, [singleBusiness, searchLocation])
 
     const handleSelect = item => {
         if (item.lat) {
