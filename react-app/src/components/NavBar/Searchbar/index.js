@@ -152,8 +152,8 @@ const Searchbar = ({ apiKey }) => {
                                     {loading ? <div>Loading...</div> : null}
                                     {businessResults && businessResults.map(business => (
 
-                                        <Link onClick={handleLinkClick} id={business.id} className={styles.businessSearchLink} style={{ color: hovering && +hoverId === business.id ? 'white' : 'black', fontWeight: hovering && +hoverId === business.id ? '700' : '400' }} to={`/businesses/${business.id}`}>
-                                            <div key={business.id} id={business.id} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.businessSearchDiv} style={{ zIndex: '1', backgroundColor: hovering && +hoverId === business.id ? 'rgb(244, 57, 57)' : 'white' }}>
+                                        <Link key={business.id} onClick={handleLinkClick} id={business.id} className={styles.businessSearchLink} style={{ color: hovering && +hoverId === business.id ? 'white' : 'black', fontWeight: hovering && +hoverId === business.id ? '700' : '400' }} to={`/businesses/${business.id}`}>
+                                            <div id={business.id} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.businessSearchDiv} style={{ zIndex: '1', backgroundColor: hovering && +hoverId === business.id ? 'rgb(244, 57, 57)' : 'white' }}>
                                                 {business.name} <AiOutlineShop />
                                             </div>
                                         </Link>

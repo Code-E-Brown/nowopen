@@ -40,8 +40,12 @@ function CreateBusiness() {
         const handleCreate = async (e) => {
             e.preventDefault()
 
-            const cardResult = await fetch(bizCardImage)
-            const bannerResult = await fetch(bizBannerImage)
+            const cardResult = await fetch(bizCardImage, {
+                mode: "no-cors"
+            })
+            const bannerResult = await fetch(bizBannerImage, {
+                mode: "no-cors"
+            })
             const newBiz = {
                 name: bizName,
                 user_id: user.id,
