@@ -40,23 +40,13 @@ function CreateBusiness() {
         const handleCreate = async (e) => {
             e.preventDefault()
 
-            let cardResult
-            try {
+            // const cardResult = await fetch(bizCardImage, {
+            //     mode: "no-cors"
+            // })
 
-                cardResult = await fetch(bizCardImage, {
-                    mode: "no-cors"
-                })
-            } catch (e) {
-                cardResult = {}
-            }
-            let bannerResult
-            try {
-                bannerResult = await fetch(bizBannerImage, {
-                    mode: "no-cors"
-                })
-            } catch (e) {
-                bannerResult = {}
-            }
+            // const bannerResult = await fetch(bizBannerImage, {
+            //     mode: "no-cors"
+            // })
             // console.log(cardResult.ok   )
             // console.log(bannerResult)
             const newBiz = {
@@ -64,8 +54,10 @@ function CreateBusiness() {
                 user_id: user.id,
                 description: bizDescription,
                 category_id: +bizCategory,
-                card_image: cardResult.ok ? bizCardImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-                banner_image: bannerResult.ok ? bizBannerImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+                // card_image: cardResult.ok ? bizCardImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                card_image: bizCardImage ? bizCardImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                // banner_image: bannerResult.ok ? bizBannerImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+                banner_image: bizBannerImage ? bizBannerImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
             }
             if (newBiz) {
                 const createdBiz = await dispatch(createBusiness(newBiz))
