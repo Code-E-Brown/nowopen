@@ -118,7 +118,7 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, searchLocation, foodBusi
                     mapContainerStyle={containerStyle}
                     center={newCenter ? newCenter : center}
 
-                    zoom={12}
+                    zoom={9}
                 >
                     <Marker key='userMarker'
                         position={newCenter ? newCenter : center}

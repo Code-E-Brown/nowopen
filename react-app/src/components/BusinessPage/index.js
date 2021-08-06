@@ -221,6 +221,7 @@ function BusinessPage() {
                                     <div className={style.openStatus}>
                                         Now Open!
                                     </div>
+                                    {/* <div className={style.ratingBox} style={{ margin: '-20' }}>hello</div> */}
                                     <div className={style.locationInfo}>
                                         {currentBusiness &&
                                             <AddressWrapper currentBusiness={currentBusiness} currentLat={currentLat} currentLong={currentLong} />
@@ -228,6 +229,7 @@ function BusinessPage() {
                                         {/* <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
                                         Located at: 555 E street, Washington D.C
                                     </a> */}
+
                                         <div className={style.flexColumn}>
                                             <div className={style.photoButtonBox}>
                                                 <Link to='#'>
