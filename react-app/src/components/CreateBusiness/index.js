@@ -40,12 +40,23 @@ function CreateBusiness() {
         const handleCreate = async (e) => {
             e.preventDefault()
 
-            const cardResult = await fetch(bizCardImage, {
-                mode: "no-cors"
-            })
-            const bannerResult = await fetch(bizBannerImage, {
-                mode: "no-cors"
-            })
+            let cardResult
+            try {
+
+                cardResult = await fetch(bizCardImage, {
+                    mode: "no-cors"
+                })
+            } catch (e) {
+                cardResult = {}
+            }
+            let bannerResult
+            try {
+                bannerResult = await fetch(bizBannerImage, {
+                    mode: "no-cors"
+                })
+            } catch (e) {
+                bannerResult = {}
+            }
             // console.log(cardResult.ok   )
             // console.log(bannerResult)
             const newBiz = {
