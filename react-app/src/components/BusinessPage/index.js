@@ -198,7 +198,7 @@ function BusinessPage() {
     return (
         <div>
             {currentBusiness &&
-                <div className={style.imageBox} style={{ backgroundImage: `url(${currentBusiness?.banner_image})` }}>
+                <div className={style.imageBox} style={{ backgroundImage: formatter(currentBusiness?.banner_image, 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') }}>
                     <div className={style.infoFlex}>
                         <div className={style.infoBox}>
                             <div className={style.nameBox}>

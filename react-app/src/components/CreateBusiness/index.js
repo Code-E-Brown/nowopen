@@ -46,6 +46,8 @@ function CreateBusiness() {
             const bannerResult = await fetch(bizBannerImage, {
                 mode: "no-cors"
             })
+            // console.log(cardResult.ok   )
+            // console.log(bannerResult)
             const newBiz = {
                 name: bizName,
                 user_id: user.id,
