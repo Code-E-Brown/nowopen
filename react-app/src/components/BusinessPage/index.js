@@ -119,6 +119,7 @@ function BusinessPage() {
             setLiveRating(null)
             setReviewText('')
             dispatch(getBusinesses())
+            setCreateReviewErrors(null)
         } else {
 
             setCreateReviewErrors(result.errors)
@@ -144,6 +145,7 @@ function BusinessPage() {
             setEditReviewText('')
             setEditId(null)
             setEditToggle(false)
+            setEditErrors(null)
             dispatch(getBusinesses())
         } else {
             // console.log(result.errors)
@@ -156,12 +158,14 @@ function BusinessPage() {
         setLiveRating(null)
         setReviewText('')
         setCreateReviewErrors(null)
+        setEditErrors(null)
     }
     const handleEditReviewCancel = (e) => {
         setEditLiveRating(null)
         setEditReviewText('')
         setEditToggle(false)
         setEditId(null)
+        setEditErrors(null)
     }
 
     const handleReviewDelete = async e => {
@@ -182,10 +186,15 @@ function BusinessPage() {
         e.preventDefault()
         setEditToggle(false)
         setEditId(null)
+        setEditErrors(null)
     }
     const handleEditToggle = e => {
         e.preventDefault()
+        // console.log(currentReviews, +e.target.id)
+        const exactReview = currentReviews.find(review => review.id === +e.target.id)
+        // console.log(exactReview)
         setEditId(+e.target.id)
+        setEditReviewText(exactReview.text)
         setEditToggle(true)
     }
 
@@ -644,7 +653,8 @@ function BusinessPage() {
                                                         {editErrors && editErrors.map(error => (
                                                             <div style={{ marginBottom: '5px' }} key={error}>{error}</div>
                                                         ))}
-                                                        <textarea placeholder='Share your experience!' className={style.textArea} onChange={e => setEditReviewText(e.target.value)} value={editReviewText.length ? editReviewText : review.text}></textarea>
+                                                        {/* <textarea placeholder='Share your experience!' className={style.textArea} onChange={e => setEditReviewText(e.target.value)} value={editReviewText.length ? editReviewText : review.text}></textarea> */}
+                                                        <textarea placeholder='Share your experience!' className={style.textArea} onChange={e => setEditReviewText(e.target.value)} value={editReviewText}></textarea>
                                                     </div>
                                                     <div className={style.buttonContainer}>
                                                         <button className={style.submitButton} id={review.id} onClick={handleEditReviewSubmit}>Submit edit</button>

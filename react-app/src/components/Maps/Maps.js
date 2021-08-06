@@ -157,7 +157,7 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, searchLocation, foodBusi
                         </h1>
                                 <h2>Now open!</h2>
                                 <p>{selectedBusiness.description}</p>
-                                <a href={`https://www.google.com/maps/dir/${center.lat},${center.lng}/${selectedBusiness.current_lat},${selectedBusiness.current_long}`} target="_blank" rel="noopener noreferrer">Get directions!</a>
+                                <a href={`https://www.google.com/maps/dir/${newCenter ? newCenter.lat : center.lat},${newCenter ? newCenter.lng : center.lng}/${selectedBusiness.current_lat},${selectedBusiness.current_long}`} target="_blank" rel="noopener noreferrer">Get directions!</a>
                             </div></InfoWindow>
                     )}
 
