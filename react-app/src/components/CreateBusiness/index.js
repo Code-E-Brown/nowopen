@@ -66,6 +66,7 @@ function CreateBusiness() {
 
                 } else {
                     // console.log('RESULT', createdBiz.errors)
+                    window.scrollTo(0, 0);
                     setErrors(createdBiz.errors)
                 }
             }

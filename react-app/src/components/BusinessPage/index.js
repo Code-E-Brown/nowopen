@@ -22,6 +22,7 @@ function BusinessPage() {
     const { id } = useParams();
     const businessId = id;
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [singleBusiness, setSingleBusiness] = useState({})
     const [isOpen, setIsOpen] = useState('')
@@ -50,6 +51,9 @@ function BusinessPage() {
         const result = await dispatch(getBusinesses())
         const reviews = await dispatch(getReviews(+businessId))
         const currentBiz = result.find(business => business.id === +businessId)
+        if (!currentBiz) {
+            history.push('/')
+        }
         setSingleBusiness(result.find(business => business.id === +businessId))
 
         // console.log('**************', result)
@@ -221,6 +225,17 @@ function BusinessPage() {
         return `url(${url1}), url(${url2})`
     }
 
+    const catConverter = (id) => {
+        if (id === '1' || id === 1) {
+            return "Food"
+        }
+        if (id === '2' || id === 2) {
+            return "Retail"
+        }
+        if (id === '3' || id === 3) {
+            return "Event"
+        }
+    }
 
     return (
         <div>
@@ -233,6 +248,7 @@ function BusinessPage() {
                                     {currentBusiness?.name}
                                 </h1>
                             </div>
+                            <div className={style.ratingBox}>{catConverter(currentBusiness?.category_id)}</div>
                             {currentBusiness &&
                                 <div className={style.ratingBox}>
                                     {currentBusiness?.rating === 1 ? <>⭐</> : null}
@@ -264,7 +280,8 @@ function BusinessPage() {
                                                 </Link>
                                             </div> */}
                                             {user && user.id === currentBusiness?.user_id ? (
-                                                <div className={style.editButtonBox}>
+
+                                                <div className={style.editButtonBox} style={{ position: 'relative', bottom: '18px' }}>
                                                     <Link to={`/businesses/${currentBusiness.id}/edit`}>
                                                         Edit
                                                     </Link>

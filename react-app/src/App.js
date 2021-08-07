@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -92,6 +92,9 @@ function App() {
         <Route path='/businesses/search/:lat/:long/:catId'>
           <NavBar />
           <SearchResultWrapper />
+        </Route>
+        <Route>
+          <Redirect to='/' />
         </Route>
       </Switch>
     </BrowserRouter>

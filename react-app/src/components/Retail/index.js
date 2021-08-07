@@ -5,7 +5,7 @@ import { getBusinesses } from "../../store/business"
 import { Link } from 'react-router-dom';
 import style from '../Food/Food.module.css'
 import logoStyle from '../BusinessPage/BusinessPage.module.css'
-
+import AddressWrapper from "../BusinessAddress/AddressWrapper";
 
 
 function Retail({ apiKey, userState, userLocation }) {
@@ -84,6 +84,18 @@ function Retail({ apiKey, userState, userLocation }) {
         return `url(${url1}), url(${url2})`
     }
 
+    const catConverter = (id) => {
+        if (id === '1' || id === 1) {
+            return "Food"
+        }
+        if (id === '2' || id === 2) {
+            return "Retail"
+        }
+        if (id === '3' || id === 3) {
+            return "Event"
+        }
+    }
+
     // const imageChecker
     return (
         <div className={style.outerContainer}>
@@ -112,6 +124,7 @@ function Retail({ apiKey, userState, userLocation }) {
                                 <Link className={style.businessCardLink} to={`/businesses/${business.id}`}>
                                     <h1 className={style.businessCardName}>{business.name}</h1>
                                 </Link>
+                                <div>{catConverter(business.category_id)}</div>
                                 <div className={style.ratingsDiv}>
                                     {business.rating === 1 ? <>⭐</> : null}
                                     {business.rating === 2 ? <>⭐⭐</> : null}
@@ -123,6 +136,9 @@ function Retail({ apiKey, userState, userLocation }) {
                                 </div>
                                 <div className={style.descriptionBox}>
                                     {business.description}
+                                </div>
+                                <div className={style.address}>
+                                    <AddressWrapper currentBusiness={business} currentLat={userLocation.lat} currentLong={userLocation.lng} />
                                 </div>
                                 {business.now_open ?
                                     <div className={logoStyle.openStatus}>

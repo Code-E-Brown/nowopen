@@ -156,10 +156,32 @@ margin-bottom: 10px; */
 
 .descriptionBox{
     color: rgba(117,114,128,1);
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 15px;
+    /* background-color: red; */
+    height: 40px;
+    overflow: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
+.address{
+    color: rgba(117,114,128,1);
     font-size: 14px;
     font-weight: 400;
     /* background-color: red; */
-    height: 80px;
+    /* height: 80px; */
     overflow: none;
+    margin-bottom: 25px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+.address a{
+    color: rgba(117,114,128,1);
+    font-size: 14px;
+    font-weight: 400;
+    /* background-color: red; */
+    /* height: 80px; */
+    overflow: none;
+    /* text-decoration: none; */
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
