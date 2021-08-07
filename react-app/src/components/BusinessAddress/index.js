@@ -13,11 +13,18 @@ function Address({ currentBusiness, currentLat, currentLong, apiKey }) {
     }, [])
 
     return (
-        // <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
-        <a href={`https://www.google.com/maps/dir/${currentLat},${currentLong}/${+currentBusiness.current_lat},${+currentBusiness.current_long}`} target="_blank" rel="noopener noreferrer">
-            {/* Located at: 555 E street, Washington D.C */}
-            Located at: {address}
-        </a>
+        <>
+            {/* <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer"> */}
+            {currentLat && currentLong ? (
+
+                <a href={`https://www.google.com/maps/dir/${currentLat},${currentLong}/${+currentBusiness.current_lat},${+currentBusiness.current_long}`} target="_blank" rel="noopener noreferrer">
+                    {/* Located at: 555 E street, Washington D.C */}
+                    Located at: {address}
+                </a>
+            ) : (<div>Located at: {address}
+            </div>)
+            }
+        </>
     )
 }
 export default Address
