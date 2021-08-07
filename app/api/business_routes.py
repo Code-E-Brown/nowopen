@@ -93,7 +93,7 @@ def edit_business(id):
 @login_required
 def delete_business(id):
     businessToDelete = Business.query.get(id)
-    print(businessToDelete)
+    # print(businessToDelete)
     db.session.delete(businessToDelete)
     db.session.commit()
     return {'Success': 'Business deleted'}

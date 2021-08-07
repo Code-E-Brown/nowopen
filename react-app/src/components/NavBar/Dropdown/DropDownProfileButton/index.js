@@ -5,7 +5,7 @@ import Dropdown from '..'
 
 function DropDownProfileButton() {   // {styles} was passed in as a prop, no longer needed, best to import
     const [showMenu, setShowMenu] = useState(false)
-
+// console.log(user)
     const openMenu = () => {
         if (showMenu) return
         setShowMenu(true)

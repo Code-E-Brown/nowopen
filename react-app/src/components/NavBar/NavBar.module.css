@@ -134,25 +134,6 @@
       /* background-color: rgb(255, 255, 255); */
   }
 
-  .dropDown{
-    z-index: 100;
-    /* width: 30%; */
-    /* width: 10%; */
-    /* NO WIDTH!!!!!!! because it needs to be filled with things dynamically */
-    /* height: 600px; */
-    /* height: 100px; */
-    /* NO HEIGHT!!!!!!! because it needs to be filled with things dynamically */
-    background-color: white;
-    /* background-color: red; */
-    border: 1px solid rgb(155, 158, 158);
-    position: absolute;
-    /* position: relative; */
-    /* position: relative; */
-    /* top: 78px; */
-    /* right: 45px; */
-    color: rgb(40, 40, 40);
-    /* padding: 5px 10px 10px 10px; */
-  }
 
   .loginButton{
     /* border-style: solid; */
@@ -243,3 +224,156 @@ z-index: 900;
   color: white;
 } */
 
+
+.homeDiv{
+    font-size: 30px;
+    font-family: Pacifico, cursive;
+    font-weight: 100;
+    margin: 20px;
+    /* margin-bottom: 45px; */
+    /* text-decoration: none; */
+    /* text-decoration: outline; */
+    color: rgb(250, 0, 0);
+    text-shadow:
+        0 0 5px #fff,
+        0 0 5px #fff,
+        0 0 5px #fff,
+        /* 0 0 42px rgb(244, 57, 57),
+        0 0 82px rgb(244, 57, 57),
+        0 0 92px rgb(244, 57, 57),
+        0 0 102px rgb(244, 57, 57),
+        0 0 151px rgb(244, 57, 57); */
+
+
+
+}
+
+
+.addBusiness{
+  border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    /* width: 45px; */
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: white;
+    height: 35px;
+    display:flex;
+    font-weight: 900px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* margin-right: 12px; */
+    background-color: rgb(244, 57, 57);
+    /* margin-right: 100px; */
+    box-shadow: 0px 0px 10px rgba(43, 39, 60, .6);
+
+}
+
+.addBusiness a {
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+}
+
+.dropDown{
+  z-index: 100;
+   display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  height: 100px;
+    /* background-color: white; */
+    /* background-color: red; */
+    /* border: 1px solid rgb(155, 158, 158); */
+    position: absolute;
+    /* right: 50px; */
+    /* position: relative; */
+    /* position: relative; */
+    /* top: 78px; */
+    /* right: 45px; */
+    color: rgb(40, 40, 40);
+    /* padding: 5px 10px 10px 10px; */
+  }
+
+  .innerDiv{
+  background-color: rgba(255, 255, 255, 0.507);
+  display: flex;
+
+  flex-direction: column;
+width: 275px;
+/* height: 300px; */
+padding: 10px;
+position: relative;
+border-radius: 10px;
+right: 200px;
+  /* align-items: center; */
+  }
+  .innerDiv2{
+    background-color: rgba(255, 255, 255, 0);
+
+  display: flex;
+    justify-content: space-around;
+  /* flex-direction: column; */
+/* width: 300px;
+height: 300px; */
+/* position: relative;
+right: 200px; */
+  /* align-items: center; */
+  }
+
+  .fancy{
+    font-size: 30px;
+    font-family: Pacifico, cursive;
+    font-weight: 100;
+    z-index: 1;
+    margin: 20px;
+    display: flex;
+  justify-content: center;
+   align-items: center;
+    /* margin-bottom: 45px; */
+    /* text-decoration: none; */
+    /* text-decoration: outline; */
+    color: rgb(250, 0, 0);
+    text-shadow:
+        0 0 5px #fff,
+        0 0 5px #fff,
+        0 0 5px #fff,
+        0 0 42px rgb(244, 57, 57),
+        0 0 82px rgb(244, 57, 57),
+        0 0 92px rgb(244, 57, 57),
+        0 0 102px rgb(244, 57, 57),
+        0 0 151px rgb(244, 57, 57);
+
+
+border-bottom: solid;
+  }
+
+  .logoutButton button{
+    cursor: pointer;
+    border: solid;
+    border-width: 1px;
+    border-color:rgb(187, 186, 192);
+    /* width: 45px; */
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: white;
+    height: 35px;
+    display:flex;
+    font-weight: 900px;
+    align-items: center;
+    justify-content: center;
+
+    /* margin-right: 12px; */
+    background-color: rgb(244, 57, 57);
+    /* margin-right: 100px; */
+    box-shadow: 0px 0px 10px rgba(43, 39, 60, .6);
+
+  }

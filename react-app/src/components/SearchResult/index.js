@@ -20,7 +20,7 @@ function SearchResult({ apiKey, searchState, searchLocation, userLocation }) {
     const dispatch = useDispatch()
     const businesses = useSelector(state => Object.values(state.businesses));
 
-    console.log(searchLocation.catId, 'CATMAN')
+    // console.log(searchLocation.catId, 'CATMAN')
 
     useEffect(async () => {
 

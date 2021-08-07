@@ -17,14 +17,14 @@ import SearchContainer from './Searchbar/SearchBar';
 const NavBar = () => {
 
   const user = useSelector(state => state.session.user);
-
+  console.log(user)
 
   return (
     <nav className={styles.navContainer}>
       {/* <ul>
         <li> */}
       <div className={styles.navButtonLinkBox}>
-        <NavLink to='/' exact={true} activeClassName='active'>
+        <NavLink className={styles.homeDiv} to='/' exact={true} activeClassName='active'>
           Home
         </NavLink>
       </div>

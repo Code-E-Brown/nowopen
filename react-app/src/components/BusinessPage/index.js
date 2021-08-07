@@ -177,7 +177,7 @@ function BusinessPage() {
     }
     const handleReviewEdit = async e => {
         e.preventDefault()
-        console.log(+e.target.parentElement.parentElement.id)
+        // console.log(+e.target.parentElement.parentElement.id)
         // await dispatch(deleteReview(+e.target.parentElement.parentElement.id))
         // await dispatch(getBusinesses())
     }
@@ -240,11 +240,11 @@ function BusinessPage() {
                                     </a> */}
 
                                         <div className={style.flexColumn}>
-                                            <div className={style.photoButtonBox}>
+                                            {/* <div className={style.photoButtonBox}>
                                                 <Link to='#'>
                                                     See all Photos
                                                 </Link>
-                                            </div>
+                                            </div> */}
                                             {user && user.id === currentBusiness?.user_id ? (
                                                 <div className={style.editButtonBox}>
                                                     <Link to={`/businesses/${currentBusiness.id}/edit`}>

@@ -8,7 +8,7 @@ function Address({ currentBusiness, currentLat, currentLong, apiKey }) {
     useEffect(async () => {
         const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${+currentBusiness.current_lat},${+currentBusiness.current_long}&key=${apiKey}`)
         const json = await result.json()
-        console.log('********', json.results[0])
+        // console.log('********', json.results[0])
         setAddress(json.results[0].formatted_address)
     }, [])
 

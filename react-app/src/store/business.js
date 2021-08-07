@@ -131,7 +131,7 @@ export const deleteBusiness = (businessId) => async dispatch => {
     if (response.ok) {
         const businessDeleteSuccessMessage = await response.json();
         // dispatch(deleteProjectFromStore(projectId))
-        console.log(businessDeleteSuccessMessage)
+        // console.log(businessDeleteSuccessMessage)
         // return projectDeleteSuccessMessage
     }
     // return null;

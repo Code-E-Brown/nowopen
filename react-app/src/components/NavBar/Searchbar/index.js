@@ -57,6 +57,8 @@ const Searchbar = ({ apiKey }) => {
     //     setAddress(e)
     // }
     const handleSearchClick = (e) => {
+
+
         if (address && coordinates) {
             setMessage('')
             const searchInput = {
@@ -100,8 +102,12 @@ const Searchbar = ({ apiKey }) => {
     }
 
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
+        // const results = await geocodeByAddress(e)
+        // const latLng = await getLatLng(results[0])
+        // console.log(latLng)
         setAddress(e)
+        setCoordinates(null)
     }
 
     useEffect(() => {
