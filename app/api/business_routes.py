@@ -71,6 +71,7 @@ def edit_business(id):
     form['category_id'].data = request.json['category_id']
     form['description'].data = request.json['description']
     form['name'].data = request.json['name']
+    form['location_description'].data = request.json['location_description']
 
     if form.validate_on_submit():
         businessToUpdate.name = request.json['name']

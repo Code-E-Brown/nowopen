@@ -17,7 +17,7 @@ import SearchContainer from './Searchbar/SearchBar';
 const NavBar = () => {
 
   const user = useSelector(state => state.session.user);
-  console.log(user)
+  // console.log(user)
 
   return (
     <nav className={styles.navContainer}>

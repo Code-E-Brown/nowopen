@@ -845,3 +845,37 @@ line-height: 30px;
   font-weight: 400;
   font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+
+
+.cancelLocationButtonBox{
+  /* border-style: solid; */
+
+  border: solid;
+  border-width: 1px;
+  border-color:rgb(187, 186, 192);
+  width: 190px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 4px;
+  font-size: 14;
+  height: 20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-right: 12px; */
+  background-color: rgb(255, 255, 255);
+  /* margin-right: 100px; */
+  margin-top: 10px;
+}
+.cancelLocationButtonBox button{
+  background-color: rgb(255, 255, 255);
+  border:none;
+  cursor: pointer;
+  color:rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

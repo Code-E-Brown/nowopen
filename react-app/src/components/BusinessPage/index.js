@@ -36,6 +36,7 @@ function BusinessPage() {
     const [editReviewText, setEditReviewText] = useState('')
     const [editToggle, setEditToggle] = useState(false)
     const [editId, setEditId] = useState(null)
+    const [locationErrors, setLocationErrors] = useState(null)
     const [createReviewErrors, setCreateReviewErrors] = useState(null)
     const currentBusiness = useSelector(state => state.businesses[businessId]);
     const currentReviews = useSelector(state => Object.values(state.reviews).filter(review => review.business_id === +businessId));
@@ -92,15 +93,27 @@ function BusinessPage() {
 
 
 
-    const handleLocationNoteSave = (e) => {
+    const handleLocationNoteSave = async (e) => {
         e.preventDefault()
-        setToggleLocationEdit(!toggleLocationEdit)
+
 
         const changeOpenStatus = {
             ...currentBusiness,
             location_description: locationNote,
         }
-        dispatch(editBusiness(changeOpenStatus))
+        const result = await dispatch(editBusiness(changeOpenStatus))
+        if (result.errors) {
+            setLocationErrors(result.errors)
+        } else {
+            setLocationErrors(null)
+            setToggleLocationEdit(!toggleLocationEdit)
+        }
+    }
+
+    const handleLocationNoteCancel = () => {
+        setToggleLocationEdit(!toggleLocationEdit)
+        setLocationErrors(null)
+        setLocationNote(currentBusiness.location_description)
     }
 
     const handleReviewSubmit = async (e) => {
@@ -198,6 +211,11 @@ function BusinessPage() {
         setEditToggle(true)
     }
 
+    const handleLocationEditToggle = (e) => {
+
+        setToggleLocationEdit(!toggleLocationEdit)
+        setLocationNote(currentBusiness.location_description)
+    }
 
     const formatter = (url1, url2) => {
         return `url(${url1}), url(${url2})`
@@ -357,9 +375,14 @@ function BusinessPage() {
                             <div className={style.bizLocationDescription}>
                                 <div className={style.locationNote}>Location note:</div>
                                 <div className={style.outerDescBox}>
+
                                     {toggleLocationEdit ? (
                                         <div>
-                                            <textarea className={style.noteText} onChange={e => setLocationNote(e.target.value)} placeholder='Add a few notes so people know how to find you!'>{currentBusiness.location_description}</textarea>
+                                            {locationErrors && locationErrors.map(error => (
+                                                <div style={{ color: 'red' }} key={error}>{error}</div>
+
+                                            ))}
+                                            <textarea className={style.noteText} onChange={e => setLocationNote(e.target.value)} value={locationNote} placeholder='Add a few notes so people know how to find you!'></textarea>
                                         </div>
                                     ) :
 
@@ -377,19 +400,25 @@ function BusinessPage() {
                                     </div>
                                 } */}
                                 {toggleLocationEdit === true ?
-                                    <div className={style.saveLocationButtonBox} >
-                                        <button onClick={handleLocationNoteSave}>Save note!</button>
-                                    </div>
+                                    <>
+                                        <div className={style.saveLocationButtonBox} >
+                                            <button onClick={handleLocationNoteSave}>Save note!</button>
+                                        </div>
+                                        <div className={style.cancelLocationButtonBox} >
+                                            <button onClick={handleLocationNoteCancel}>Cancel</button>
+                                        </div>
+                                    </>
                                     :
                                     <div className={style.locationButtonBox}>
-                                        <button onClick={e => setToggleLocationEdit(!toggleLocationEdit)}>Update location note!</button>
+                                        <button onClick={handleLocationEditToggle}>Update location note!</button>
                                     </div>
                                 }
                             </div>
                         }
                     </div>
                 </>
-            ) : null}
+            ) : null
+            }
             <div className={style.infoSection}>
                 <div className={style.descriptionArea}>
                     - {currentBusiness?.description}
