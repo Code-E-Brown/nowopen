@@ -302,13 +302,13 @@ function BusinessPage() {
                                         <div></div>
                                         <div className={style.flexColumn}>
 
-                                            <div className={style.photoButtonBox}>
+                                            {/* <div className={style.photoButtonBox}>
                                                 <Link to='#'>
                                                     See all Photos
                                                 </Link>
-                                            </div>
+                                            </div> */}
                                             {user && user.id === currentBusiness?.user_id ? (
-                                                <div className={style.editButtonBox}>
+                                                <div className={style.editButtonBox} style={{ position: 'relative', bottom: '18px' }}>
                                                     <Link to={`/businesses/${currentBusiness.id}/edit`}>
                                                         Edit
                                                     </Link>
