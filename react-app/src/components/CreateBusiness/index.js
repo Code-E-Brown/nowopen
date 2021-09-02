@@ -40,15 +40,7 @@ function CreateBusiness() {
         const handleCreate = async (e) => {
             e.preventDefault()
 
-            // const cardResult = await fetch(bizCardImage, {
-            //     mode: "no-cors"
-            // })
 
-            // const bannerResult = await fetch(bizBannerImage, {
-            //     mode: "no-cors"
-            // })
-            // console.log(cardResult.ok   )
-            // console.log(bannerResult)
             const newBiz = {
                 name: bizName,
                 user_id: user.id,
@@ -65,7 +57,7 @@ function CreateBusiness() {
                     history.push(`/businesses/${createdBiz.id}`)
 
                 } else {
-                    // console.log('RESULT', createdBiz.errors)
+
                     window.scrollTo(0, 0);
                     setErrors(createdBiz.errors)
                 }

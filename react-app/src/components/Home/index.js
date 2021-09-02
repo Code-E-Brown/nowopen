@@ -74,8 +74,10 @@ const Home = () => {
                 </div>
                 <div className={styles.blockBottom}>
                     {/* <div></div> */}
-                    A Pop-up & Mobile Business Locator by:
-                    <div className={styles.theMostProlificAndIconicDevOfAllTime}>Cody Brown</div>
+                    A Pop-up & Mobile Business locator by:
+                    <a href="https://codybrown.dev/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <div className={styles.theMostProlificAndIconicDevOfAllTime}>Cody Brown</div>
+                    </a>
                     <div>
                         <a className={styles.aboutLinks} href='https://github.com/Code-E-Brown' target="_blank" rel="noopener noreferrer">
                             <AiOutlineGithub className={styles.icon} />
