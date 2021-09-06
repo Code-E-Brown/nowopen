@@ -37,20 +37,21 @@ function SearchResult({ apiKey, searchState, searchLocation, userLocation }) {
                     if (business.now_open) {
                         // if (business.now_open) {
                         // console.log('test')
-
-                        const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
-                        const json = await result.json()
-                        const locationArray = json.results
-                        // console.log('********', json.results)
-                        for (let i = 0; i < locationArray.length; i++) {
-                            const obj = locationArray[i];
-                            // console.log(obj.types[0], 'OBJ')
-                            // console.log(obj.types[0], 'OBJ')
-                            if (obj.types[0] === 'administrative_area_level_1') {
-                                // console.log('biz state', obj.address_components[0].long_name, searchState)
-                                if (obj.address_components[0].long_name === searchState) {
-                                    // console.log(business)
-                                    newArr.push(business)
+                        if (business.current_lat & business.current_long) {
+                            const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
+                            const json = await result.json()
+                            const locationArray = json.results
+                            // console.log('********', json.results)
+                            for (let i = 0; i < locationArray.length; i++) {
+                                const obj = locationArray[i];
+                                // console.log(obj.types[0], 'OBJ')
+                                // console.log(obj.types[0], 'OBJ')
+                                if (obj.types[0] === 'administrative_area_level_1') {
+                                    // console.log('biz state', obj.address_components[0].long_name, searchState)
+                                    if (obj.address_components[0].long_name === searchState) {
+                                        // console.log(business)
+                                        newArr.push(business)
+                                    }
                                 }
                             }
                         }
