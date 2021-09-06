@@ -6,11 +6,16 @@ function Address({ currentBusiness, currentLat, currentLong, apiKey }) {
 
 
     useEffect(async () => {
-        const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${+currentBusiness.current_lat},${+currentBusiness.current_long}&key=${apiKey}`)
-        const json = await result.json()
-        // console.log('********', json.results[0])
-        setAddress(json.results[0].formatted_address)
-    }, [])
+        // if(currentBusiness.current_lat && )
+        if (currentBusiness.current_lat && currentBusiness.current_long) {
+
+            const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${+currentBusiness.current_lat},${+currentBusiness.current_long}&key=${apiKey}`)
+            const json = await result.json()
+            // console.log('********', json.results[0])
+            setAddress(json.results[0].formatted_address)
+        }
+        // console.log(currentBusiness)
+    }, [currentBusiness])
 
     return (
         <>
