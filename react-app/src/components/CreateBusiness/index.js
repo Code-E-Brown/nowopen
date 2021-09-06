@@ -11,6 +11,8 @@ function CreateBusiness() {
     const [bizName, setBizName] = useState('')
     const [bizCategory, setBizCategory] = useState(null)
     const [bizDescription, setBizDescription] = useState('')
+    const [bizCardImage, setBizCardImage] = useState('')
+    const [bizBannerImage, setBizBannerImage] = useState('')
     const [errors, setErrors] = useState(null)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -37,11 +39,17 @@ function CreateBusiness() {
         }
         const handleCreate = async (e) => {
             e.preventDefault()
+
+
             const newBiz = {
                 name: bizName,
                 user_id: user.id,
                 description: bizDescription,
-                category_id: +bizCategory
+                category_id: +bizCategory,
+                // card_image: cardResult.ok ? bizCardImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                card_image: bizCardImage ? bizCardImage.split(' ').join('') : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                // banner_image: bannerResult.ok ? bizBannerImage : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+                banner_image: bizBannerImage ? bizBannerImage.split(' ').join('') : 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
             }
             if (newBiz) {
                 const createdBiz = await dispatch(createBusiness(newBiz))
@@ -49,7 +57,8 @@ function CreateBusiness() {
                     history.push(`/businesses/${createdBiz.id}`)
 
                 } else {
-                    // console.log('RESULT', createdBiz.errors)
+
+                    window.scrollTo(0, 0);
                     setErrors(createdBiz.errors)
                 }
             }
@@ -108,6 +117,11 @@ function CreateBusiness() {
                 </div >
             )
         } else if (currentSection === 'finalize') {
+
+            const formatter = (url1, url2) => {
+                return `url(${url1}), url(${url2})`
+            }
+
             return (
                 <div className={style.flexContainer}>
                     <div className={style.leftSide}>
@@ -135,6 +149,19 @@ function CreateBusiness() {
                                 <input className={style.radioInput} type='radio' onChange={e => setBizCategory(e.target.value)} id='event' checked={bizCategory === "3" ? true : false} value='3'></input>
                             </div>
                             <div>
+                                <label className={style.radioLabel}>Banner Image:</label>
+                            </div>
+                            <div>
+                                <input placeholder='Enter image url' className={style.input} onChange={e => setBizBannerImage(e.target.value)} value={bizBannerImage} type='text'></input>
+                            </div>
+                            <div className={style.cardImagePreview} style={{ backgroundImage: bizCardImage ? formatter(bizCardImage, 'https://www.vrajfresh.com/wp-content/uploads/2020/09/default_image.png') : 'url("https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")' }}></div>
+                            <div>
+                                <label className={style.radioLabel}>Business Card Image:</label>
+                            </div>
+                            <div>
+                                <input placeholder='Enter image url' className={style.input} onChange={e => setBizCardImage(e.target.value)} value={bizCardImage} type='text'></input>
+                            </div>
+                            <div>
                                 <label className={style.radioLabel} htmlFor='description'>Business Description:</label>
                             </div>
                             <div>
@@ -150,7 +177,7 @@ function CreateBusiness() {
                     </div>
                     <div className={style.rightSide}>
                         <div className={style.previewCard}>
-                            <div className={style.bannerBox}>
+                            <div className={style.bannerBox} style={{ backgroundImage: bizBannerImage ? formatter(bizBannerImage, 'https://www.vrajfresh.com/wp-content/uploads/2020/09/default_image.png') : 'url("https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")' }}>
                                 <div className={style.infoBox}>
                                     <div className={style.nameBox}>
                                         {bizName ? <>{bizName}</> :
@@ -185,6 +212,12 @@ function CreateBusiness() {
                                         </>
                                     }
 
+                                </div>
+
+                            </div>
+                            <div className={style.descriptionBoxBottom}>
+                                <div className={style.nameBox} style={{ color: 'black' }}>
+                                    Reviews
                                 </div>
 
                             </div>

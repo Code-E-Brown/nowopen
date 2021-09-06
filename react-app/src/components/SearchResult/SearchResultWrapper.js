@@ -1,30 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useParams } from 'react-router';
 import { getKey } from '../../store/maps';
 
-import Retail from '.';
+import SearchResult from '.';
 
-const RetailWrapper = () => {
+const SearchResultWrapper = () => {
     const key = useSelector((state) => state.maps.key);
     const [userLocation, setUserLocation] = useState('')
-    const [userState, setUserState] = useState('')
+    const [searchState, setSearchState] = useState('')
+
+    let { lat, long, catId } = useParams()
+
+
 
     const dispatch = useDispatch();
-
     useEffect(() => {
         if (!key) {
             dispatch(getKey());
         }
 
-        // if (!userLocation) {
 
-        //     navigator.geolocation.getCurrentPosition(position => {
-        //         if (position) {
-        //             setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
-        //         }
-        //     })
-        // }
 
     }, [dispatch, key]);
 
@@ -41,11 +37,11 @@ const RetailWrapper = () => {
     }
 
 
-    if (userLocation) {
+    if (lat && long) {
 
         (async function () {
 
-            const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${userLocation.lat},${userLocation.lng}&key=${key}`)
+            const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${+lat},${+long}&key=${key}`)
             const json = await result.json()
             const locationArray = json.results
             // console.log('********', json.results)
@@ -54,7 +50,8 @@ const RetailWrapper = () => {
                 // console.log(obj.types[0], 'OBJ')
                 // console.log(obj.types[0], 'OBJ')
                 if (obj.types[0] === 'administrative_area_level_1') {
-                    return setUserState(obj.address_components[0].long_name)
+                    console.log("SEARCH STATE", obj.address_components[0].long_name)
+                    return setSearchState(obj.address_components[0].long_name)
                 }
             }
 
@@ -65,14 +62,15 @@ const RetailWrapper = () => {
     return (
         <>
 
-            <Retail
+            <SearchResult
                 apiKey={key}
                 userLocation={userLocation}
-                userState={userState}
+                searchLocation={{ lat: +lat, long: +long, catId: catId ? +catId : null,}}
+                searchState={searchState}
             />
 
         </>
     );
 };
 
-export default RetailWrapper;
+export default SearchResultWrapper;

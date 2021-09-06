@@ -20,6 +20,7 @@ const Searchbar = ({ apiKey }) => {
     const [hovering, setHovering] = useState(null)
     const [hoverId, setHoverId] = useState(null)
     const node = useRef()
+    const [message, setMessage] = useState('')
 
     // console.log('COORDS', coordinates)
     const history = useHistory()
@@ -55,14 +56,37 @@ const Searchbar = ({ apiKey }) => {
     // const handleSetAddress = (e) => {
     //     setAddress(e)
     // }
-    const handleSearchClick = () => {
-        if (coordinates && address) {
+    const handleSearchClick = (e) => {
+
+
+        if (address && coordinates) {
+            setMessage('')
             const searchInput = {
                 searchCategory: searchCategory === 'all' ? searchCategory : +searchCategory,
                 coordinates,
             }
             history.push(`/businesses/search/${coordinates.lat}/${coordinates.lng}/${searchCategory}`)
-            // console.log(searchInput)
+            setMessage('')
+            setCoordinates(null)
+            setAddress('')
+        } else if (address && businessResults.length > 0) {
+            setMessage('')
+            // } else if (address) {
+            // console.log(businessResults)
+            // console.log(e.target.outerHTML.startsWith('<path'))
+            // console.log(e.target.outerHTML)
+            history.push(`/businesses/${businessResults[0].id}`)
+            setAddress('')
+            setCoordinates(null)
+            setBusinessResults([])
+        } else {
+
+            setMessage('No Results Found')
+            setAddress('Not found, try using suggestions!')
+            setTimeout(() => {
+                setMessage('')
+                setAddress('')
+            }, 2000)
         }
 
     }
@@ -78,8 +102,12 @@ const Searchbar = ({ apiKey }) => {
     }
 
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
+        // const results = await geocodeByAddress(e)
+        // const latLng = await getLatLng(results[0])
+        // console.log(latLng)
         setAddress(e)
+        setCoordinates(null)
     }
 
     useEffect(() => {
@@ -119,7 +147,7 @@ const Searchbar = ({ apiKey }) => {
     const handleClick = e => {
 
         // && (e.target.id != '' || !e.target.id.includes("Places"))
-        if (node.current.contains(e.target) || (e.target.id != '' || e.target.id.includes("Places"))) {
+        if (node.current.contains(e.target) || (e.target.id != '' || e.target.id.includes("Places")) || e.target.outerHTML.startsWith('<path')) {
             // console.log('id', e.target.id, (e.target.id != ''), (!e.target.id.includes("Places")), node, 'inside')
             return;
         }
@@ -128,6 +156,10 @@ const Searchbar = ({ apiKey }) => {
     };
 
     return (
+
+
+
+
         <div className={styles.searchDiv}>
             <select defaultValue='What are you searching for?' onChange={e => setSearchCategory(e.target.value)} className={styles.searchInput} type='text'>
                 <option className={styles.categoryPlaceHolder} disabled>What are you searching for?</option>
@@ -144,7 +176,7 @@ const Searchbar = ({ apiKey }) => {
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div className={styles.searchFlex}>
 
-                            <input ref={node} onClick={handleClick} {...getInputProps({ placeholder: "address, city, state or zip" })} className={styles.searchInput} type='text'></input>
+                            <input ref={node} onClick={handleClick} {...getInputProps({ placeholder: "address, city, state or zip" })} className={styles.searchInput} style={{ backgroundColor: message ? 'red' : null }} type='text'></input>
                             <div style={{ position: 'absolute', height: '500px', zIndex: '-1' }} >
                                 <div style={{ height: "55%", zIndex: '-1' }}></div>
 
@@ -152,8 +184,8 @@ const Searchbar = ({ apiKey }) => {
                                     {loading ? <div>Loading...</div> : null}
                                     {businessResults && businessResults.map(business => (
 
-                                        <Link onClick={handleLinkClick} id={business.id} className={styles.businessSearchLink} style={{ color: hovering && +hoverId === business.id ? 'white' : 'black', fontWeight: hovering && +hoverId === business.id ? '700' : '400' }} to={`/businesses/${business.id}`}>
-                                            <div key={business.id} id={business.id} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.businessSearchDiv} style={{ zIndex: '1', backgroundColor: hovering && +hoverId === business.id ? 'rgb(244, 57, 57)' : 'white' }}>
+                                        <Link key={business.id} onClick={handleLinkClick} id={business.id} className={styles.businessSearchLink} style={{ color: hovering && +hoverId === business.id ? 'white' : 'black', fontWeight: hovering && +hoverId === business.id ? '700' : '400' }} to={`/businesses/${business.id}`}>
+                                            <div id={business.id} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.businessSearchDiv} style={{ zIndex: '1', backgroundColor: hovering && +hoverId === business.id ? 'rgb(244, 57, 57)' : 'white' }}>
                                                 {business.name} <AiOutlineShop />
                                             </div>
                                         </Link>
@@ -189,8 +221,10 @@ const Searchbar = ({ apiKey }) => {
             )
             }
             {/* <input className={styles.searchInput} type='text'></input> */}
-            <div className={styles.redSearchBox} onClick={handleSearchClick}>
+            <div className={styles.redSearchBox} id='notEmpty' onClick={handleSearchClick}>
                 <svg
+                    id='notEmpty'
+                    onClick={handleSearchClick}
                     className={styles.magnifyingGlass}
                     xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                     width="50" height="50"
@@ -199,6 +233,7 @@ const Searchbar = ({ apiKey }) => {
                 ><g fill="none" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10" strokeDasharray="" strokeDashoffset="0" fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M72.24,10.32c-32.33062,0 -58.48,26.14938 -58.48,58.48c0,32.33063 26.14938,58.48 58.48,58.48c11.54281,0 22.22563,-3.38625 31.2825,-9.1375l42.2475,42.2475l14.62,-14.62l-41.71,-41.6025c7.49813,-9.83625 12.04,-22.02406 12.04,-35.3675c0,-32.33062 -26.14937,-58.48 -58.48,-58.48zM72.24,24.08c24.76531,0 44.72,19.95469 44.72,44.72c0,24.76531 -19.95469,44.72 -44.72,44.72c-24.76531,0 -44.72,-19.95469 -44.72,-44.72c0,-24.76531 19.95469,-44.72 44.72,-44.72z"></path></g></g></svg>
             </div>
         </div >
+
     )
 }
 

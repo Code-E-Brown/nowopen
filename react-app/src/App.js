@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -19,6 +19,8 @@ import Event from './components/Event';
 import FoodWrapper from './components/Food/FoodWrapper';
 import EventWrapper from './components/Event/EventWrapper';
 import RetailWrapper from './components/Retail/RetailWrapper';
+import SearchResultWrapper from './components/SearchResult/SearchResultWrapper';
+import Footer from './components/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,11 +53,13 @@ function App() {
           <NavBar />
           {/* <Food /> */}
           <FoodWrapper />
+          <Footer />
           {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
         </Route>
         <Route path='/businesses/retail' exact={true}>
           <NavBar />
           <RetailWrapper />
+          <Footer />
           {/* <Retail /> */}
           {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
         </Route>
@@ -63,16 +67,17 @@ function App() {
           <NavBar />
           {/* <Event /> */}
           <EventWrapper />
+          <Footer />
           {/* <MapContainer containerStyle={{ width: '100vw', height: '450px', }} /> */}
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <ProtectedRoute path='/users' exact={true} >
           <NavBar />
           <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        </ProtectedRoute> */}
+        {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <NavBar />
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/' exact={true}>
           <Home />
         </Route>
@@ -83,11 +88,20 @@ function App() {
         <Route path='/businesses/:id' exact={true}>
           <NavBar />
           <BusinessPage />
+          <Footer />
         </Route>
         <ProtectedRoute path='/businesses/:id/edit' exact={true}>
           <NavBar />
           <EditBusiness />
         </ProtectedRoute>
+        <Route path='/businesses/search/:lat/:long/:catId'>
+          <NavBar />
+          <SearchResultWrapper />
+          <Footer />
+        </Route>
+        <Route>
+          <Redirect to='/' />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

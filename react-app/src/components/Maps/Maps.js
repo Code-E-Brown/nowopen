@@ -3,7 +3,6 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AiTwotoneHome } from 'react-icons/ai'
 
 // const containerStyle = {
 //     width: '400px',
@@ -15,7 +14,7 @@ import { AiTwotoneHome } from 'react-icons/ai'
 //     lng: -77.0956978,
 // };
 
-const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
+const Maps = ({ apiKey, containerStyle, singleBusiness, searchLocation, foodBusinesses }) => {
 
     const [currentLat, setCurrentLat] = useState(null)
     const [currentLong, setCurrentLong] = useState(null)
@@ -23,7 +22,6 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
     const [selectedLocation, setSelectedLocation] = useState({})
     const [selectedBusiness, setSelelectedBusiness] = useState({})
     const [newCenter, setNewCenter] = useState('')
-
 
 
     useEffect(() => {
@@ -36,8 +34,6 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
 
             }
         })
-
-
 
         // const center = {
         //     lat: currentLat,
@@ -62,7 +58,11 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
             // console.log(singleBusiness, 'HERERERER')
             // setCenter({ lat: +singleBusiness.current_lat, lng: +singleBusiness.current_long })
         }
-    }, [singleBusiness])
+
+        if (searchLocation) {
+            setNewCenter({ lat: searchLocation.lat, lng: searchLocation.long })
+        }
+    }, [singleBusiness, searchLocation])
 
     const handleSelect = item => {
         if (item.lat) {
@@ -118,7 +118,7 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
                     mapContainerStyle={containerStyle}
                     center={newCenter ? newCenter : center}
 
-                    zoom={12}
+                    zoom={9}
                 >
                     <Marker key='userMarker'
                         position={newCenter ? newCenter : center}
@@ -157,7 +157,7 @@ const Maps = ({ apiKey, containerStyle, singleBusiness, foodBusinesses }) => {
                         </h1>
                                 <h2>Now open!</h2>
                                 <p>{selectedBusiness.description}</p>
-                                <a href={`https://www.google.com/maps/dir/${center.lat},${center.lng}/${selectedBusiness.current_lat},${selectedBusiness.current_long}`} target="_blank" rel="noopener noreferrer">Get directions!</a>
+                                <a href={`https://www.google.com/maps/dir/${newCenter ? newCenter.lat : center.lat},${newCenter ? newCenter.lng : center.lng}/${selectedBusiness.current_lat},${selectedBusiness.current_long}`} target="_blank" rel="noopener noreferrer">Get directions!</a>
                             </div></InfoWindow>
                     )}
 

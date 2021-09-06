@@ -5,7 +5,7 @@ import { getBusinesses } from "../../store/business"
 import { Link } from 'react-router-dom';
 import style from '../Food/Food.module.css'
 import logoStyle from '../BusinessPage/BusinessPage.module.css'
-
+import AddressWrapper from "../BusinessAddress/AddressWrapper";
 
 
 function Retail({ apiKey, userState, userLocation }) {
@@ -16,8 +16,10 @@ function Retail({ apiKey, userState, userLocation }) {
     const businesses = useSelector(state => Object.values(state.businesses));
 
     useEffect(async () => {
+        const myAbortController = new AbortController();
 
         const allBusinesses = await dispatch(getBusinesses())
+
         // setRetailBusinesses(allBusinesses.filter(business => business.category_id === 2 && business.now_open))
         const locationFilter = async (businesses) => {
 
@@ -28,20 +30,23 @@ function Retail({ apiKey, userState, userLocation }) {
                 // (async function (business) {
                 if (business.category_id === 2 && business.now_open) {
                     // console.log('test')
-
-                    const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`)
-                    const json = await result.json()
-                    const locationArray = json.results
-                    // console.log('********', json.results)
-                    for (let i = 0; i < locationArray.length; i++) {
-                        const obj = locationArray[i];
-                        // console.log(obj.types[0], 'OBJ')
-                        // console.log(obj.types[0], 'OBJ')
-                        if (obj.types[0] === 'administrative_area_level_1') {
-                            // console.log('biz state', obj.address_components[0].long_name, userState)
-                            if (obj.address_components[0].long_name === userState) {
-                                // console.log(business)
-                                newArr.push(business)
+                    if (business.current_lat & business.current_long) {
+                        const result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${business.current_lat},${business.current_long}&key=${apiKey}`, {
+                            signal: myAbortController.signal
+                        })
+                        const json = await result.json()
+                        const locationArray = json.results
+                        // console.log('********', json.results)
+                        for (let i = 0; i < locationArray.length; i++) {
+                            const obj = locationArray[i];
+                            // console.log(obj.types[0], 'OBJ')
+                            // console.log(obj.types[0], 'OBJ')
+                            if (obj.types[0] === 'administrative_area_level_1') {
+                                // console.log('biz state', obj.address_components[0].long_name, userState)
+                                if (obj.address_components[0].long_name === userState) {
+                                    // console.log(business)
+                                    newArr.push(business)
+                                }
                             }
                         }
                     }
@@ -68,10 +73,31 @@ function Retail({ apiKey, userState, userLocation }) {
         }
 
 
+
+        return () => {
+            myAbortController.abort();
+        }
+
     }, [dispatch, userLocation, userState])
 
+    const formatter = (url1, url2) => {
 
+        return `url(${url1}), url(${url2})`
+    }
 
+    const catConverter = (id) => {
+        if (id === '1' || id === 1) {
+            return "Food"
+        }
+        if (id === '2' || id === 2) {
+            return "Retail"
+        }
+        if (id === '3' || id === 3) {
+            return "Event"
+        }
+    }
+
+    // const imageChecker
     return (
         <div className={style.outerContainer}>
             <div className={style.leftSide}>
@@ -89,23 +115,31 @@ function Retail({ apiKey, userState, userLocation }) {
 
                         <div className={style.businessCard} key={business.id}>
                             <div className={style.innerCard}>
-                                <div className={style.businessImage}>
+
+
+                                <div className={style.businessImage} style={{ backgroundImage: formatter(business?.card_image, 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') }}>
+                                    {/* <div className={style.businessImage} style={{ backgroundImage: `url(${business.card_image})`.ok ? `url(${business.card_image})` : 'url("https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")' }} > */}
+                                    {/* <div className={style.businessImage} style={{ backgroundImage: formatter('https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') }}> */}
 
                                 </div>
                                 <Link className={style.businessCardLink} to={`/businesses/${business.id}`}>
                                     <h1 className={style.businessCardName}>{business.name}</h1>
                                 </Link>
+                                <div>{catConverter(business.category_id)}</div>
                                 <div className={style.ratingsDiv}>
                                     {business.rating === 1 ? <>⭐</> : null}
                                     {business.rating === 2 ? <>⭐⭐</> : null}
                                     {business.rating === 3 ? <>⭐⭐⭐</> : null}
                                     {business.rating === 4 ? <>⭐⭐⭐⭐</> : null}
                                     {business?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
-                                    {business?.reviews.length}
+                                    {business?.reviews.length ? business.reviews.length : 'No reviews'}
 
                                 </div>
                                 <div className={style.descriptionBox}>
                                     {business.description}
+                                </div>
+                                <div className={style.address}>
+                                    <AddressWrapper currentBusiness={business} currentLat={userLocation.lat} currentLong={userLocation.lng} />
                                 </div>
                                 {business.now_open ?
                                     <div className={logoStyle.openStatus}>

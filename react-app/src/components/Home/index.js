@@ -9,6 +9,8 @@ import { getBusinesses } from '../../store/business';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import SearchContainer from '../NavBar/Searchbar/SearchBar';
+import { AiOutlineGithub } from 'react-icons/ai';
+import { FaLinkedin } from 'react-icons/fa';
 
 
 const Home = () => {
@@ -71,8 +73,24 @@ const Home = () => {
                     <SearchContainer />
                 </div>
                 <div className={styles.blockBottom}>
+                    {/* <div></div> */}
+                    A Pop-up & Mobile Business locator by:
+                    <a href="https://codybrown.dev/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <div className={styles.theMostProlificAndIconicDevOfAllTime}>Cody Brown</div>
+                    </a>
+                    <div>
+                        <a className={styles.aboutLinks} href='https://github.com/Code-E-Brown' target="_blank" rel="noopener noreferrer">
+                            <AiOutlineGithub className={styles.icon} />
+                        </a>
+
+                        <a className={styles.aboutLinks} href='https://www.linkedin.com/in/cody-brown-95b77b1aa/' target="_blank" rel="noopener noreferrer">
+
+                            <FaLinkedin className={styles.icon} />
+                        </a>
+                    </div>
                     <div style={{ height: '120px' }}></div>
                 </div>
+
             </div>
         </div>
     )

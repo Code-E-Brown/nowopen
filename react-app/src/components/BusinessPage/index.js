@@ -22,6 +22,7 @@ function BusinessPage() {
     const { id } = useParams();
     const businessId = id;
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [singleBusiness, setSingleBusiness] = useState({})
     const [isOpen, setIsOpen] = useState('')
@@ -36,6 +37,7 @@ function BusinessPage() {
     const [editReviewText, setEditReviewText] = useState('')
     const [editToggle, setEditToggle] = useState(false)
     const [editId, setEditId] = useState(null)
+    const [locationErrors, setLocationErrors] = useState(null)
     const [createReviewErrors, setCreateReviewErrors] = useState(null)
     const currentBusiness = useSelector(state => state.businesses[businessId]);
     const currentReviews = useSelector(state => Object.values(state.reviews).filter(review => review.business_id === +businessId));
@@ -49,6 +51,9 @@ function BusinessPage() {
         const result = await dispatch(getBusinesses())
         const reviews = await dispatch(getReviews(+businessId))
         const currentBiz = result.find(business => business.id === +businessId)
+        if (!currentBiz) {
+            history.push('/')
+        }
         setSingleBusiness(result.find(business => business.id === +businessId))
 
         // console.log('**************', result)
@@ -92,15 +97,27 @@ function BusinessPage() {
 
 
 
-    const handleLocationNoteSave = (e) => {
+    const handleLocationNoteSave = async (e) => {
         e.preventDefault()
-        setToggleLocationEdit(!toggleLocationEdit)
+
 
         const changeOpenStatus = {
             ...currentBusiness,
             location_description: locationNote,
         }
-        dispatch(editBusiness(changeOpenStatus))
+        const result = await dispatch(editBusiness(changeOpenStatus))
+        if (result.errors) {
+            setLocationErrors(result.errors)
+        } else {
+            setLocationErrors(null)
+            setToggleLocationEdit(!toggleLocationEdit)
+        }
+    }
+
+    const handleLocationNoteCancel = () => {
+        setToggleLocationEdit(!toggleLocationEdit)
+        setLocationErrors(null)
+        setLocationNote(currentBusiness.location_description)
     }
 
     const handleReviewSubmit = async (e) => {
@@ -119,6 +136,7 @@ function BusinessPage() {
             setLiveRating(null)
             setReviewText('')
             dispatch(getBusinesses())
+            setCreateReviewErrors(null)
         } else {
 
             setCreateReviewErrors(result.errors)
@@ -144,6 +162,7 @@ function BusinessPage() {
             setEditReviewText('')
             setEditId(null)
             setEditToggle(false)
+            setEditErrors(null)
             dispatch(getBusinesses())
         } else {
             // console.log(result.errors)
@@ -156,12 +175,14 @@ function BusinessPage() {
         setLiveRating(null)
         setReviewText('')
         setCreateReviewErrors(null)
+        setEditErrors(null)
     }
     const handleEditReviewCancel = (e) => {
         setEditLiveRating(null)
         setEditReviewText('')
         setEditToggle(false)
         setEditId(null)
+        setEditErrors(null)
     }
 
     const handleReviewDelete = async e => {
@@ -173,7 +194,7 @@ function BusinessPage() {
     }
     const handleReviewEdit = async e => {
         e.preventDefault()
-        console.log(+e.target.parentElement.parentElement.id)
+        // console.log(+e.target.parentElement.parentElement.id)
         // await dispatch(deleteReview(+e.target.parentElement.parentElement.id))
         // await dispatch(getBusinesses())
     }
@@ -182,99 +203,131 @@ function BusinessPage() {
         e.preventDefault()
         setEditToggle(false)
         setEditId(null)
+        setEditErrors(null)
     }
     const handleEditToggle = e => {
         e.preventDefault()
+        // console.log(currentReviews, +e.target.id)
+        const exactReview = currentReviews.find(review => review.id === +e.target.id)
+        // console.log(exactReview)
         setEditId(+e.target.id)
+        setEditReviewText(exactReview.text)
         setEditToggle(true)
     }
 
+    const handleLocationEditToggle = (e) => {
+
+        setToggleLocationEdit(!toggleLocationEdit)
+        setLocationNote(currentBusiness.location_description)
+    }
+
+    const formatter = (url1, url2) => {
+        return `url(${url1}), url(${url2})`
+    }
+
+    const catConverter = (id) => {
+        if (id === '1' || id === 1) {
+            return "Food"
+        }
+        if (id === '2' || id === 2) {
+            return "Retail"
+        }
+        if (id === '3' || id === 3) {
+            return "Event"
+        }
+    }
 
     return (
         <div>
-            <div className={style.imageBox}>
-                <div className={style.infoFlex}>
-                    <div className={style.infoBox}>
-                        <div className={style.nameBox}>
-                            <h1 className={style.bizName}>
-                                {currentBusiness?.name}
-                            </h1>
-                        </div>
-                        {currentBusiness &&
-                            <div className={style.ratingBox}>
-                                {currentBusiness?.rating === 1 ? <>⭐</> : null}
-                                {currentBusiness?.rating === 2 ? <>⭐⭐</> : null}
-                                {currentBusiness?.rating === 3 ? <>⭐⭐⭐</> : null}
-                                {currentBusiness?.rating === 4 ? <>⭐⭐⭐⭐</> : null}
-                                {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
-                                {currentBusiness?.reviews.length} reviews
+            {currentBusiness &&
+                <div className={style.imageBox} style={{ backgroundImage: formatter(currentBusiness?.banner_image, 'https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') }}>
+                    <div className={style.infoFlex}>
+                        <div className={style.infoBox}>
+                            <div className={style.nameBox}>
+                                <h1 className={style.bizName}>
+                                    {currentBusiness?.name}
+                                </h1>
                             </div>
-                        }
-                        {currentBusiness?.now_open ? (
-                            <>
-                                <div className={style.openStatus}>
-                                    Now Open!
+                            <div className={style.ratingBox}>{catConverter(currentBusiness?.category_id)}</div>
+                            {currentBusiness &&
+                                <div className={style.ratingBox}>
+                                    {currentBusiness?.rating === 1 ? <>⭐</> : null}
+                                    {currentBusiness?.rating === 2 ? <>⭐⭐</> : null}
+                                    {currentBusiness?.rating === 3 ? <>⭐⭐⭐</> : null}
+                                    {currentBusiness?.rating === 4 ? <>⭐⭐⭐⭐</> : null}
+                                    {currentBusiness?.rating === 5 ? <>⭐⭐⭐⭐⭐</> : null}
+                                    {currentBusiness?.reviews.length} reviews
                                 </div>
-                                <div className={style.locationInfo}>
-                                    {currentBusiness &&
-                                        <AddressWrapper currentBusiness={currentBusiness} currentLat={currentLat} currentLong={currentLong} />
-                                    }
-                                    {/* <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
+                            }
+                            {currentBusiness?.now_open ? (
+                                <>
+                                    <div className={style.openStatus}>
+                                        Now Open!
+                                    </div>
+                                    {/* <div className={style.ratingBox} style={{ margin: '-20' }}>hello</div> */}
+                                    <div className={style.locationInfo}>
+                                        {currentBusiness &&
+                                            <AddressWrapper currentBusiness={currentBusiness} currentLat={currentLat} currentLong={currentLong} />
+                                        }
+                                        {/* <a href={`https://www.google.com/maps/dir/${+currentBusiness.current_lat},${+currentBusiness.current_long}/${currentLat},${currentLong}`} target="_blank" rel="noopener noreferrer">
                                         Located at: 555 E street, Washington D.C
                                     </a> */}
-                                    <div className={style.flexColumn}>
-                                        <div className={style.photoButtonBox}>
-                                            <Link to='#'>
-                                                See all Photos
-                                            </Link>
-                                        </div>
-                                        {user && user.id === currentBusiness?.user_id ? (
-                                            <div className={style.editButtonBox}>
-                                                <Link to={`/businesses/${currentBusiness.id}/edit`}>
-                                                    Edit
+
+                                        <div className={style.flexColumn}>
+                                            {/* <div className={style.photoButtonBox}>
+                                                <Link to='#'>
+                                                    See all Photos
                                                 </Link>
-                                            </div>
+                                            </div> */}
+                                            {user && user.id === currentBusiness?.user_id ? (
 
-                                        )
-                                            : null}
-                                    </div>
+                                                <div className={style.editButtonBox} style={{ position: 'relative', bottom: '18px' }}>
+                                                    <Link to={`/businesses/${currentBusiness.id}/edit`}>
+                                                        Edit
+                                                    </Link>
+                                                </div>
 
-                                </div>
-                            </>
-                        ) :
-                            <>
-                                <div className={style.closedStatus}>
-                                    Closed
-                                </div>
-                                <div className={style.locationInfoInvis}>
-                                    <div></div>
-                                    <div className={style.flexColumn}>
-
-                                        <div className={style.photoButtonBox}>
-                                            <Link to='#'>
-                                                See all Photos
-                                            </Link>
+                                            )
+                                                : null}
                                         </div>
-                                        {user && user.id === currentBusiness?.user_id ? (
-                                            <div className={style.editButtonBox}>
-                                                <Link to={`/businesses/${currentBusiness.id}/edit`}>
-                                                    Edit
-                                                </Link>
-                                            </div>
-
-                                        )
-
-                                            : null}
 
                                     </div>
+                                </>
+                            ) :
+                                <>
+                                    <div className={style.closedStatus}>
+                                        Closed
+                                    </div>
+                                    <div className={style.locationInfoInvis}>
+                                        <div></div>
+                                        <div className={style.flexColumn}>
 
-                                </div>
-                            </>
-                        }
+                                            {/* <div className={style.photoButtonBox}>
+                                                <Link to='#'>
+                                                    See all Photos
+                                                </Link>
+                                            </div> */}
+                                            {user && user.id === currentBusiness?.user_id ? (
+                                                <div className={style.editButtonBox} style={{ position: 'relative', bottom: '18px' }}>
+                                                    <Link to={`/businesses/${currentBusiness.id}/edit`}>
+                                                        Edit
+                                                    </Link>
+                                                </div>
 
+                                            )
+
+                                                : null}
+
+                                        </div>
+
+                                    </div>
+                                </>
+                            }
+
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
             {/* {currentBusiness?.now_open && user?.id != } */}
             {
 
@@ -339,9 +392,14 @@ function BusinessPage() {
                             <div className={style.bizLocationDescription}>
                                 <div className={style.locationNote}>Location note:</div>
                                 <div className={style.outerDescBox}>
+
                                     {toggleLocationEdit ? (
                                         <div>
-                                            <textarea className={style.noteText} onChange={e => setLocationNote(e.target.value)} placeholder='Add a few notes so people know how to find you!'>{currentBusiness.location_description}</textarea>
+                                            {locationErrors && locationErrors.map(error => (
+                                                <div style={{ color: 'red' }} key={error}>{error}</div>
+
+                                            ))}
+                                            <textarea className={style.noteText} onChange={e => setLocationNote(e.target.value)} value={locationNote} placeholder='Add a few notes so people know how to find you!'></textarea>
                                         </div>
                                     ) :
 
@@ -359,19 +417,25 @@ function BusinessPage() {
                                     </div>
                                 } */}
                                 {toggleLocationEdit === true ?
-                                    <div className={style.saveLocationButtonBox} >
-                                        <button onClick={handleLocationNoteSave}>Save note!</button>
-                                    </div>
+                                    <>
+                                        <div className={style.saveLocationButtonBox} >
+                                            <button onClick={handleLocationNoteSave}>Save note!</button>
+                                        </div>
+                                        <div className={style.cancelLocationButtonBox} >
+                                            <button onClick={handleLocationNoteCancel}>Cancel</button>
+                                        </div>
+                                    </>
                                     :
                                     <div className={style.locationButtonBox}>
-                                        <button onClick={e => setToggleLocationEdit(!toggleLocationEdit)}>Update location note!</button>
+                                        <button onClick={handleLocationEditToggle}>Update location note!</button>
                                     </div>
                                 }
                             </div>
                         }
                     </div>
                 </>
-            ) : null}
+            ) : null
+            }
             <div className={style.infoSection}>
                 <div className={style.descriptionArea}>
                     - {currentBusiness?.description}
@@ -635,7 +699,8 @@ function BusinessPage() {
                                                         {editErrors && editErrors.map(error => (
                                                             <div style={{ marginBottom: '5px' }} key={error}>{error}</div>
                                                         ))}
-                                                        <textarea placeholder='Share your experience!' className={style.textArea} onChange={e => setEditReviewText(e.target.value)} value={editReviewText.length ? editReviewText : review.text}></textarea>
+                                                        {/* <textarea placeholder='Share your experience!' className={style.textArea} onChange={e => setEditReviewText(e.target.value)} value={editReviewText.length ? editReviewText : review.text}></textarea> */}
+                                                        <textarea placeholder='Share your experience!' className={style.textArea} onChange={e => setEditReviewText(e.target.value)} value={editReviewText}></textarea>
                                                     </div>
                                                     <div className={style.buttonContainer}>
                                                         <button className={style.submitButton} id={review.id} onClick={handleEditReviewSubmit}>Submit edit</button>

@@ -84,7 +84,7 @@ font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
     /* display: flex;
     align-content: center;
     justify-content: center; */
-    background-image: url('https://assets.bonappetit.com/photos/60e46c6701084801b06de2a3/1:1/w_2560%2Cc_limit/Halo-Halo-Recipe-2021.jpg');
+    /* background-image: url('https://assets.bonappetit.com/photos/60e46c6701084801b06de2a3/1:1/w_2560%2Cc_limit/Halo-Halo-Recipe-2021.jpg'); */
 }
 .listHeader{
     overflow-wrap: break-word;
@@ -156,10 +156,32 @@ margin-bottom: 10px; */
 
 .descriptionBox{
     color: rgba(117,114,128,1);
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 15px;
+    /* background-color: red; */
+    height: 40px;
+    overflow: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
+.address{
+    color: rgba(117,114,128,1);
     font-size: 14px;
     font-weight: 400;
     /* background-color: red; */
-    height: 80px;
+    /* height: 80px; */
     overflow: none;
+    margin-bottom: 25px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+.address a{
+    color: rgba(117,114,128,1);
+    font-size: 14px;
+    font-weight: 400;
+    /* background-color: red; */
+    /* height: 80px; */
+    overflow: none;
+    /* text-decoration: none; */
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
